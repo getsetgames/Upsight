@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/UpsightDataStore.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/UpsightDataStore</TokenIdentifier>
+			<Abstract type="html">This class provides a CoreData based implementation of UpsightDataStoreInterface</Abstract>
+			<DeclaredIn>UpsightDataStore.h</DeclaredIn>
+            
+			
+			<NodeRef refid="14"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/UpsightDataStore/defaultStore</TokenIdentifier>
+			<Abstract type="html">This method always returns the same data store object. If you wisht to create a new instance of UpsightDataStore use one of the init methods rather than using the shared object.</Abstract>
+			<DeclaredIn>UpsightDataStore.h</DeclaredIn>
+			
+			<Declaration>+ (id&lt;UpsightDataStoreInterface&gt;)defaultStore</Declaration>
+			
+			
+			<Anchor>//api/name/defaultStore</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UpsightDataStore/initWithDatabaseDirectoryURL:fileNamePrefix:</TokenIdentifier>
+			<Abstract type="html">Returns an object that implements the UpsightDataStoreInterface protocol using CoreData</Abstract>
+			<DeclaredIn>UpsightDataStore.h</DeclaredIn>
+			
+			<Declaration>- (id)initWithDatabaseDirectoryURL:(NSURL *)directoryURL fileNamePrefix:(NSString *)prefix</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>directoryURL</Name>
+					<Abstract type="html">An NSURL pointing to the folder where you would like the SQLite file to be saved</Abstract>
+				</Parameter><Parameter>
+					<Name>prefix</Name>
+					<Abstract type="html">The .sqlite will be added to this string and the result used as the name of the data base file</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">And object conforming to the UpsightDataStoreInterface protocol</Abstract></ReturnValue>
+			<Anchor>//api/name/initWithDatabaseDirectoryURL:fileNamePrefix:</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UpsightDataStore/initWithDataStoreURL:</TokenIdentifier>
+			<Abstract type="html">Returns an object that implements the UpsightDataStoreInterface protocol using CoreData</Abstract>
+			<DeclaredIn>UpsightDataStore.h</DeclaredIn>
+			
+			<Declaration>- (id)initWithDataStoreURL:(NSURL *)aDataStoreURL</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>aDataStoreURL</Name>
+					<Abstract type="html">An NSURL identifying the full path and name of the file in which the datastore should be saved</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/initWithDataStoreURL:</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

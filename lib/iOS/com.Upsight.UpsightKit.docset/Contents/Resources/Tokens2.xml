@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/USAnalyticsEvent.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/USAnalyticsEvent</TokenIdentifier>
+			<Abstract type="html">Instances of this class represent events that happen within your application. An event
+could be anything that is of some interest in your application, e.g. when a user clicks a
+specific button, adds a friend, etc. You create event objects and send them to Upsight&apos;s server
+by means of [USAnalyticsInterface record:] to track those events on your dashboard.</Abstract>
+			<DeclaredIn>USAnalyticsEvent.h</DeclaredIn>
+            
+			
+			<NodeRef refid="2"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/USAnalyticsEvent/analyticsEventWithParameters:name:</TokenIdentifier>
+			<Abstract type="html">Convenience class method for creating event objects.</Abstract>
+			<DeclaredIn>USAnalyticsEvent.h</DeclaredIn>
+			
+			<Declaration>+ (instancetype)analyticsEventWithParameters:(USEventParameters *)aParameters name:(NSString *)aName</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>aParameters</Name>
+					<Abstract type="html">Parameters of the event.</Abstract>
+				</Parameter><Parameter>
+					<Name>aName</Name>
+					<Abstract type="html">User-defined event name. You are free to assign any name to events to logically group them together. For example you can create events with &quot;monetization&quot; name to group together events related to monetization. Note that . is a special symbol that can be used within event name to create a compound name, where every . represents one level of hierarchy. For example, mystore.weapons and mystore.armor allows you to get metrics on mystore as well as mystore.weapons and my_store.armor using the Upsight Dashboard.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/analyticsEventWithParameters:name:</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/USAnalyticsEvent/initWithParameters:name:</TokenIdentifier>
+			<Abstract type="html">Constructs an event object that encapsulates data representing an event in your application.</Abstract>
+			<DeclaredIn>USAnalyticsEvent.h</DeclaredIn>
+			
+			<Declaration>- (instancetype)initWithParameters:(USEventParameters *)aParameters name:(NSString *)aName</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>aParameters</Name>
+					<Abstract type="html">Event parameters.</Abstract>
+				</Parameter><Parameter>
+					<Name>aName</Name>
+					<Abstract type="html">User-defined event name. You are free to assign any name to events to logically group them together. For example you can create events with &quot;monetization&quot; name to group together events related to monetization. Note that . is a special symbol that can be used within event name to create a compound name, where every . represents one level of hierarchy. For example, mystore.weapons and mystore.armor allows you to get metrics on mystore as well as mystore.weapons and my_store.armor using the Upsight Dashboard.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">An event object.</Abstract></ReturnValue>
+			<Anchor>//api/name/initWithParameters:name:</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/USAnalyticsEvent/setName:</TokenIdentifier>
+			<Abstract type="html">Event name which is the same that is passed on event creation.</Abstract>
+			<DeclaredIn>USAnalyticsEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) NSString *name</Declaration>
+			
+			
+			<Anchor>//api/name/name</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/USAnalyticsEvent/name</TokenIdentifier>
+			<Abstract type="html">Event name which is the same that is passed on event creation.</Abstract>
+			<DeclaredIn>USAnalyticsEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) NSString *name</Declaration>
+			
+			
+			<Anchor>//api/name/name</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/USAnalyticsEvent/name</TokenIdentifier>
+			<Abstract type="html">Event name which is the same that is passed on event creation.</Abstract>
+			<DeclaredIn>USAnalyticsEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) NSString *name</Declaration>
+			
+			
+			<Anchor>//api/name/name</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

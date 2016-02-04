@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>UpsightDataStoreInterface Protocol Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1334)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">UpsightKit </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">Upsight</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+
+	
+	
+
+	
+
+	
+	<optgroup label="Instance Methods">
+		
+		<option value="//api/name/addDefaultObserver:selector:">- addDefaultObserver:selector:</option>
+		
+		<option value="//api/name/addObserver:selector:type:">- addObserver:selector:type:</option>
+		
+		<option value="//api/name/addObserver:selector:type:queue:">- addObserver:selector:type:queue:</option>
+		
+		<option value="//api/name/addObserver:selector:type:queue:predicate:">- addObserver:selector:type:queue:predicate:</option>
+		
+		<option value="//api/name/queryObjects:predicate:">- queryObjects:predicate:</option>
+		
+		<option value="//api/name/remove:completion:">- remove:completion:</option>
+		
+		<option value="//api/name/removeDefaultObserver:">- removeDefaultObserver:</option>
+		
+		<option value="//api/name/removeObjects:completion:">- removeObjects:completion:</option>
+		
+		<option value="//api/name/removeObserver:type:">- removeObserver:type:</option>
+		
+		<option value="//api/name/removeObserver:type:predicate:">- removeObserver:type:predicate:</option>
+		
+		<option value="//api/name/store:completion:">- store:completion:</option>
+		
+	</optgroup>
+	
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">UpsightDataStoreInterface Protocol Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Conforms to</th>
+	<td>NSObject</td>
+</tr><tr>
+	<th>Declared in</th>
+	<td>UpsightDataStoreInterface.h</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>This protocol defines the interface to the <a href="../Classes/UpsightDataStore.html">UpsightDataStore</a>.
+The <a href="../Classes/UpsightDataStore.html">UpsightDataStore</a> is a class that stores arbitrary data objects, each with its own type.
+It also provides an interface by which observer methods are registered against those types.
+The data store calls the observers when data of the specified type is stored, removed, or updated.</p>
+
+<p>The <a href="../Classes/UpsightDataStore.html">UpsightDataStore</a> with it&rsquo;s store/observe mechanism is the basis of the <a href="../Classes/Upsight.html">Upsight</a> platform.</p>
+					</div>
+					
+					
+
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						
+
+						<a title="Managing Observers" name="task_Managing Observers"></a>
+						<h2 class="task-title">Managing Observers</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/addObserver:selector:type:" title="addObserver:selector:type:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/addObserver:selector:type:">&ndash;&nbsp;addObserver:selector:type:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>addObserver:selector:type</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)addObserver:(NSObject *)<em>observer</em> selector:(SEL)<em>selector</em> type:(NSString *)<em>type</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>observer</code></th>
+						<td><p>The object that implements the selector.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>selector</code></th>
+						<td><p>A method with two parameters: an id which is the object that was stored/changed/removed and an <a href="../Constants/UpsightObservableAction.html">UpsightObservableAction</a> which indicates the reason for calling the observer.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>type</code></th>
+						<td><p>When data of this type is stored, removed, or updated, the selector message is sent to observer.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>None.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Registers a method of an object so that when data of the specified type is stored in, changed in, or removed from the data store, that method is called on a background queue.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">UpsightDataStoreInterface.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/addObserver:selector:type:queue:" title="addObserver:selector:type:queue:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/addObserver:selector:type:queue:">&ndash;&nbsp;addObserver:selector:type:queue:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>addObserver:observer:selector:type:queue</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)addObserver:(NSObject *)<em>observer</em> selector:(SEL)<em>selector</em> type:(NSString *)<em>type</em> queue:(NSOperationQueue *)<em>queue</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>observer</code></th>
+						<td><p>The object that implements the selector.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>selector</code></th>
+						<td><p>A method with two parameters: an id which is the object that was stored/changed/removed and an <a href="../Constants/UpsightObservableAction.html">UpsightObservableAction</a> which indicates the reason for calling the observer.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>type</code></th>
+						<td><p>When data of this type is stored, removed, or updated, the selector message is sent to observer.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>queue</code></th>
+						<td><p>The NSOperationQueue on which the selector should be called.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>None.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Registers a method of an object so that when data of the specified type is stored in, changed in, or removed removed from the data store, that method is called on the specified queue.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">UpsightDataStoreInterface.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/addObserver:selector:type:queue:predicate:" title="addObserver:selector:type:queue:predicate:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/addObserver:selector:type:queue:predicate:">&ndash;&nbsp;addObserver:selector:type:queue:predicate:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>addObserver:observer:selector:type:queue:predicate</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)addObserver:(NSObject *)<em>observer</em> selector:(SEL)<em>selector</em> type:(NSString *)<em>type</em> queue:(NSOperationQueue *)<em>queue</em> predicate:(NSPredicate *)<em>predicate</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>observer</code></th>
+						<td><p>The object that implements the selector.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>selector</code></th>
+						<td><p>A method with two parameters: an id which is the object that was stored/changed/removed and an <a href="../Constants/UpsightObservableAction.html">UpsightObservableAction</a> which indicates the reason for calling the observer.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>type</code></th>
+						<td><p>When data of this type is stored, removed, or updated, the selector message is sent to observer.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>queue</code></th>
+						<td><p>The NSOperationQueue on which the selector should be called.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>predicate</code></th>
+						<td><p>Only objects for which the predicate evaluates to TRUE will be sent to the observer. This evaluation is in addition to matching the type.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>None.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Registers a method of an object so that when data of the specified type is stored in, updated in or removed from the data store, that method is called on the specified queue.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">UpsightDataStoreInterface.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/addDefaultObserver:selector:" title="addDefaultObserver:selector:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/addDefaultObserver:selector:">&ndash;&nbsp;addDefaultObserver:selector:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>addDefaultObserver:observer:selector:</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)addDefaultObserver:(NSObject *)<em>observer</em> selector:(SEL)<em>selector</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>observer</code></th>
+						<td><p>The object that implements the selector.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>selector</code></th>
+						<td><p>A method with two parameters: an id which is the object that was stored/changed/removed and an <a href="../Constants/UpsightObservableAction.html">UpsightObservableAction</a> which indicates the reason for calling the observer.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>None.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Registers a method of an object that will be called whenever an object is stored, updated, or removed, but no other observer matches the object&rsquo;s type and predicate.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">UpsightDataStoreInterface.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/removeObserver:type:" title="removeObserver:type:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/removeObserver:type:">&ndash;&nbsp;removeObserver:type:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>removeObserver:type</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)removeObserver:(NSObject *)<em>observer</em> type:(NSString *)<em>type</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>observer</code></th>
+						<td><p>An object previously registered as an observer with one of the addObserver methods.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>type</code></th>
+						<td><p>The type for which the observer was previously registered. It was supplied as the type parameter in the call to the addObserver method.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>None.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Removes an object&rsquo;s selector from the list of selectors that will be called when objects of the specified type are stored, removed, or updated.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">UpsightDataStoreInterface.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/removeObserver:type:predicate:" title="removeObserver:type:predicate:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/removeObserver:type:predicate:">&ndash;&nbsp;removeObserver:type:predicate:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>removeObserver:type:predicate</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)removeObserver:(NSObject *)<em>observer</em> type:(NSString *)<em>type</em> predicate:(NSPredicate *)<em>predicate</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>observer</code></th>
+						<td><p>An object previously registered as an observer with one of the addObserver methods.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>type</code></th>
+						<td><p>The type that was supplied when the observer was registered with the addObserver method.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>predicate</code></th>
+						<td><p>The predicate that was supplied when the observer was registered with the addObserver method.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>None</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Removes an object&rsquo;s selector from the list of selectors that will be called when objects of the specified type and matching the predicate are stored, removed, or updated.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">UpsightDataStoreInterface.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/removeDefaultObserver:" title="removeDefaultObserver:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/removeDefaultObserver:">&ndash;&nbsp;removeDefaultObserver:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>removeDefaultObserver:</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)removeDefaultObserver:(NSObject *)<em>observer</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>observer</code></th>
+						<td><p>An object previously registered as a default observer using the addDefaultObserver:observer:selector method.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>None.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Removes an object&rsquo;s selector from the list of selectors that will be called in case an object is stored, removed, or updated and no other observers match its type or predicate.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">UpsightDataStoreInterface.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+
+						<a title="Working with Data" name="task_Working with Data"></a>
+						<h2 class="task-title">Working with Data</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/store:completion:" title="store:completion:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/store:completion:">&ndash;&nbsp;store:completion:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>store:completion</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)store:(UpsightStorableObject *)<em>object</em> completion:(UpsightDataStoreCompletion)<em>completionBlock</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>object</code></th>
+						<td><p>An instance of a class derived from <a href="../Classes/UpsightStorableObject.html">UpsightStorableObject</a>. This object will be stored and kept until removed.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>completionBlock</code></th>
+						<td><p>A block that will be executed once the object is stored. If there was a problem storing the object it will be reported in the error provided. Do not add or remove observers within this block.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>None.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Persists an object. Registered observers will be called if they are watching this object&rsquo;s type and optionally have a predicate that evaluates to TRUE for this object.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">UpsightDataStoreInterface.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/remove:completion:" title="remove:completion:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/remove:completion:">&ndash;&nbsp;remove:completion:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>remove:completion</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)remove:(UpsightStorableObject *)<em>object</em> completion:(UpsightDataStoreCompletion)<em>completionBlock</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>object</code></th>
+						<td><p>The object to be removed from storage.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>completionBlock</code></th>
+						<td><p>A block that will be executed once the object is removed. If there was a problem removing the object it will be reported in the error provided. Do not add or remove observers within this block.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>None.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Removes the provided object from persistent storage. Note that it is an error to call remove with an object that was never passed to the store method.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">UpsightDataStoreInterface.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/removeObjects:completion:" title="removeObjects:completion:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/removeObjects:completion:">&ndash;&nbsp;removeObjects:completion:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>removeObjects:completion</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)removeObjects:(NSArray *)<em>objects</em> completion:(UpsightDataStoreObjectsCompletion)<em>completionBlock</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>objects</code></th>
+						<td><p>An NSArray of the objects to be removed from storage.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>completionBlock</code></th>
+						<td><p>A block that will be executed once the object is removed. If there was a problem removing the object it will be reported in the error provided. If you attempt to remove an object that has not been stored, you will receive an UpsightDataStoreObjectNotPreviouslyStored error. The userInfo in the error will contain the unstored object in the key &ldquo;unstoredObject&rdquo;. Do not add or remove observers within this block.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>None.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Removes the provided list of objects from persistent storage. Note that it is an error to call remove with an object that was never passed to the store method.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">UpsightDataStoreInterface.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/queryObjects:predicate:" title="queryObjects:predicate:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/queryObjects:predicate:">&ndash;&nbsp;queryObjects:predicate:</a></code>
+<span class="task-item-suffix">required method</span></h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>queryObjects:predicate</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (NSArray *)queryObjects:(NSString *)<em>type</em> predicate:(NSPredicate *)<em>predicate</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>type</code></th>
+						<td><p>The type of object to be returned in list.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>predicate</code></th>
+						<td><p>A set of conditions to be met by the objects returned. May be nil.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>An array of all the objects of the specified type for which the predicate evaluates to TRUE.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Returns an array of all objects that match the type and for which the predicate evaluates to TRUE. The method synchronously performs data store query blocking the calling thread.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">UpsightDataStoreInterface.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+                    
+          
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2016 Upsight. All rights reserved. Updated: 2016-01-04</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1334)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>

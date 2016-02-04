@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Protocols/USReward.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intf/USReward</TokenIdentifier>
+			<Abstract type="html">Abstracts Upsight reward, an object that gets propagated from the server to the
+application and eventually is expected to be passed to a user.</Abstract>
+			<DeclaredIn>USReward.h</DeclaredIn>
+            
+			
+			<NodeRef refid="28"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/USReward/setProductIdentifier:</TokenIdentifier>
+			<Abstract type="html">Unique identifier of a reward.</Abstract>
+			<DeclaredIn>USReward.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) NSString *productIdentifier</Declaration>
+			
+			
+			<Anchor>//api/name/productIdentifier</Anchor>
+            <NodeRef refid="28"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/USReward/productIdentifier</TokenIdentifier>
+			<Abstract type="html">Unique identifier of a reward.</Abstract>
+			<DeclaredIn>USReward.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) NSString *productIdentifier</Declaration>
+			
+			
+			<Anchor>//api/name/productIdentifier</Anchor>
+            <NodeRef refid="28"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfp/USReward/productIdentifier</TokenIdentifier>
+			<Abstract type="html">Unique identifier of a reward.</Abstract>
+			<DeclaredIn>USReward.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) NSString *productIdentifier</Declaration>
+			
+			
+			<Anchor>//api/name/productIdentifier</Anchor>
+            <NodeRef refid="28"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/USReward/setQuantity:</TokenIdentifier>
+			<Abstract type="html">Property representing the number of reward items.</Abstract>
+			<DeclaredIn>USReward.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) NSUInteger quantity</Declaration>
+			
+			
+			<Anchor>//api/name/quantity</Anchor>
+            <NodeRef refid="28"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/USReward/quantity</TokenIdentifier>
+			<Abstract type="html">Property representing the number of reward items.</Abstract>
+			<DeclaredIn>USReward.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) NSUInteger quantity</Declaration>
+			
+			
+			<Anchor>//api/name/quantity</Anchor>
+            <NodeRef refid="28"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfp/USReward/quantity</TokenIdentifier>
+			<Abstract type="html">Property representing the number of reward items.</Abstract>
+			<DeclaredIn>USReward.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) NSUInteger quantity</Declaration>
+			
+			
+			<Anchor>//api/name/quantity</Anchor>
+            <NodeRef refid="28"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/USReward/setSignatureData:</TokenIdentifier>
+			<Abstract type="html">Property containing an NSData object that can be used locally or on a server to validate that a given reward and quantity originated on the Upsight server</Abstract>
+			<DeclaredIn>USReward.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) NSData *signatureData</Declaration>
+			
+			
+			<Anchor>//api/name/signatureData</Anchor>
+            <NodeRef refid="28"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/USReward/signatureData</TokenIdentifier>
+			<Abstract type="html">Property containing an NSData object that can be used locally or on a server to validate that a given reward and quantity originated on the Upsight server</Abstract>
+			<DeclaredIn>USReward.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) NSData *signatureData</Declaration>
+			
+			
+			<Anchor>//api/name/signatureData</Anchor>
+            <NodeRef refid="28"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfp/USReward/signatureData</TokenIdentifier>
+			<Abstract type="html">Property containing an NSData object that can be used locally or on a server to validate that a given reward and quantity originated on the Upsight server</Abstract>
+			<DeclaredIn>USReward.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) NSData *signatureData</Declaration>
+			
+			
+			<Anchor>//api/name/signatureData</Anchor>
+            <NodeRef refid="28"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

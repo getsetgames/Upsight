@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Protocols/UpsightDataStoreInterface.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intf/UpsightDataStoreInterface</TokenIdentifier>
+			<Abstract type="html">This protocol defines the interface to the UpsightDataStore.
+The UpsightDataStore is a class that stores arbitrary data objects, each with its own type.
+It also provides an interface by which observer methods are registered against those types.
+The data store calls the observers when data of the specified type is stored, removed, or updated.</Abstract>
+			<DeclaredIn>UpsightDataStoreInterface.h</DeclaredIn>
+            
+			
+			<NodeRef refid="29"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/UpsightDataStoreInterface/addObserver:selector:type:</TokenIdentifier>
+			<Abstract type="html">addObserver:selector:type</Abstract>
+			<DeclaredIn>UpsightDataStoreInterface.h</DeclaredIn>
+			
+			<Declaration>- (void)addObserver:(NSObject *)observer selector:(SEL)selector type:(NSString *)type</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>observer</Name>
+					<Abstract type="html">The object that implements the selector.</Abstract>
+				</Parameter><Parameter>
+					<Name>selector</Name>
+					<Abstract type="html">A method with two parameters: an id which is the object that was stored/changed/removed and an UpsightObservableAction which indicates the reason for calling the observer.</Abstract>
+				</Parameter><Parameter>
+					<Name>type</Name>
+					<Abstract type="html">When data of this type is stored, removed, or updated, the selector message is sent to observer.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">None.</Abstract></ReturnValue>
+			<Anchor>//api/name/addObserver:selector:type:</Anchor>
+            <NodeRef refid="29"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/UpsightDataStoreInterface/addObserver:selector:type:queue:</TokenIdentifier>
+			<Abstract type="html">addObserver:observer:selector:type:queue</Abstract>
+			<DeclaredIn>UpsightDataStoreInterface.h</DeclaredIn>
+			
+			<Declaration>- (void)addObserver:(NSObject *)observer selector:(SEL)selector type:(NSString *)type queue:(NSOperationQueue *)queue</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>observer</Name>
+					<Abstract type="html">The object that implements the selector.</Abstract>
+				</Parameter><Parameter>
+					<Name>selector</Name>
+					<Abstract type="html">A method with two parameters: an id which is the object that was stored/changed/removed and an UpsightObservableAction which indicates the reason for calling the observer.</Abstract>
+				</Parameter><Parameter>
+					<Name>type</Name>
+					<Abstract type="html">When data of this type is stored, removed, or updated, the selector message is sent to observer.</Abstract>
+				</Parameter><Parameter>
+					<Name>queue</Name>
+					<Abstract type="html">The NSOperationQueue on which the selector should be called.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">None.</Abstract></ReturnValue>
+			<Anchor>//api/name/addObserver:selector:type:queue:</Anchor>
+            <NodeRef refid="29"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/UpsightDataStoreInterface/addObserver:selector:type:queue:predicate:</TokenIdentifier>
+			<Abstract type="html">addObserver:observer:selector:type:queue:predicate</Abstract>
+			<DeclaredIn>UpsightDataStoreInterface.h</DeclaredIn>
+			
+			<Declaration>- (void)addObserver:(NSObject *)observer selector:(SEL)selector type:(NSString *)type queue:(NSOperationQueue *)queue predicate:(NSPredicate *)predicate</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>observer</Name>
+					<Abstract type="html">The object that implements the selector.</Abstract>
+				</Parameter><Parameter>
+					<Name>selector</Name>
+					<Abstract type="html">A method with two parameters: an id which is the object that was stored/changed/removed and an UpsightObservableAction which indicates the reason for calling the observer.</Abstract>
+				</Parameter><Parameter>
+					<Name>type</Name>
+					<Abstract type="html">When data of this type is stored, removed, or updated, the selector message is sent to observer.</Abstract>
+				</Parameter><Parameter>
+					<Name>queue</Name>
+					<Abstract type="html">The NSOperationQueue on which the selector should be called.</Abstract>
+				</Parameter><Parameter>
+					<Name>predicate</Name>
+					<Abstract type="html">Only objects for which the predicate evaluates to TRUE will be sent to the observer. This evaluation is in addition to matching the type.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">None.</Abstract></ReturnValue>
+			<Anchor>//api/name/addObserver:selector:type:queue:predicate:</Anchor>
+            <NodeRef refid="29"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/UpsightDataStoreInterface/addDefaultObserver:selector:</TokenIdentifier>
+			<Abstract type="html">addDefaultObserver:observer:selector:</Abstract>
+			<DeclaredIn>UpsightDataStoreInterface.h</DeclaredIn>
+			
+			<Declaration>- (void)addDefaultObserver:(NSObject *)observer selector:(SEL)selector</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>observer</Name>
+					<Abstract type="html">The object that implements the selector.</Abstract>
+				</Parameter><Parameter>
+					<Name>selector</Name>
+					<Abstract type="html">A method with two parameters: an id which is the object that was stored/changed/removed and an UpsightObservableAction which indicates the reason for calling the observer.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">None.</Abstract></ReturnValue>
+			<Anchor>//api/name/addDefaultObserver:selector:</Anchor>
+            <NodeRef refid="29"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/UpsightDataStoreInterface/removeObserver:type:</TokenIdentifier>
+			<Abstract type="html">removeObserver:type</Abstract>
+			<DeclaredIn>UpsightDataStoreInterface.h</DeclaredIn>
+			
+			<Declaration>- (void)removeObserver:(NSObject *)observer type:(NSString *)type</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>observer</Name>
+					<Abstract type="html">An object previously registered as an observer with one of the addObserver methods.</Abstract>
+				</Parameter><Parameter>
+					<Name>type</Name>
+					<Abstract type="html">The type for which the observer was previously registered. It was supplied as the type parameter in the call to the addObserver method.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">None.</Abstract></ReturnValue>
+			<Anchor>//api/name/removeObserver:type:</Anchor>
+            <NodeRef refid="29"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/UpsightDataStoreInterface/removeObserver:type:predicate:</TokenIdentifier>
+			<Abstract type="html">removeObserver:type:predicate</Abstract>
+			<DeclaredIn>UpsightDataStoreInterface.h</DeclaredIn>
+			
+			<Declaration>- (void)removeObserver:(NSObject *)observer type:(NSString *)type predicate:(NSPredicate *)predicate</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>observer</Name>
+					<Abstract type="html">An object previously registered as an observer with one of the addObserver methods.</Abstract>
+				</Parameter><Parameter>
+					<Name>type</Name>
+					<Abstract type="html">The type that was supplied when the observer was registered with the addObserver method.</Abstract>
+				</Parameter><Parameter>
+					<Name>predicate</Name>
+					<Abstract type="html">The predicate that was supplied when the observer was registered with the addObserver method.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">None</Abstract></ReturnValue>
+			<Anchor>//api/name/removeObserver:type:predicate:</Anchor>
+            <NodeRef refid="29"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/UpsightDataStoreInterface/removeDefaultObserver:</TokenIdentifier>
+			<Abstract type="html">removeDefaultObserver:</Abstract>
+			<DeclaredIn>UpsightDataStoreInterface.h</DeclaredIn>
+			
+			<Declaration>- (void)removeDefaultObserver:(NSObject *)observer</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>observer</Name>
+					<Abstract type="html">An object previously registered as a default observer using the addDefaultObserver:observer:selector method.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">None.</Abstract></ReturnValue>
+			<Anchor>//api/name/removeDefaultObserver:</Anchor>
+            <NodeRef refid="29"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/UpsightDataStoreInterface/store:completion:</TokenIdentifier>
+			<Abstract type="html">store:completion</Abstract>
+			<DeclaredIn>UpsightDataStoreInterface.h</DeclaredIn>
+			
+			<Declaration>- (void)store:(UpsightStorableObject *)object completion:(UpsightDataStoreCompletion)completionBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>object</Name>
+					<Abstract type="html">An instance of a class derived from UpsightStorableObject. This object will be stored and kept until removed.</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">A block that will be executed once the object is stored. If there was a problem storing the object it will be reported in the error provided. Do not add or remove observers within this block.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">None.</Abstract></ReturnValue>
+			<Anchor>//api/name/store:completion:</Anchor>
+            <NodeRef refid="29"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/UpsightDataStoreInterface/remove:completion:</TokenIdentifier>
+			<Abstract type="html">remove:completion</Abstract>
+			<DeclaredIn>UpsightDataStoreInterface.h</DeclaredIn>
+			
+			<Declaration>- (void)remove:(UpsightStorableObject *)object completion:(UpsightDataStoreCompletion)completionBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>object</Name>
+					<Abstract type="html">The object to be removed from storage.</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">A block that will be executed once the object is removed. If there was a problem removing the object it will be reported in the error provided. Do not add or remove observers within this block.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">None.</Abstract></ReturnValue>
+			<Anchor>//api/name/remove:completion:</Anchor>
+            <NodeRef refid="29"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/UpsightDataStoreInterface/removeObjects:completion:</TokenIdentifier>
+			<Abstract type="html">removeObjects:completion</Abstract>
+			<DeclaredIn>UpsightDataStoreInterface.h</DeclaredIn>
+			
+			<Declaration>- (void)removeObjects:(NSArray *)objects completion:(UpsightDataStoreObjectsCompletion)completionBlock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>objects</Name>
+					<Abstract type="html">An NSArray of the objects to be removed from storage.</Abstract>
+				</Parameter><Parameter>
+					<Name>completionBlock</Name>
+					<Abstract type="html">A block that will be executed once the object is removed. If there was a problem removing the object it will be reported in the error provided. If you attempt to remove an object that has not been stored, you will receive an UpsightDataStoreObjectNotPreviouslyStored error. The userInfo in the error will contain the unstored object in the key &quot;unstoredObject&quot;. Do not add or remove observers within this block.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">None.</Abstract></ReturnValue>
+			<Anchor>//api/name/removeObjects:completion:</Anchor>
+            <NodeRef refid="29"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/UpsightDataStoreInterface/queryObjects:predicate:</TokenIdentifier>
+			<Abstract type="html">queryObjects:predicate</Abstract>
+			<DeclaredIn>UpsightDataStoreInterface.h</DeclaredIn>
+			
+			<Declaration>- (NSArray *)queryObjects:(NSString *)type predicate:(NSPredicate *)predicate</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>type</Name>
+					<Abstract type="html">The type of object to be returned in list.</Abstract>
+				</Parameter><Parameter>
+					<Name>predicate</Name>
+					<Abstract type="html">A set of conditions to be met by the objects returned. May be nil.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">An array of all the objects of the specified type for which the predicate evaluates to TRUE.</Abstract></ReturnValue>
+			<Anchor>//api/name/queryObjects:predicate:</Anchor>
+            <NodeRef refid="29"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

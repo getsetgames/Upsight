@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Protocols/USManagedType.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intf/USManagedType</TokenIdentifier>
+			<Abstract type="html">Base interface for objects representing UXM variables, dynamic values controlled from
+the dashboard and propagated to the application when as it runs.</Abstract>
+			<DeclaredIn>USManagedType.h</DeclaredIn>
+            
+			
+			<NodeRef refid="24"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/USManagedType/setTag:</TokenIdentifier>
+			<Abstract type="html">Tag is an unique string that is used to identify UXM variables.</Abstract>
+			<DeclaredIn>USManagedType.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) NSString *tag</Declaration>
+			
+			
+			<Anchor>//api/name/tag</Anchor>
+            <NodeRef refid="24"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/USManagedType/tag</TokenIdentifier>
+			<Abstract type="html">Tag is an unique string that is used to identify UXM variables.</Abstract>
+			<DeclaredIn>USManagedType.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) NSString *tag</Declaration>
+			
+			
+			<Anchor>//api/name/tag</Anchor>
+            <NodeRef refid="24"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfp/USManagedType/tag</TokenIdentifier>
+			<Abstract type="html">Tag is an unique string that is used to identify UXM variables.</Abstract>
+			<DeclaredIn>USManagedType.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) NSString *tag</Declaration>
+			
+			
+			<Anchor>//api/name/tag</Anchor>
+            <NodeRef refid="24"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

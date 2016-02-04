@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/USMonetizationEvent.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/USMonetizationEvent</TokenIdentifier>
+			<Abstract type="html">Event representing a monetary transaction, in which the user is paying the app developer for
+goods or services.</Abstract>
+			<DeclaredIn>USMonetizationEvent.h</DeclaredIn>
+            
+			
+			<NodeRef refid="8"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/USMonetizationEvent/monetizationEventWithWithParameters:info:</TokenIdentifier>
+			<Abstract type="html">Convenience method for creating a monetization event. Events should be created using USEventFactory class.</Abstract>
+			<DeclaredIn>USMonetizationEvent.h</DeclaredIn>
+			
+			<Declaration>+ (instancetype)monetizationEventWithWithParameters:(USEventParameters *)aParameters info:(USMonetizationPurchaseInfo *)anInfo</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>aParameters</Name>
+					<Abstract type="html">Parameters of the event.</Abstract>
+				</Parameter><Parameter>
+					<Name>anInfo</Name>
+					<Abstract type="html">An object containing information about the monetary transaction. Refer to the
+&lt;USMonetizationPurchaceInfo&gt; class for more details.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">An initialized event.</Abstract></ReturnValue>
+			<Anchor>//api/name/monetizationEventWithWithParameters:info:</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/USMonetizationEvent/setInfo:</TokenIdentifier>
+			<Abstract type="html">Accessor to the monetary information passed at event creation time.</Abstract>
+			<DeclaredIn>USMonetizationEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) USMonetizationPurchaseInfo *info</Declaration>
+			
+			
+			<Anchor>//api/name/info</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/USMonetizationEvent/info</TokenIdentifier>
+			<Abstract type="html">Accessor to the monetary information passed at event creation time.</Abstract>
+			<DeclaredIn>USMonetizationEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) USMonetizationPurchaseInfo *info</Declaration>
+			
+			
+			<Anchor>//api/name/info</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/USMonetizationEvent/info</TokenIdentifier>
+			<Abstract type="html">Accessor to the monetary information passed at event creation time.</Abstract>
+			<DeclaredIn>USMonetizationEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) USMonetizationPurchaseInfo *info</Declaration>
+			
+			
+			<Anchor>//api/name/info</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/Upsight.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/Upsight</TokenIdentifier>
+			<Abstract type="html">This is the main class you use to interface with the Upsight framework. It has a number of class methods you use to send events,
+get status information or display content.</Abstract>
+			<DeclaredIn>Upsight.h</DeclaredIn>
+            
+			
+			<NodeRef refid="13"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/Upsight/token</TokenIdentifier>
+			<Abstract type="html">Provides read-only access to the app token you set in your app&apos;s Info.plist. This value is supplied on your application&apos;s dashboard.</Abstract>
+			<DeclaredIn>Upsight.h</DeclaredIn>
+			
+			<Declaration>+ (NSString *)token</Declaration>
+			
+			
+			<Anchor>//api/name/token</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/Upsight/publicKey</TokenIdentifier>
+			<Abstract type="html">Provides read-only access to the public key you set in your app&apos;s Info.plist. This value is supplied on your applicaiton&apos;s dashboard.</Abstract>
+			<DeclaredIn>Upsight.h</DeclaredIn>
+			
+			<Declaration>+ (NSString *)publicKey</Declaration>
+			
+			
+			<Anchor>//api/name/publicKey</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/Upsight/recordAnalyticsEventWithName:properties:</TokenIdentifier>
+			<Abstract type="html">Sends information to the Upsight server representing events that happen within your application. An event
+could be anything that is of some interest in your application, e.g. when a user clicks a
+specific button, adds a friend, etc.</Abstract>
+			<DeclaredIn>Upsight.h</DeclaredIn>
+			
+			<Declaration>+ (void)recordAnalyticsEventWithName:(NSString *)name properties:(NSDictionary *)properties</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>name</Name>
+					<Abstract type="html">User-defined event name. You are free to assign any name to events to logically group them together. For example you can create events with &quot;monetization&quot; name to group together events related to monetization. Note that . is a special symbol that can be used within event name to create a compound name, where every . represents one level of hierarchy. For example, mystore.weapons and mystore.armor allows you to get metrics on mystore as well as mystore.weapons and my_store.armor using the Upsight Dashboard.</Abstract>
+				</Parameter><Parameter>
+					<Name>properties</Name>
+					<Abstract type="html">A dictionary containing any information you would like to associate with this event.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/recordAnalyticsEventWithName:properties:</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/Upsight/recordMonetizationEventWithResolution:totalPrice:currency:product:properties:</TokenIdentifier>
+			<Abstract type="html">Event representing a monetary transaction, in which the user is paying you for
+goods or services.</Abstract>
+			<DeclaredIn>Upsight.h</DeclaredIn>
+			
+			<Declaration>+ (void)recordMonetizationEventWithResolution:(USPurchaseResolution)resolution totalPrice:(float)totalPrice currency:(NSString *)currency product:(NSString *)product properties:(NSDictionary *)properties</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>resolution</Name>
+					<Abstract type="html">Represents type of monetary transaction that took place. Refer to the
+USPurchaseResolution enumeration or more details.</Abstract>
+				</Parameter><Parameter>
+					<Name>totalPrice</Name>
+					<Abstract type="html">The total price of the transaction, including fractional amounts of the currency, before
+store fees have been taken into account.</Abstract>
+				</Parameter><Parameter>
+					<Name>currency</Name>
+					<Abstract type="html">The currency as a 3-character ISO 4217 code.</Abstract>
+				</Parameter><Parameter>
+					<Name>product</Name>
+					<Abstract type="html">Unique identifier of the product.</Abstract>
+				</Parameter><Parameter>
+					<Name>properties</Name>
+					<Abstract type="html">A dictionary containing any information you would like to associate with this event.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/recordMonetizationEventWithResolution:totalPrice:currency:product:properties:</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/Upsight/recordMonetizationEventWithResolution:currency:quantity:product:price:properties:</TokenIdentifier>
+			<Abstract type="html">Event representing a monetary transaction, in which the user is paying you for
+goods or services. The total price for the transaction is calculated internally
+by multiplying the quantity and unit price.</Abstract>
+			<DeclaredIn>Upsight.h</DeclaredIn>
+			
+			<Declaration>+ (void)recordMonetizationEventWithResolution:(USPurchaseResolution)resolution currency:(NSString *)currency quantity:(NSUInteger)quantity product:(NSString *)product price:(float)price properties:(NSDictionary *)properties</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>resolution</Name>
+					<Abstract type="html">Represents type of monetary transaction that took place. Refer to the
+USPurchaseResolution enumeration or more details.</Abstract>
+				</Parameter><Parameter>
+					<Name>currency</Name>
+					<Abstract type="html">The currency as a 3-character ISO 4217 code.</Abstract>
+				</Parameter><Parameter>
+					<Name>quantity</Name>
+					<Abstract type="html">The number of goods purchased.</Abstract>
+				</Parameter><Parameter>
+					<Name>product</Name>
+					<Abstract type="html">Unique identifier of the product.</Abstract>
+				</Parameter><Parameter>
+					<Name>price</Name>
+					<Abstract type="html">The price per unit in local currency.</Abstract>
+				</Parameter><Parameter>
+					<Name>properties</Name>
+					<Abstract type="html">A dictionary containing any information you would like to associate with this event.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/recordMonetizationEventWithResolution:currency:quantity:product:price:properties:</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/Upsight/recordInAppPurchaseEventWithResolution:product:quantity:price:currency:transactionIdentifier:properties:</TokenIdentifier>
+			<Abstract type="html">An event representing the purchase of virtual goods through an In App Purchase. These events are subject to
+verification by the Upsight server.</Abstract>
+			<DeclaredIn>Upsight.h</DeclaredIn>
+			
+			<Declaration>+ (void)recordInAppPurchaseEventWithResolution:(USPurchaseResolution)resolution product:(NSString *)product quantity:(NSUInteger)quantity price:(float)price currency:(NSString *)currency transactionIdentifier:(NSString *)transactionIdentifier properties:(NSDictionary *)properties</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>resolution</Name>
+					<Abstract type="html">Represents the type of monetary transaction that took place. Refer to the
+USPurchaseResolution enumeration or more details.</Abstract>
+				</Parameter><Parameter>
+					<Name>product</Name>
+					<Abstract type="html">Unique identifier of the product. This should be taken from the SKPayment object.</Abstract>
+				</Parameter><Parameter>
+					<Name>quantity</Name>
+					<Abstract type="html">The number of goods purchased. This should be taken from the SKPayment object.</Abstract>
+				</Parameter><Parameter>
+					<Name>price</Name>
+					<Abstract type="html">The price per unit in local currency. This can be retrieved from an SKProduct object.</Abstract>
+				</Parameter><Parameter>
+					<Name>currency</Name>
+					<Abstract type="html">The currency as a 3-character ISO 4217 code. This can be retrieved from an SKProduct object.</Abstract>
+				</Parameter><Parameter>
+					<Name>transactionIdentifier</Name>
+					<Abstract type="html">Identifier of the transaction returned by [SKPaymentTransaction transactionIdentifier]</Abstract>
+				</Parameter><Parameter>
+					<Name>properties</Name>
+					<Abstract type="html">A dictionary containing any information you would like to associate with this event.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/recordInAppPurchaseEventWithResolution:product:quantity:price:currency:transactionIdentifier:properties:</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/Upsight/recordMilestoneEventForScope:</TokenIdentifier>
+			<Abstract type="html">An event indicating that a specific point in the application has been reached. This may represent an action taken or progress made by the user, a particular line/region of code, or any other point of interest.</Abstract>
+			<DeclaredIn>Upsight.h</DeclaredIn>
+			
+			<Declaration>+ (void)recordMilestoneEventForScope:(NSString *)scope</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>scope</Name>
+					<Abstract type="html">An NSString that uniquely identifies the point of interest that has been reached.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/recordMilestoneEventForScope:</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/Upsight/recordMilestoneEventForScope:properties:</TokenIdentifier>
+			<Abstract type="html">An event indicating that a specific point in the application has been reached. This may represent an action taken or progress made by the user, a particular line/region of code, or any other point of interest.</Abstract>
+			<DeclaredIn>Upsight.h</DeclaredIn>
+			
+			<Declaration>+ (void)recordMilestoneEventForScope:(NSString *)scope properties:(NSDictionary *)properties</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>scope</Name>
+					<Abstract type="html">An NSString that uniquely identifies the point of interest that has been reached.</Abstract>
+				</Parameter><Parameter>
+					<Name>properties</Name>
+					<Abstract type="html">A dictionary containing any information you would like to associate with this event.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/recordMilestoneEventForScope:properties:</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/Upsight/billboardForScope:</TokenIdentifier>
+			<Abstract type="html">Retrieves the USBillboard object associated with a specific point of interest within the application. Setting a delegate on the billboard
+allows you to control the display of any content associated with the scope.</Abstract>
+			<DeclaredIn>Upsight.h</DeclaredIn>
+			
+			<Declaration>+ (id&lt;USBillboard&gt;)billboardForScope:(NSString *)scope</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>scope</Name>
+					<Abstract type="html">An NSString that uniquely identifies a point of interest in your application.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/billboardForScope:</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/Upsight/setLocation:</TokenIdentifier>
+			<Abstract type="html">If setLocation is called, the provided location will be attached to all events that are sent until the location is updated, or the application is put in the background for long.
+enough that the current session is considered finished.</Abstract>
+			<DeclaredIn>Upsight.h</DeclaredIn>
+			
+			<Declaration>+ (void)setLocation:(CLLocation *)location</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>location</Name>
+					<Abstract type="html">A CLLocation object retrieved from one of Appple&apos;s location services.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/setLocation:</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/Upsight/optOutStatus</TokenIdentifier>
+			<Abstract type="html">Provides read-only access to the current state of the Opt Out flag.</Abstract>
+			<DeclaredIn>Upsight.h</DeclaredIn>
+			
+			<Declaration>+ (BOOL)optOutStatus</Declaration>
+			
+			
+			<Anchor>//api/name/optOutStatus</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/Upsight/setOptOutStatus:</TokenIdentifier>
+			<Abstract type="html">Allows you to set the Opt Out flag. For a description of the effect of the Opt Out flag, see
+the Upsight document regarding COPPA Compliance</Abstract>
+			<DeclaredIn>Upsight.h</DeclaredIn>
+			
+			<Declaration>+ (void)setOptOutStatus:(BOOL)optOut</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>optOut</Name>
+					<Abstract type="html">The new value for the Opt Out flag.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/setOptOutStatus:</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/Upsight/defaultLogLevel</TokenIdentifier>
+			<Abstract type="html">Provides read-only access to the current log level used for reporting all log messages.</Abstract>
+			<DeclaredIn>Upsight.h</DeclaredIn>
+			
+			<Declaration>+ (UpsightLoggerLevel)defaultLogLevel</Declaration>
+			
+			
+			<Anchor>//api/name/defaultLogLevel</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/Upsight/setDefaultLogLevel:</TokenIdentifier>
+			<Abstract type="html">Allows you to set the log level. Any message with a log level equal to or above the level you set will be
+displayed in the debug output window. For example, setting a value of UpsightLoggerLevelError will display all messages logged with a level of UpsightLoggerLevelError or UpsightLoggerLevelCritical
+It is recommended that you begin your integration with UpsightLoggerLevelDebug until you get the integration working, at which point you can change the level to UpsightLoggerLevelError (which is the default).</Abstract>
+			<DeclaredIn>Upsight.h</DeclaredIn>
+			
+			<Declaration>+ (void)setDefaultLogLevel:(UpsightLoggerLevel)level</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>level</Name>
+					<Abstract type="html">The new filter level for log messages. See UpsightLoggerLevel for details.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/setDefaultLogLevel:</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/Upsight/variableObserver</TokenIdentifier>
+			<Abstract type="html">You set a delegate on the Managed Variable Observer if you wish to control the timing of updates to Managed Variables.</Abstract>
+			<DeclaredIn>Upsight.h</DeclaredIn>
+			
+			<Declaration>+ (id&lt;USManagedVariableObserver&gt;)variableObserver</Declaration>
+			
+			
+			<Anchor>//api/name/variableObserver</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/Upsight/senderID</TokenIdentifier>
+			<Abstract type="html">Provides read-only access to a unique number generated by the SDK. This number is used to identify the device to the Upsight servers. It will only change if the user uninstalls the application and then reinstalls it.</Abstract>
+			<DeclaredIn>UpsightServerEventsSupport.h</DeclaredIn>
+			
+			<Declaration>+ (NSString *)senderID</Declaration>
+			
+			
+			<Anchor>//api/name/senderID</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

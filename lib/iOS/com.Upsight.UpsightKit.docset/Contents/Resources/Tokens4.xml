@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/USInAppPurchaseEvent.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/USInAppPurchaseEvent</TokenIdentifier>
+			<Abstract type="html">An event representing a purchase of virtual goods through an In App Purchase.</Abstract>
+			<DeclaredIn>USInAppPurchaseEvent.h</DeclaredIn>
+            
+			
+			<NodeRef refid="4"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/USInAppPurchaseEvent/inAppPurchaseEventWithParameters:IAPInfo:</TokenIdentifier>
+			<Abstract type="html">Convenience method for creating an in-app purchase event. Events should be created using USEventFactory class.</Abstract>
+			<DeclaredIn>USInAppPurchaseEvent.h</DeclaredIn>
+			
+			<Declaration>+ (instancetype)inAppPurchaseEventWithParameters:(USEventParameters *)aParameters IAPInfo:(USInAppPurchaseInfo *)anInfo</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>aParameters</Name>
+					<Abstract type="html">Parameters of the event.</Abstract>
+				</Parameter><Parameter>
+					<Name>anInfo</Name>
+					<Abstract type="html">Information object encapsulating data about the purchase. Refer to the
+USInAppPurchaseInfo class for more details.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/inAppPurchaseEventWithParameters:IAPInfo:</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/USInAppPurchaseEvent/setInfo:</TokenIdentifier>
+			<Abstract type="html">Accessor to the information object passed to the initializer.</Abstract>
+			<DeclaredIn>USInAppPurchaseEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) USInAppPurchaseInfo *info</Declaration>
+			
+			
+			<Anchor>//api/name/info</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/USInAppPurchaseEvent/info</TokenIdentifier>
+			<Abstract type="html">Accessor to the information object passed to the initializer.</Abstract>
+			<DeclaredIn>USInAppPurchaseEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) USInAppPurchaseInfo *info</Declaration>
+			
+			
+			<Anchor>//api/name/info</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/USInAppPurchaseEvent/info</TokenIdentifier>
+			<Abstract type="html">Accessor to the information object passed to the initializer.</Abstract>
+			<DeclaredIn>USInAppPurchaseEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) USInAppPurchaseInfo *info</Declaration>
+			
+			
+			<Anchor>//api/name/info</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

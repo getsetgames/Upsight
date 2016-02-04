@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/USInAppPurchaseInfo.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/USInAppPurchaseInfo</TokenIdentifier>
+			<Abstract type="html">Encapsulates the data associated with in-app purchases.</Abstract>
+			<DeclaredIn>USInAppPurchaseInfo.h</DeclaredIn>
+            
+			
+			<NodeRef refid="5"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/USInAppPurchaseInfo/IAPInfoWithResolution:currency:quantity:product:price:transactionIdentifier:</TokenIdentifier>
+			<Abstract type="html">Convenience method for creating in-app purchase information object.</Abstract>
+			<DeclaredIn>USInAppPurchaseInfo.h</DeclaredIn>
+			
+			<Declaration>+ (instancetype)IAPInfoWithResolution:(USPurchaseResolution)resolution currency:(NSString *)currency quantity:(NSUInteger)quantity product:(NSString *)product price:(float)price transactionIdentifier:(NSString *)transactionIdentifier</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>resolution</Name>
+					<Abstract type="html">Represents the type of monetary transaction that took place.</Abstract>
+				</Parameter><Parameter>
+					<Name>currency</Name>
+					<Abstract type="html">The currency as a 3-character ISO 4217 code. This can be retrieved from an SKProduct object.</Abstract>
+				</Parameter><Parameter>
+					<Name>quantity</Name>
+					<Abstract type="html">The number of goods purchased. This should be taken from the SKPayment object.</Abstract>
+				</Parameter><Parameter>
+					<Name>product</Name>
+					<Abstract type="html">Unique identifier of the product. This should be taken from the SKPayment object.</Abstract>
+				</Parameter><Parameter>
+					<Name>price</Name>
+					<Abstract type="html">The price per unit in local currency. This can be retrieved from an SKProduct object.</Abstract>
+				</Parameter><Parameter>
+					<Name>transactionIdentifier</Name>
+					<Abstract type="html">Identifier of the transaction returned by [SKPaymentTransaction transactionIdentifier]</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/IAPInfoWithResolution:currency:quantity:product:price:transactionIdentifier:</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/USInAppPurchaseInfo/initWithDictionaryRepresentation:</TokenIdentifier>
+			<Abstract type="html">Designated initializer for restoring information object from its dictionary representation.</Abstract>
+			<DeclaredIn>USInAppPurchaseInfo.h</DeclaredIn>
+			
+			<Declaration>- (instancetype)initWithDictionaryRepresentation:(NSDictionary *)aDictionary</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>aDictionary</Name>
+					<Abstract type="html">Dictionary representation of the receiver.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/initWithDictionaryRepresentation:</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/USInAppPurchaseInfo/setResolution:</TokenIdentifier>
+			<Abstract type="html">Represents type of monetary transaction that took place.</Abstract>
+			<DeclaredIn>USInAppPurchaseInfo.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign, readonly) USPurchaseResolution resolution</Declaration>
+			
+			
+			<Anchor>//api/name/resolution</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/USInAppPurchaseInfo/resolution</TokenIdentifier>
+			<Abstract type="html">Represents type of monetary transaction that took place.</Abstract>
+			<DeclaredIn>USInAppPurchaseInfo.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign, readonly) USPurchaseResolution resolution</Declaration>
+			
+			
+			<Anchor>//api/name/resolution</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/USInAppPurchaseInfo/resolution</TokenIdentifier>
+			<Abstract type="html">Represents type of monetary transaction that took place.</Abstract>
+			<DeclaredIn>USInAppPurchaseInfo.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign, readonly) USPurchaseResolution resolution</Declaration>
+			
+			
+			<Anchor>//api/name/resolution</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/USInAppPurchaseInfo/setProduct:</TokenIdentifier>
+			<Abstract type="html">Unique identifier of the product.</Abstract>
+			<DeclaredIn>USInAppPurchaseInfo.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) NSString *product</Declaration>
+			
+			
+			<Anchor>//api/name/product</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/USInAppPurchaseInfo/product</TokenIdentifier>
+			<Abstract type="html">Unique identifier of the product.</Abstract>
+			<DeclaredIn>USInAppPurchaseInfo.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) NSString *product</Declaration>
+			
+			
+			<Anchor>//api/name/product</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/USInAppPurchaseInfo/product</TokenIdentifier>
+			<Abstract type="html">Unique identifier of the product.</Abstract>
+			<DeclaredIn>USInAppPurchaseInfo.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) NSString *product</Declaration>
+			
+			
+			<Anchor>//api/name/product</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/USInAppPurchaseInfo/setQuantity:</TokenIdentifier>
+			<Abstract type="html">The number of goods purchased.</Abstract>
+			<DeclaredIn>USInAppPurchaseInfo.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign, readonly) NSUInteger quantity</Declaration>
+			
+			
+			<Anchor>//api/name/quantity</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/USInAppPurchaseInfo/quantity</TokenIdentifier>
+			<Abstract type="html">The number of goods purchased.</Abstract>
+			<DeclaredIn>USInAppPurchaseInfo.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign, readonly) NSUInteger quantity</Declaration>
+			
+			
+			<Anchor>//api/name/quantity</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/USInAppPurchaseInfo/quantity</TokenIdentifier>
+			<Abstract type="html">The number of goods purchased.</Abstract>
+			<DeclaredIn>USInAppPurchaseInfo.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign, readonly) NSUInteger quantity</Declaration>
+			
+			
+			<Anchor>//api/name/quantity</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/USInAppPurchaseInfo/setCurrency:</TokenIdentifier>
+			<Abstract type="html">The currency as a 3-character ISO 4217 code.</Abstract>
+			<DeclaredIn>USInAppPurchaseInfo.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *currency</Declaration>
+			
+			
+			<Anchor>//api/name/currency</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/USInAppPurchaseInfo/currency</TokenIdentifier>
+			<Abstract type="html">The currency as a 3-character ISO 4217 code.</Abstract>
+			<DeclaredIn>USInAppPurchaseInfo.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *currency</Declaration>
+			
+			
+			<Anchor>//api/name/currency</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/USInAppPurchaseInfo/currency</TokenIdentifier>
+			<Abstract type="html">The currency as a 3-character ISO 4217 code.</Abstract>
+			<DeclaredIn>USInAppPurchaseInfo.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *currency</Declaration>
+			
+			
+			<Anchor>//api/name/currency</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/USInAppPurchaseInfo/setPrice:</TokenIdentifier>
+			<Abstract type="html">The price per unit in local currency.</Abstract>
+			<DeclaredIn>USInAppPurchaseInfo.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) float price</Declaration>
+			
+			
+			<Anchor>//api/name/price</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/USInAppPurchaseInfo/price</TokenIdentifier>
+			<Abstract type="html">The price per unit in local currency.</Abstract>
+			<DeclaredIn>USInAppPurchaseInfo.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) float price</Declaration>
+			
+			
+			<Anchor>//api/name/price</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/USInAppPurchaseInfo/price</TokenIdentifier>
+			<Abstract type="html">The price per unit in local currency.</Abstract>
+			<DeclaredIn>USInAppPurchaseInfo.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) float price</Declaration>
+			
+			
+			<Anchor>//api/name/price</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/USInAppPurchaseInfo/setTotalPrice:</TokenIdentifier>
+			<Abstract type="html">The total price of the transaction, including fractional amounts of the currency, before
+store fees have been taken into account.</Abstract>
+			<DeclaredIn>USInAppPurchaseInfo.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) float totalPrice</Declaration>
+			
+			
+			<Anchor>//api/name/totalPrice</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/USInAppPurchaseInfo/totalPrice</TokenIdentifier>
+			<Abstract type="html">The total price of the transaction, including fractional amounts of the currency, before
+store fees have been taken into account.</Abstract>
+			<DeclaredIn>USInAppPurchaseInfo.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) float totalPrice</Declaration>
+			
+			
+			<Anchor>//api/name/totalPrice</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/USInAppPurchaseInfo/totalPrice</TokenIdentifier>
+			<Abstract type="html">The total price of the transaction, including fractional amounts of the currency, before
+store fees have been taken into account.</Abstract>
+			<DeclaredIn>USInAppPurchaseInfo.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) float totalPrice</Declaration>
+			
+			
+			<Anchor>//api/name/totalPrice</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/USInAppPurchaseInfo/setDictionaryRepresentation:</TokenIdentifier>
+			<Abstract type="html">Accessor for dictionary representation of the receiver.</Abstract>
+			<DeclaredIn>USInAppPurchaseInfo.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) NSDictionary *dictionaryRepresentation</Declaration>
+			
+			
+			<Anchor>//api/name/dictionaryRepresentation</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/USInAppPurchaseInfo/dictionaryRepresentation</TokenIdentifier>
+			<Abstract type="html">Accessor for dictionary representation of the receiver.</Abstract>
+			<DeclaredIn>USInAppPurchaseInfo.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) NSDictionary *dictionaryRepresentation</Declaration>
+			
+			
+			<Anchor>//api/name/dictionaryRepresentation</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/USInAppPurchaseInfo/dictionaryRepresentation</TokenIdentifier>
+			<Abstract type="html">Accessor for dictionary representation of the receiver.</Abstract>
+			<DeclaredIn>USInAppPurchaseInfo.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong, readonly) NSDictionary *dictionaryRepresentation</Declaration>
+			
+			
+			<Anchor>//api/name/dictionaryRepresentation</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

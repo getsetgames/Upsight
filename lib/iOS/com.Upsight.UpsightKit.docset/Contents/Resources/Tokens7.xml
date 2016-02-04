@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/USMilestoneEvent.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/USMilestoneEvent</TokenIdentifier>
+			<Abstract type="html">An event indicating that a specific point in the application has been reached. This may represent an action taken or progress made by the user, a particular line/region of code, or any other point of interest.</Abstract>
+			<DeclaredIn>USMilestoneEvent.h</DeclaredIn>
+            
+			
+			<NodeRef refid="7"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/USMilestoneEvent/milestoneEventWithParameters:scope:</TokenIdentifier>
+			<Abstract type="html">Convenience method for creating a milestone event. Events should be created using USEventFactory class.</Abstract>
+			<DeclaredIn>USMilestoneEvent.h</DeclaredIn>
+			
+			<Declaration>+ (instancetype)milestoneEventWithParameters:(USEventParameters *)aParameters scope:(NSString *)aScope</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>aParameters</Name>
+					<Abstract type="html">Parameters of the event.</Abstract>
+				</Parameter><Parameter>
+					<Name>aScope</Name>
+					<Abstract type="html">The scope describes the point in the application which has been reached.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/milestoneEventWithParameters:scope:</Anchor>
+            <NodeRef refid="7"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/USMilestoneEvent/setScope:</TokenIdentifier>
+			<Abstract type="html">Accessor to the scope passed at event creation time.</Abstract>
+			<DeclaredIn>USMilestoneEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) NSString *scope</Declaration>
+			
+			
+			<Anchor>//api/name/scope</Anchor>
+            <NodeRef refid="7"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/USMilestoneEvent/scope</TokenIdentifier>
+			<Abstract type="html">Accessor to the scope passed at event creation time.</Abstract>
+			<DeclaredIn>USMilestoneEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) NSString *scope</Declaration>
+			
+			
+			<Anchor>//api/name/scope</Anchor>
+            <NodeRef refid="7"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/USMilestoneEvent/scope</TokenIdentifier>
+			<Abstract type="html">Accessor to the scope passed at event creation time.</Abstract>
+			<DeclaredIn>USMilestoneEvent.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, readonly) NSString *scope</Declaration>
+			
+			
+			<Anchor>//api/name/scope</Anchor>
+            <NodeRef refid="7"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>USPush Class Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1334)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">UpsightKit </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">Upsight</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+
+	
+	
+
+	
+	<optgroup label="Class Methods">
+		
+		<option value="//api/name/didRegisterUserNotificationSettings:">+ didRegisterUserNotificationSettings:</option>
+		
+		<option value="//api/name/handleRemoteNotificationWithUserInfo:">+ handleRemoteNotificationWithUserInfo:</option>
+		
+		<option value="//api/name/pushBillboard">+ pushBillboard</option>
+		
+		<option value="//api/name/registerForPushNotifications">+ registerForPushNotifications</option>
+		
+		<option value="//api/name/registerPushToken:">+ registerPushToken:</option>
+		
+		<option value="//api/name/unregisterForPushNotifications">+ unregisterForPushNotifications</option>
+		
+	</optgroup>
+	
+
+	
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">USPush Class Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Inherits from</th>
+	<td>NSObject</td>
+</tr><tr>
+	<th>Declared in</th>
+	<td>USPush.h</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p><code>USPush</code> class provides the ability to register for remote notifications sent through Apple
+Push Notification Service.</p>
+
+<p>To integrate push, you must:</p>
+
+<ol>
+<li>Add the <a href="../Protocols/USBillboardDelegate.html">USBillboardDelegate</a> protocol to your App Delegate and implement <code>presentingViewControllerForBillboard:</code></li>
+<li>Register for push by calling <a href="#//api/name/registerForPushNotifications"><code>[USPush registerForPushNotifications]</code></a> in your App Delegate&rsquo;s <code>didFinishLaunchingWithOptions:</code> method.</li>
+<li>Call the USPush API method <a href="#//api/name/didRegisterUserNotificationSettings:"><code>didRegisterUserNotificationSettings:</code></a> in your App Delegate&rsquo;s <code>application:</code>didRegisterUserNotificationSettings:<code></code> method.</li>
+<li>Call the USPush API method <a href="#//api/name/registerPushToken:"><code>registerPushToken:</code></a> from <code>application:didRegisterForRemoteNotificationsWithDeviceToken:</code></li>
+<li>When a remote notification is received, set the USPush billboard&rsquo;s delegate to be your App Delegate class and call the USPush interface&rsquo;s <a href="#//api/name/handleRemoteNotificationWithUserInfo:"><code>handleRemoteNotificationWithUserInfo:</code></a> method.</li>
+<li>If you plan to start downloading content when a push notification arrives, which is referred to as &ldquo;silent&rdquo; push notifications, check &lsquo;Remote notifications&rsquo; from the list of Background Modes in the Capabilities section of your target&rsquo;s settings.</li>
+</ol>
+
+
+<p>Here is a sample AppDelegate implementation that properly integrates Push</p>
+
+<pre><code>@interface AppDelegate () USBillboardDelegate
+@end
+
+@implementation AppDelegate 
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    [Upsight setDefaultLogLevel:UpsightLoggerLevelDebug];
+
+    // Override point for customization after application launch.
+    [USPush registerForPushNotifications];
+
+    return YES;
+}
+
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
+{
+    [USPush didRegisterUserNotificationSettings:notificationSettings];
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    [USPush registerPushToken:deviceToken];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
+    [USPush pushBillboard].delegate = self;
+    [USPush handleRemoteNotificationWithUserInfo:userInfo];
+
+    if (NULL != completionHandler) {
+        completionHandler(UIBackgroundFetchResultNoData);
+    }
+}
+
+#pragma mark - Billboard delegate
+
+- (UIViewController *)presentingViewControllerForBillboard:(idUSBillboard)aBillboard
+{
+    UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
+
+    while (topController.presentedViewController) {
+        topController = topController.presentedViewController;
+    }
+
+    return topController;
+}
+
+@end
+</code></pre>
+					</div>
+					
+					
+
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						
+
+						
+						
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/registerForPushNotifications" title="registerForPushNotifications"></a>
+	<h3 class="method-title"><code><a href="#//api/name/registerForPushNotifications">+&nbsp;registerForPushNotifications</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Starts the push notification registration procedure. This method should be called from your
+implementation of App Delegate <code>didFinishLaunchingWithOptions:</code> method. Shortly after this
+call the system should invoke your App Delegate&rsquo;s <code>application:</code>didRegisterUserNotificationSettings:<code></code>
+method to pass the settings the user has granted to the application. Your implementation of that
+method must forward the settings to <a href="#//api/name/didRegisterUserNotificationSettings:">[USPush didRegisterUserNotificationSettings:]</a> to continue
+the registration procedure.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (void)registerForPushNotifications</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">USPush.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/unregisterForPushNotifications" title="unregisterForPushNotifications"></a>
+	<h3 class="method-title"><code><a href="#//api/name/unregisterForPushNotifications">+&nbsp;unregisterForPushNotifications</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Unregisters the application from receiving remote notifications.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (void)unregisterForPushNotifications</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">USPush.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/registerPushToken:" title="registerPushToken:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/registerPushToken:">+&nbsp;registerPushToken:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>This method should be called from your implementation of <code>application:didRegisterForRemoteNotificationsWithDeviceToken:</code>
+application delegate method to complete the registration procedure.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (void)registerPushToken:(NSData *)<em>aToken</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>aToken</code></th>
+						<td><p>A device token passed by the system to the application delegate.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">USPush.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/didRegisterUserNotificationSettings:" title="didRegisterUserNotificationSettings:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/didRegisterUserNotificationSettings:">+&nbsp;didRegisterUserNotificationSettings:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Call this method from your implementation of <code>application:didRegisterUserNotificationSettings:</code>
+application delegate method to continue the registration procedure after the user confirmed the
+types of notifications that can be received by the app.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (void)didRegisterUserNotificationSettings:(UIUserNotificationSettings *)<em>aNotificationSettings</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>aNotificationSettings</code></th>
+						<td><p>Settings the user has granted to the application.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">USPush.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/handleRemoteNotificationWithUserInfo:" title="handleRemoteNotificationWithUserInfo:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/handleRemoteNotificationWithUserInfo:">+&nbsp;handleRemoteNotificationWithUserInfo:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Call this method from your implementation of <code>application:didReceiveRemoteNotification:</code>
+application delegate method to let the receiver process a notification.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (void)handleRemoteNotificationWithUserInfo:(NSDictionary *)<em>aUserInfo</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>aUserInfo</code></th>
+						<td><p>A dictionary that contains information related to the remote notification
+that is passed from the system to your application delegate.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">USPush.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/pushBillboard" title="pushBillboard"></a>
+	<h3 class="method-title"><code><a href="#//api/name/pushBillboard">+&nbsp;pushBillboard</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Push notifications sent from <a href="../Classes/Upsight.html">Upsight</a> Dashboard can be associated with different content,
+such as announcement, virtual goods promotion, etc. A push billboard is used to present
+contents associated with a push notification when users navigates to your app by tapping on
+the push notification banner.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (id&lt;USBillboard&gt;)pushBillboard</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>To be able to see pushed content in your app you must implement required method from <a href="../Protocols/USBillboardDelegate.html">USBillboardDelegate</a>
+protocol and assign a delegate to the billboard.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">USPush.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+                    
+          
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2016 Upsight. All rights reserved. Updated: 2016-01-04</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1334)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>

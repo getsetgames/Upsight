@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/USEventFactory.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/USEventFactory</TokenIdentifier>
+			<Abstract type="html">A factory for Upsight events. Created events should be sent to Upsight server by calling
+[USAnalyticsInterface record:].</Abstract>
+			<DeclaredIn>USEventFactory.h</DeclaredIn>
+            
+			
+			<NodeRef refid="3"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/USEventFactory/analyticsEventWithName:pubData:</TokenIdentifier>
+			<Abstract type="html">Creates an analytics event with the given name. You can provide any additional data you&apos;d like to send as a dictionary of key-&gt;value pairs.</Abstract>
+			<DeclaredIn>USEventFactory.h</DeclaredIn>
+			
+			<Declaration>+ (USAnalyticsEvent *)analyticsEventWithName:(NSString *)aName pubData:(NSDictionary *)aPubData</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>aName</Name>
+					<Abstract type="html">A publisher-defined string representing the event name.</Abstract>
+				</Parameter><Parameter>
+					<Name>aPubData</Name>
+					<Abstract type="html">A dictionary with additional data provided by the publisher.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/analyticsEventWithName:pubData:</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/USEventFactory/dataCollectionEventWitDataBundle:streamID:pubData:</TokenIdentifier>
+			<Abstract type="html">Creates an event containing data collected from the user.</Abstract>
+			<DeclaredIn>USEventFactory.h</DeclaredIn>
+			
+			<Declaration>+ (USDataCollectionEvent *)dataCollectionEventWitDataBundle:(id&lt;USDataBundle&gt;)aBundle streamID:(NSString *)aStreamID pubData:(NSDictionary *)aPubData</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>aBundle</Name>
+					<Abstract type="html">A bundle with user data.</Abstract>
+				</Parameter><Parameter>
+					<Name>aStreamID</Name>
+					<Abstract type="html">A unique identifer provided by the server. This identifier is applied to all the events related to a single piece of content.</Abstract>
+				</Parameter><Parameter>
+					<Name>aPubData</Name>
+					<Abstract type="html">A dictionary with additional data provided by the publisher.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/dataCollectionEventWitDataBundle:streamID:pubData:</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/USEventFactory/unrenderedContentEventWithContentID:campaignID:scope:pubData:</TokenIdentifier>
+			<Abstract type="html">Events of this kind indicate to the server that it told the SDK to display content, but it had not previously provided the SDK with that content.</Abstract>
+			<DeclaredIn>USEventFactory.h</DeclaredIn>
+			
+			<Declaration>+ (USUnrenderedContentEvent *)unrenderedContentEventWithContentID:(NSNumber *)aContentID campaignID:(NSNumber *)aCampaignID scope:(NSString *)aScope pubData:(NSDictionary *)aPubData</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>aContentID</Name>
+					<Abstract type="html">Unique identifier of the content. This value is a random server generated string.</Abstract>
+				</Parameter><Parameter>
+					<Name>aCampaignID</Name>
+					<Abstract type="html">Identifies the campaign to which this content belongs. Contains targeting, metadata and bid information.</Abstract>
+				</Parameter><Parameter>
+					<Name>aScope</Name>
+					<Abstract type="html">Describes the point in the application which has been reached.</Abstract>
+				</Parameter><Parameter>
+					<Name>aPubData</Name>
+					<Abstract type="html">A dictionary with additional data provided by the publisher.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/unrenderedContentEventWithContentID:campaignID:scope:pubData:</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/USEventFactory/milestoneEventForScope:pubData:</TokenIdentifier>
+			<Abstract type="html">Creates an event to indicate that a specific point in the application has been reached. This may represent an action taken or progress made by the user, a particular line/region of code, or any other point of interest.</Abstract>
+			<DeclaredIn>USEventFactory.h</DeclaredIn>
+			
+			<Declaration>+ (USMilestoneEvent *)milestoneEventForScope:(NSString *)aScope pubData:(NSDictionary *)aPubData</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>aScope</Name>
+					<Abstract type="html">Describes the point in the application which has been reached.</Abstract>
+				</Parameter><Parameter>
+					<Name>aPubData</Name>
+					<Abstract type="html">A dictionary with additional data provided by the publisher.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/milestoneEventForScope:pubData:</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/USEventFactory/installEventWithPubData:</TokenIdentifier>
+			<Abstract type="html">Creates an event to mark the installation of the application.</Abstract>
+			<DeclaredIn>USEventFactory.h</DeclaredIn>
+			
+			<Declaration>+ (USInstallEvent *)installEventWithPubData:(NSDictionary *)aPubData</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>aPubData</Name>
+					<Abstract type="html">A dictionary with additional data provided by the publisher.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/installEventWithPubData:</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/USEventFactory/inAppPurchaseEventWithIAPInfo:pubData:</TokenIdentifier>
+			<Abstract type="html">Creates an event that represents the purchase of virtual goods through an In App Purchase.</Abstract>
+			<DeclaredIn>USEventFactory.h</DeclaredIn>
+			
+			<Declaration>+ (USInAppPurchaseEvent *)inAppPurchaseEventWithIAPInfo:(USInAppPurchaseInfo *)anInfo pubData:(NSDictionary *)aPubData</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>anInfo</Name>
+					<Abstract type="html">An object containing information about the purchase. Refer to the USInAppPurchaseInfo
+class for more details.</Abstract>
+				</Parameter><Parameter>
+					<Name>aPubData</Name>
+					<Abstract type="html">A dictionary with additional data provided by the publisher.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/inAppPurchaseEventWithIAPInfo:pubData:</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/USEventFactory/dynamicEventWithEventDictionary:</TokenIdentifier>
+			<Abstract type="html">Creates an event whose properties are populated from a given event dictionary.</Abstract>
+			<DeclaredIn>USEventFactory.h</DeclaredIn>
+			
+			<Declaration>+ (USDynamicEvent *)dynamicEventWithEventDictionary:(NSDictionary *)anEventDictionary</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>anEventDictionary</Name>
+					<Abstract type="html">A dictionary containing event properties, including type, upsight
+data, pub data and a set of device identifiers that should be sent along with the event.
+Here is an example of a dictionary with the upsight.content.view event:
+
+    {
+        &quot;type&quot;: &quot;upsight.content.view&quot;,
+        &quot;upsight_data&quot;: {
+            &quot;streamstartts&quot;: 1448379411,
+            &quot;scope&quot;: &quot;rewcl&quot;,
+            &quot;content_id&quot;: 1252504,
+            &quot;stream_id&quot;: &quot;d720da64364b4f70ab7d45a14d7f50dc&quot;
+        }
+    }</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/dynamicEventWithEventDictionary:</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/USEventFactory/monetizationEventWithInfo:pubData:</TokenIdentifier>
+			<Abstract type="html">Creates an event that represents a monetary transaction, in which the user is paying the
+app developer for goods or services.</Abstract>
+			<DeclaredIn>USEventFactory.h</DeclaredIn>
+			
+			<Declaration>+ (USMonetizationEvent *)monetizationEventWithInfo:(USMonetizationPurchaseInfo *)anInfo pubData:(NSDictionary *)aPubData</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>anInfo</Name>
+					<Abstract type="html">An object containing information about the monetary transaction. Refer to the
+&lt;USMonetizationPurchaceInfo&gt; class for more details.</Abstract>
+				</Parameter><Parameter>
+					<Name>aPubData</Name>
+					<Abstract type="html">A dictionary with additional data provided by the publisher.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/monetizationEventWithInfo:pubData:</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/USEventFactory/configurationRequestWithPubData:</TokenIdentifier>
+			<Abstract type="html">Creates an event indicating that the SDK configuration has expired.</Abstract>
+			<DeclaredIn>USEventFactory.h</DeclaredIn>
+			
+			<Declaration>+ (USConfigurationRequest *)configurationRequestWithPubData:(NSDictionary *)aPubData</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>aPubData</Name>
+					<Abstract type="html">A dictionary with additional data provided by the publisher.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/configurationRequestWithPubData:</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/USEventFactory/sessionStartEventWithPubData:</TokenIdentifier>
+			<Abstract type="html">Creates an event indicating that a new session has started.</Abstract>
+			<DeclaredIn>USEventFactory.h</DeclaredIn>
+			
+			<Declaration>+ (USSessionStartEvent *)sessionStartEventWithPubData:(NSDictionary *)aPubData</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>aPubData</Name>
+					<Abstract type="html">A dictionary with additional data provided by the publisher.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/sessionStartEventWithPubData:</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/USEventFactory/sessionPauseEventWithPubData:</TokenIdentifier>
+			<Abstract type="html">Creates an event that indicates the application has been sent to the background.</Abstract>
+			<DeclaredIn>USEventFactory.h</DeclaredIn>
+			
+			<Declaration>+ (USSessionPauseEvent *)sessionPauseEventWithPubData:(NSDictionary *)aPubData</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>aPubData</Name>
+					<Abstract type="html">A dictionary with additional data provided by the publisher.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/sessionPauseEventWithPubData:</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/USEventFactory/sessionResumeEventWithPubData:</TokenIdentifier>
+			<Abstract type="html">Creates an event indicating that an existing session has been resumed.</Abstract>
+			<DeclaredIn>USEventFactory.h</DeclaredIn>
+			
+			<Declaration>+ (USSessionResumeEvent *)sessionResumeEventWithPubData:(NSDictionary *)aPubData</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>aPubData</Name>
+					<Abstract type="html">A dictionary with additional data provided by the publisher.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/sessionResumeEventWithPubData:</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/USEventFactory/pushReceivedEventWithMessageID:campaignID:pubData:</TokenIdentifier>
+			<Abstract type="html">Creates an event indicating that a push notification has been received.</Abstract>
+			<DeclaredIn>USEventFactory.h</DeclaredIn>
+			
+			<Declaration>+ (USPushReceivedEvent *)pushReceivedEventWithMessageID:(NSNumber *)aMessageID campaignID:(NSNumber *)aCampaignID pubData:(NSDictionary *)aPubData</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>aMessageID</Name>
+					<Abstract type="html">A unique identifier for this push notification.</Abstract>
+				</Parameter><Parameter>
+					<Name>aCampaignID</Name>
+					<Abstract type="html">If the push notification was sent as part of a campaign, the identifier for the campaign.</Abstract>
+				</Parameter><Parameter>
+					<Name>aPubData</Name>
+					<Abstract type="html">A dictionary with additional data provided by the publisher.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/pushReceivedEventWithMessageID:campaignID:pubData:</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/USEventFactory/pushRegistrationEventWithToken:pubData:</TokenIdentifier>
+			<Abstract type="html">Creates an event that is used to register a device token to be able to send push notifications
+from Upsight server.</Abstract>
+			<DeclaredIn>USEventFactory.h</DeclaredIn>
+			
+			<Declaration>+ (USPushRegistrationEvent *)pushRegistrationEventWithToken:(NSString *)aToken pubData:(NSDictionary *)aPubData</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>aToken</Name>
+					<Abstract type="html">This is the APNS-generated push token passed to [UIApplicationDelegate application:didRegisterForRemoteNotificationsWithDeviceToken:].</Abstract>
+				</Parameter><Parameter>
+					<Name>aPubData</Name>
+					<Abstract type="html">A dictionary with additional data provided by the publisher.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/pushRegistrationEventWithToken:pubData:</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/USEventFactory/pushUnregistrationEventWithPubData:</TokenIdentifier>
+			<Abstract type="html">Creates an event that is used to unregister from receiving push notifications.</Abstract>
+			<DeclaredIn>USEventFactory.h</DeclaredIn>
+			
+			<Declaration>+ (USPushUnregistrationEvent *)pushUnregistrationEventWithPubData:(NSDictionary *)aPubData</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>aPubData</Name>
+					<Abstract type="html">A dictionary with additional data provided by the publisher.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/pushUnregistrationEventWithPubData:</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/USEventFactory/UXMEnumerateEventWithUXMSchema:pubData:</TokenIdentifier>
+			<Abstract type="html">Creates an event that the SDK emits to send the UXM schema to the server.</Abstract>
+			<DeclaredIn>USEventFactory.h</DeclaredIn>
+			
+			<Declaration>+ (USUXMEnumerateEvent *)UXMEnumerateEventWithUXMSchema:(NSArray *)aSchema pubData:(NSDictionary *)aPubData</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>aSchema</Name>
+					<Abstract type="html">An array containing description of UXM values defined in the application.</Abstract>
+				</Parameter><Parameter>
+					<Name>aPubData</Name>
+					<Abstract type="html">A dictionary with additional data provided by the publisher.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/UXMEnumerateEventWithUXMSchema:pubData:</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

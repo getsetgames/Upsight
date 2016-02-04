@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Protocols/USBillboardManager.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intf/USBillboardManager</TokenIdentifier>
+			<Abstract type="html">Represents interface of a class managing billboards.</Abstract>
+			<DeclaredIn>USBillboardManager.h</DeclaredIn>
+            
+			
+			<NodeRef refid="19"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/USBillboardManager/billboardForScope:</TokenIdentifier>
+			<Abstract type="html">Provides access to billboards by their associated scope.</Abstract>
+			<DeclaredIn>USBillboardManager.h</DeclaredIn>
+			
+			<Declaration>- (id&lt;USBillboard&gt;)billboardForScope:(NSString *)aScope</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>aScope</Name>
+					<Abstract type="html">A unique scope used to find associated billboard.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">A billboard with the requested scope.</Abstract></ReturnValue>
+			<Anchor>//api/name/billboardForScope:</Anchor>
+            <NodeRef refid="19"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

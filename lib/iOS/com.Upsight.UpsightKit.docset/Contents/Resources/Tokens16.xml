@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Protocols/USAnalyticsInterface.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intf/USAnalyticsInterface</TokenIdentifier>
+			<Abstract type="html">USAnalyticsInterface represents a service providing ability to &quot;record&quot; analytics events
+that happen within an application. The service is responsible for guaranteed delivery of events
+to a server by recording given events in a persistent data base and then sending them to a
+designated server; all network and event queue management tasks are automatic.</Abstract>
+			<DeclaredIn>USAnalyticsInterface.h</DeclaredIn>
+            
+			
+			<NodeRef refid="16"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/USAnalyticsInterface/initWithDataStore:</TokenIdentifier>
+			<Abstract type="html">Initializes and returns a new instance of an object conforming to the USAnalyticsInterface protocol.</Abstract>
+			<DeclaredIn>USAnalyticsInterface.h</DeclaredIn>
+			
+			<Declaration>- (instancetype)initWithDataStore:(id&lt;UpsightDataStoreInterface&gt;)aDataStore</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>aDataStore</Name>
+					<Abstract type="html">A data store instance that is to be used by the newly created analytics
+service to record data. If you pass nil, the analytics service will use the
+default instance of the data store.</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">A new instance of analytics service.</Abstract></ReturnValue>
+			<Anchor>//api/name/initWithDataStore:</Anchor>
+            <NodeRef refid="16"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/USAnalyticsInterface/record:</TokenIdentifier>
+			<Abstract type="html">Stores a given object in the data store that was passed during service instantiation. Once the
+object is stored in the data base it is automatically scheduled for delivery to the server.</Abstract>
+			<DeclaredIn>USAnalyticsInterface.h</DeclaredIn>
+			
+			<Declaration>- (void)record:(USEvent *)anEvent</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>anEvent</Name>
+					<Abstract type="html">An event object than can be stored in the data base. For more information
+on objects of USAnalyticsEvent class, refer to USAnalyticsEvent header documentation.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/record:</Anchor>
+            <NodeRef refid="16"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

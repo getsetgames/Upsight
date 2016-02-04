@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>USEventFactory Class Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1334)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">UpsightKit </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">Upsight</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+
+	
+	
+
+	
+	<optgroup label="Class Methods">
+		
+		<option value="//api/name/UXMEnumerateEventWithUXMSchema:pubData:">+ UXMEnumerateEventWithUXMSchema:pubData:</option>
+		
+		<option value="//api/name/analyticsEventWithName:pubData:">+ analyticsEventWithName:pubData:</option>
+		
+		<option value="//api/name/configurationRequestWithPubData:">+ configurationRequestWithPubData:</option>
+		
+		<option value="//api/name/dataCollectionEventWitDataBundle:streamID:pubData:">+ dataCollectionEventWitDataBundle:streamID:pubData:</option>
+		
+		<option value="//api/name/dynamicEventWithEventDictionary:">+ dynamicEventWithEventDictionary:</option>
+		
+		<option value="//api/name/inAppPurchaseEventWithIAPInfo:pubData:">+ inAppPurchaseEventWithIAPInfo:pubData:</option>
+		
+		<option value="//api/name/installEventWithPubData:">+ installEventWithPubData:</option>
+		
+		<option value="//api/name/milestoneEventForScope:pubData:">+ milestoneEventForScope:pubData:</option>
+		
+		<option value="//api/name/monetizationEventWithInfo:pubData:">+ monetizationEventWithInfo:pubData:</option>
+		
+		<option value="//api/name/pushReceivedEventWithMessageID:campaignID:pubData:">+ pushReceivedEventWithMessageID:campaignID:pubData:</option>
+		
+		<option value="//api/name/pushRegistrationEventWithToken:pubData:">+ pushRegistrationEventWithToken:pubData:</option>
+		
+		<option value="//api/name/pushUnregistrationEventWithPubData:">+ pushUnregistrationEventWithPubData:</option>
+		
+		<option value="//api/name/sessionPauseEventWithPubData:">+ sessionPauseEventWithPubData:</option>
+		
+		<option value="//api/name/sessionResumeEventWithPubData:">+ sessionResumeEventWithPubData:</option>
+		
+		<option value="//api/name/sessionStartEventWithPubData:">+ sessionStartEventWithPubData:</option>
+		
+		<option value="//api/name/unrenderedContentEventWithContentID:campaignID:scope:pubData:">+ unrenderedContentEventWithContentID:campaignID:scope:pubData:</option>
+		
+	</optgroup>
+	
+
+	
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">USEventFactory Class Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Inherits from</th>
+	<td>NSObject</td>
+</tr><tr>
+	<th>Declared in</th>
+	<td>USEventFactory.h</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>A factory for Upsight events. Created events should be sent to Upsight server by calling
+<a href="../Protocols/USAnalyticsInterface.html#//api/name/record:">[USAnalyticsInterface record:]</a>.</p>
+					</div>
+					
+					
+
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						
+
+						
+						
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/analyticsEventWithName:pubData:" title="analyticsEventWithName:pubData:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/analyticsEventWithName:pubData:">+&nbsp;analyticsEventWithName:pubData:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Creates an analytics event with the given name. You can provide any additional data you&rsquo;d like to send as a dictionary of key->value pairs.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (USAnalyticsEvent *)analyticsEventWithName:(NSString *)<em>aName</em> pubData:(NSDictionary *)<em>aPubData</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>aName</code></th>
+						<td><p>A publisher-defined string representing the event name.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>aPubData</code></th>
+						<td><p>A dictionary with additional data provided by the publisher.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">USEventFactory.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/dataCollectionEventWitDataBundle:streamID:pubData:" title="dataCollectionEventWitDataBundle:streamID:pubData:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/dataCollectionEventWitDataBundle:streamID:pubData:">+&nbsp;dataCollectionEventWitDataBundle:streamID:pubData:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Creates an event containing data collected from the user.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (USDataCollectionEvent *)dataCollectionEventWitDataBundle:(id&lt;USDataBundle&gt;)<em>aBundle</em> streamID:(NSString *)<em>aStreamID</em> pubData:(NSDictionary *)<em>aPubData</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>aBundle</code></th>
+						<td><p>A bundle with user data.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>aStreamID</code></th>
+						<td><p>A unique identifer provided by the server. This identifier is applied to all the events related to a single piece of content.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>aPubData</code></th>
+						<td><p>A dictionary with additional data provided by the publisher.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">USEventFactory.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/unrenderedContentEventWithContentID:campaignID:scope:pubData:" title="unrenderedContentEventWithContentID:campaignID:scope:pubData:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/unrenderedContentEventWithContentID:campaignID:scope:pubData:">+&nbsp;unrenderedContentEventWithContentID:campaignID:scope:pubData:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Events of this kind indicate to the server that it told the SDK to display content, but it had not previously provided the SDK with that content.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (USUnrenderedContentEvent *)unrenderedContentEventWithContentID:(NSNumber *)<em>aContentID</em> campaignID:(NSNumber *)<em>aCampaignID</em> scope:(NSString *)<em>aScope</em> pubData:(NSDictionary *)<em>aPubData</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>aContentID</code></th>
+						<td><p>Unique identifier of the content. This value is a random server generated string.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>aCampaignID</code></th>
+						<td><p>Identifies the campaign to which this content belongs. Contains targeting, metadata and bid information.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>aScope</code></th>
+						<td><p>Describes the point in the application which has been reached.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>aPubData</code></th>
+						<td><p>A dictionary with additional data provided by the publisher.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">USEventFactory.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/milestoneEventForScope:pubData:" title="milestoneEventForScope:pubData:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/milestoneEventForScope:pubData:">+&nbsp;milestoneEventForScope:pubData:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Creates an event to indicate that a specific point in the application has been reached. This may represent an action taken or progress made by the user, a particular line/region of code, or any other point of interest.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (USMilestoneEvent *)milestoneEventForScope:(NSString *)<em>aScope</em> pubData:(NSDictionary *)<em>aPubData</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>aScope</code></th>
+						<td><p>Describes the point in the application which has been reached.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>aPubData</code></th>
+						<td><p>A dictionary with additional data provided by the publisher.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">USEventFactory.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/installEventWithPubData:" title="installEventWithPubData:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/installEventWithPubData:">+&nbsp;installEventWithPubData:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Creates an event to mark the installation of the application.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (USInstallEvent *)installEventWithPubData:(NSDictionary *)<em>aPubData</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>aPubData</code></th>
+						<td><p>A dictionary with additional data provided by the publisher.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">USEventFactory.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/inAppPurchaseEventWithIAPInfo:pubData:" title="inAppPurchaseEventWithIAPInfo:pubData:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/inAppPurchaseEventWithIAPInfo:pubData:">+&nbsp;inAppPurchaseEventWithIAPInfo:pubData:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Creates an event that represents the purchase of virtual goods through an In App Purchase.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (USInAppPurchaseEvent *)inAppPurchaseEventWithIAPInfo:(USInAppPurchaseInfo *)<em>anInfo</em> pubData:(NSDictionary *)<em>aPubData</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>anInfo</code></th>
+						<td><p>An object containing information about the purchase. Refer to the <a href="../Classes/USInAppPurchaseInfo.html">USInAppPurchaseInfo</a>
+class for more details.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>aPubData</code></th>
+						<td><p>A dictionary with additional data provided by the publisher.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">USEventFactory.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/dynamicEventWithEventDictionary:" title="dynamicEventWithEventDictionary:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/dynamicEventWithEventDictionary:">+&nbsp;dynamicEventWithEventDictionary:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Creates an event whose properties are populated from a given event dictionary.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (USDynamicEvent *)dynamicEventWithEventDictionary:(NSDictionary *)<em>anEventDictionary</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>anEventDictionary</code></th>
+						<td><p>A dictionary containing event properties, including type, upsight
+data, pub data and a set of device identifiers that should be sent along with the event.
+Here is an example of a dictionary with the <code>upsight.content.view</code> event:</p>
+
+<pre><code>{
+    "type": "upsight.content.view",
+    "upsight_data": {
+        "stream_start_ts": 1448379411,
+        "scope": "rewcl",
+        "content_id": 1252504,
+        "stream_id": "d720da64364b4f70ab7d45a14d7f50dc"
+    }
+}
+</code></pre></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">USEventFactory.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/monetizationEventWithInfo:pubData:" title="monetizationEventWithInfo:pubData:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/monetizationEventWithInfo:pubData:">+&nbsp;monetizationEventWithInfo:pubData:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Creates an event that represents a monetary transaction, in which the user is paying the
+app developer for goods or services.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (USMonetizationEvent *)monetizationEventWithInfo:(USMonetizationPurchaseInfo *)<em>anInfo</em> pubData:(NSDictionary *)<em>aPubData</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>anInfo</code></th>
+						<td><p>An object containing information about the monetary transaction. Refer to the
+<USMonetizationPurchaceInfo> class for more details.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>aPubData</code></th>
+						<td><p>A dictionary with additional data provided by the publisher.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">USEventFactory.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/configurationRequestWithPubData:" title="configurationRequestWithPubData:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/configurationRequestWithPubData:">+&nbsp;configurationRequestWithPubData:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Creates an event indicating that the SDK configuration has expired.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (USConfigurationRequest *)configurationRequestWithPubData:(NSDictionary *)<em>aPubData</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>aPubData</code></th>
+						<td><p>A dictionary with additional data provided by the publisher.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">USEventFactory.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/sessionStartEventWithPubData:" title="sessionStartEventWithPubData:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/sessionStartEventWithPubData:">+&nbsp;sessionStartEventWithPubData:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Creates an event indicating that a new session has started.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (USSessionStartEvent *)sessionStartEventWithPubData:(NSDictionary *)<em>aPubData</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>aPubData</code></th>
+						<td><p>A dictionary with additional data provided by the publisher.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>The life-cycle of a session consists of three basic states, started, resumed and paused. When
+the application starts for the first time a new session starts and <code>upsight.session.start</code>
+event is sent to the server. When the application resigns its active status, the session transitions
+to the paused state and <code>upsight.session.pause</code> is sent to the server. If the application resumes
+its active status, or gets completely relaunched within a predefined session gap interval,
+the session is resumed and <code>upsight.session.resume</code> event is sent to the server, otherwise if
+the application becomes active past the session gap, a new session starts and <code>upsight.session.start</code>
+gets sent.</p>
+
+<p>When the application is launched as a result of an incoming push notification, it is always
+followed with a new session start.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">USEventFactory.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/sessionPauseEventWithPubData:" title="sessionPauseEventWithPubData:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/sessionPauseEventWithPubData:">+&nbsp;sessionPauseEventWithPubData:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Creates an event that indicates the application has been sent to the background.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (USSessionPauseEvent *)sessionPauseEventWithPubData:(NSDictionary *)<em>aPubData</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>aPubData</code></th>
+						<td><p>A dictionary with additional data provided by the publisher.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>The life-cycle of a session consists of three basic states, started, resumed and paused. When
+the application starts for the first time a new session starts and <code>upsight.session.start</code>
+event is sent to the server. When the application resigns its active status, the session transitions
+to the paused state and <code>upsight.session.pause</code> is sent to the server. If the application resumes
+its active status, or gets completely relaunched within a predefined session gap interval,
+the session is resumed and <code>upsight.session.resume</code> event is sent to the server, otherwise if
+the application becomes active past the session gap, a new session starts and <code>upsight.session.start</code>
+gets sent.</p>
+
+<p>When the application is launched as a result of an incoming push notification, it is always
+followed with a new session start.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">USEventFactory.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/sessionResumeEventWithPubData:" title="sessionResumeEventWithPubData:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/sessionResumeEventWithPubData:">+&nbsp;sessionResumeEventWithPubData:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Creates an event indicating that an existing session has been resumed.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (USSessionResumeEvent *)sessionResumeEventWithPubData:(NSDictionary *)<em>aPubData</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>aPubData</code></th>
+						<td><p>A dictionary with additional data provided by the publisher.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>The life-cycle of a session consists of three basic states, started, resumed and paused. When
+the application starts for the first time a new session starts and <code>upsight.session.start</code>
+event is sent to the server. When the application resigns its active status, the session transitions
+to the paused state and <code>upsight.session.pause</code> is sent to the server. If the application resumes
+its active status, or gets completely relaunched within a predefined session gap interval,
+the session is resumed and <code>upsight.session.resume</code> event is sent to the server, otherwise if
+the application becomes active past the session gap, a new session starts and <code>upsight.session.start</code>
+gets sent.</p>
+
+<p>When the application is launched as a result of an incoming push notification, it is always
+followed with a new session start.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">USEventFactory.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/pushReceivedEventWithMessageID:campaignID:pubData:" title="pushReceivedEventWithMessageID:campaignID:pubData:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/pushReceivedEventWithMessageID:campaignID:pubData:">+&nbsp;pushReceivedEventWithMessageID:campaignID:pubData:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Creates an event indicating that a push notification has been received.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (USPushReceivedEvent *)pushReceivedEventWithMessageID:(NSNumber *)<em>aMessageID</em> campaignID:(NSNumber *)<em>aCampaignID</em> pubData:(NSDictionary *)<em>aPubData</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>aMessageID</code></th>
+						<td><p>A unique identifier for this push notification.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>aCampaignID</code></th>
+						<td><p>If the push notification was sent as part of a campaign, the identifier for the campaign.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>aPubData</code></th>
+						<td><p>A dictionary with additional data provided by the publisher.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">USEventFactory.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/pushRegistrationEventWithToken:pubData:" title="pushRegistrationEventWithToken:pubData:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/pushRegistrationEventWithToken:pubData:">+&nbsp;pushRegistrationEventWithToken:pubData:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Creates an event that is used to register a device token to be able to send push notifications
+from <a href="../Classes/Upsight.html">Upsight</a> server.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (USPushRegistrationEvent *)pushRegistrationEventWithToken:(NSString *)<em>aToken</em> pubData:(NSDictionary *)<em>aPubData</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>aToken</code></th>
+						<td><p>This is the APNS-generated push token passed to [UIApplicationDelegate application:didRegisterForRemoteNotificationsWithDeviceToken:].</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>aPubData</code></th>
+						<td><p>A dictionary with additional data provided by the publisher.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">USEventFactory.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/pushUnregistrationEventWithPubData:" title="pushUnregistrationEventWithPubData:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/pushUnregistrationEventWithPubData:">+&nbsp;pushUnregistrationEventWithPubData:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Creates an event that is used to unregister from receiving push notifications.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (USPushUnregistrationEvent *)pushUnregistrationEventWithPubData:(NSDictionary *)<em>aPubData</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>aPubData</code></th>
+						<td><p>A dictionary with additional data provided by the publisher.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">USEventFactory.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/UXMEnumerateEventWithUXMSchema:pubData:" title="UXMEnumerateEventWithUXMSchema:pubData:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/UXMEnumerateEventWithUXMSchema:pubData:">+&nbsp;UXMEnumerateEventWithUXMSchema:pubData:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Creates an event that the SDK emits to send the UXM schema to the server.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (USUXMEnumerateEvent *)UXMEnumerateEventWithUXMSchema:(NSArray *)<em>aSchema</em> pubData:(NSDictionary *)<em>aPubData</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>aSchema</code></th>
+						<td><p>An array containing description of UXM values defined in the application.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>aPubData</code></th>
+						<td><p>A dictionary with additional data provided by the publisher.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">USEventFactory.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+                    
+          
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2016 Upsight. All rights reserved. Updated: 2016-01-04</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1334)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Protocols/USManagedFloat.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intf/USManagedFloat</TokenIdentifier>
+			<Abstract type="html">Represents interface for UXM variables of floating type.</Abstract>
+			<DeclaredIn>USManagedFloat.h</DeclaredIn>
+            
+			
+			<NodeRef refid="21"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/USManagedFloat/setFloatValue:</TokenIdentifier>
+			<Abstract type="html">Accessor to the actual value of the UXM variable.</Abstract>
+			<DeclaredIn>USManagedFloat.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign, readonly) float floatValue</Declaration>
+			
+			
+			<Anchor>//api/name/floatValue</Anchor>
+            <NodeRef refid="21"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/USManagedFloat/floatValue</TokenIdentifier>
+			<Abstract type="html">Accessor to the actual value of the UXM variable.</Abstract>
+			<DeclaredIn>USManagedFloat.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign, readonly) float floatValue</Declaration>
+			
+			
+			<Anchor>//api/name/floatValue</Anchor>
+            <NodeRef refid="21"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfp/USManagedFloat/floatValue</TokenIdentifier>
+			<Abstract type="html">Accessor to the actual value of the UXM variable.</Abstract>
+			<DeclaredIn>USManagedFloat.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign, readonly) float floatValue</Declaration>
+			
+			
+			<Anchor>//api/name/floatValue</Anchor>
+            <NodeRef refid="21"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>
