@@ -21,7 +21,7 @@
 	
 	<!-- optional files or directories to copy to Intermediate/Android/APK -->
  	<resourceCopies>
-		<copyFile src="$S(EngineDir)/Plugins/GSG/Upsight/lib/Android/.jar" dst="$S(BuildDir)/libs/.jar" />
+		<copyFile src="$S(EngineDir)/Plugins/GSG/Upsight/lib/Android/com.upsight.android-core-4.1.1.jar" dst="$S(BuildDir)/libs/com.upsight.android-core-4.1.1.jar" />
 	</resourceCopies>
 
 	<!-- optional additions to the GameActivity imports in GameActivity.java -->
