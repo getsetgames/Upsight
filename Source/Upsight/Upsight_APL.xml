@@ -15,54 +15,56 @@
 	<!-- optional additions to proguard -->
 	<proguardAdditions>
 		<insert>
-# Upsight
--keep class com.upsight.android.** { *; }
--keep interface com.upsight.android.** { *; }
+<![CDATA[
+		# Upsight
+		-keep class com.upsight.android.** { *; }
+		-keep interface com.upsight.android.** { *; }
 
-# Upsight Mediation
--dontwarn com.nuance.nmdp.speechkit.**
--dontwarn com.google.ads.**
--dontwarn android.webkit.**
--dontwarn android.support.v4.**
--dontwarn com.unity3d.**
--keep class com.upsight.mediation.** { *; }
--keep class com.vungle.** { *; }
--keep class javax.** { *; }
--keepattributes JavascriptInterface
--keepattributes *Annotation*
--keep class sun.misc.Unsafe { *; }
--keepattributes Signature
+		# Upsight Mediation
+		-dontwarn com.nuance.nmdp.speechkit.**
+		-dontwarn com.google.ads.**
+		-dontwarn android.webkit.**
+		-dontwarn android.support.v4.**
+		-dontwarn com.unity3d.**
+		-keep class com.upsight.mediation.** { *; }
+		-keep class com.vungle.** { *; }
+		-keep class javax.** { *; }
+		-keepattributes JavascriptInterface
+		-keepattributes *Annotation*
+		-keep class sun.misc.Unsafe { *; }
+		-keepattributes Signature
 
-# Jackson
--dontwarn com.fasterxml.jackson.databind.**
--keepattributes *Annotation*,EnclosingMethod,Signature
--keepnames class com.fasterxml.jackson.** { *; }
--keepclassmembers public final enum org.codehaus.jackson.annotate.JsonAutoDetect$Visibility {
-    public static final org.codehaus.jackson.annotate.JsonAutoDetect$Visibility *;
-}
+		# Jackson
+		-dontwarn com.fasterxml.jackson.databind.**
+		-keepattributes *Annotation*,EnclosingMethod,Signature
+		-keepnames class com.fasterxml.jackson.** { *; }
+		-keepclassmembers public final enum org.codehaus.jackson.annotate.JsonAutoDetect$Visibility {
+		    public static final org.codehaus.jackson.annotate.JsonAutoDetect$Visibility *;
+		}
 
-# Rx
--dontwarn sun.misc.**
--keep class rx.schedulers.Schedulers {
-    public static <methods>;
-}
--keep class rx.schedulers.ImmediateScheduler {
-    public <methods>;
-}
--keep class rx.schedulers.TestScheduler {
-    public <methods>;
-}
--keep class rx.schedulers.Schedulers {
-    public static ** test();
-}
--keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
-    long producerIndex;
-    long consumerIndex;
-}
--keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef {
-    long producerNode;
-    long consumerNode;
-}
+		# Rx
+		-dontwarn sun.misc.**
+		-keep class rx.schedulers.Schedulers {
+		    public static <methods>;
+		}
+		-keep class rx.schedulers.ImmediateScheduler {
+		    public <methods>;
+		}
+		-keep class rx.schedulers.TestScheduler {
+		    public <methods>;
+		}
+		-keep class rx.schedulers.Schedulers {
+		    public static ** test();
+		}
+		-keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
+		    long producerIndex;
+		    long consumerIndex;
+		}
+		-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef {
+		    long producerNode;
+		    long consumerNode;
+		}
+]]>
 		</insert>
 	</proguardAdditions>
 	
