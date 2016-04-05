@@ -3,8 +3,9 @@
 	<!-- init section is always evaluated once per architecture -->
 	<init>
 		<log text="Upsight init"/>
-		<setStringFromProperty result="sUpsightAppToken"  ini="Engine" section="/Script/Upsight.UpsightSettings" property="UpsightAppToken"  default=""/>
-		<setStringFromProperty result="sUpsightPublicKey" ini="Engine" section="/Script/Upsight.UpsightSettings" property="UpsightPublicKey" default=""/>
+		<setStringFromProperty result="sUpsightAppToken"               ini="Engine" section="/Script/Upsight.UpsightSettings" property="UpsightAppToken"               default=""/>
+		<setStringFromProperty result="sUpsightPublicKey"              ini="Engine" section="/Script/Upsight.UpsightSettings" property="UpsightPublicKey"              default=""/>
+		<setStringFromProperty result="sUpsightApplicationPackageName" ini="Engine" section="/Script/Upsight.UpsightSettings" property="UpsightApplicationPackageName" default=""/>
 	</init>
 
 	<!-- optional updates applied to AndroidManifest.xml -->
