@@ -84,7 +84,7 @@
 	<!-- optional additions to the GameActivity class in GameActivity.java -->
 	<gameActivityClassAdditions>
 		<insert>
-private UpsightContext mUpsight;
+	private com.upsight.android.UpsightContext mUpsight;
 		</insert>
 	</gameActivityClassAdditions>
 	
@@ -96,8 +96,8 @@ private UpsightContext mUpsight;
 	<!-- optional additions to GameActivity onCreate in GameActivity.java -->
 	<gameActivityOnCreateAdditions>
 		<insert>
- // Create an UpsightContext from any Android Context.
- mUpsight = Upsight.createContext(this);
+	// Create an UpsightContext from any Android Context.
+    mUpsight = com.upsight.android.Upsight.createContext(this);
 		</insert>
 	</gameActivityOnCreateAdditions>
 
