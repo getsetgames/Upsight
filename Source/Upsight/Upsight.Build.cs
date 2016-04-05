@@ -58,18 +58,16 @@ namespace UnrealBuildTool.Rules
 			if (Target.Platform == UnrealTargetPlatform.IOS) {
 				PublicAdditionalFrameworks.Add( 
 					new UEBuildFramework( 
-						"Upsight",
-						"../../lib/iOS/Upsight.embeddedframework.zip"
+						"UpsightKit",
+						"../../lib/iOS/UpsightKit.embeddedframework.zip"
 					)
 				); 
 
 				PublicFrameworks.AddRange( 
 					new string[] 
 					{ 
-						"StoreKit",
-						"Foundation",
-						"CoreGraphics",
-						"UIKit"
+						"CoreTelephony",
+						"AdSupport"
 					}
 				);
 			}
