@@ -148,7 +148,31 @@ Upsight Android documentation available at http://help.upsight.com/api_sdk_refer
 
 
 	<!-- optional additions to GameActivity onActivityResult in GameActivity.java -->
-	<gameActivityOnActivityResultAdditions>
+	<gameActivityOnActivityResultAdditions><![CDATA[
+void AndroidThunkJava_UpsightRecordAnalyticsEventWithName(String eventName, String[] keys, String[] values)
+{
+	var b = UpsightCustomEvent.createBuilder(eventName);
+
+	for (int i = 0; i < keys.length; i++)
+	{
+		b = b.put(keys[i], values[i]);
+    }
+
+    b.record(mUpsight);
+
+}
+void AndroidThunkJava_UpsightRecordMilestoneEventForScope(String scope, String[] keys, String[] values)
+{
+	var b = UpsightMilestoneEvent.createBuilder(scope);
+
+	for (int i = 0; i < keys.length; i++)
+	{
+		b = b.put(keys[i], values[i]);
+    }
+
+	b.record(mUpsight);
+}
+]]>
 	</gameActivityOnActivityResultAdditions>
 	
 
