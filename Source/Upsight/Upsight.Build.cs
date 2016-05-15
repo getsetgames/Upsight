@@ -66,6 +66,8 @@ namespace UnrealBuildTool.Rules
 				PublicFrameworks.AddRange( 
 					new string[] 
 					{ 
+						"CoreData",
+						"SystemConfiguration",
 						"CoreTelephony",
 						"AdSupport"
 					}
