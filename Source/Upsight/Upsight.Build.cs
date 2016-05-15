@@ -19,7 +19,7 @@ namespace UnrealBuildTool.Rules
 
 			PrivateIncludePaths.AddRange(
 				new string[] {
-					"Developer/Upsight/Private",
+					"Upsight/Private",
 					// ... add other private include paths required here ...
 				}
 				);
