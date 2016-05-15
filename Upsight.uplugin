@@ -4,7 +4,7 @@
 	"VersionName": "1.0",
 	"FriendlyName": "Upsight",
 	"Description": "This plugin interaces with the Upsight SDK",
-	"Category": "Advertising",
+	"Category": "Analytics",
 	"CreatedBy": "Get Set Games Inc.",
 	"CreatedByURL": "http://getsetgames.com",
 	"DocsURL": "https://github.com/getsetgames/Upsight",
