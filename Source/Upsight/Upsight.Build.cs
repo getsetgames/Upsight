@@ -14,6 +14,8 @@ namespace UnrealBuildTool.Rules
 			PublicIncludePaths.AddRange(
 				new string[] {
 					// ... add public include paths required here ...
+					"../../../../Source/Runtime/Core/Public",
+					"../../../../Source/Runtime/Launch/Public"
 				}
 				);
 
@@ -54,6 +56,7 @@ namespace UnrealBuildTool.Rules
 			}
 			);
 
+			PublicIncludePathModuleNames.Add("Launch");
 
 			if (Target.Platform == UnrealTargetPlatform.IOS) {
 				PublicAdditionalFrameworks.Add( 
