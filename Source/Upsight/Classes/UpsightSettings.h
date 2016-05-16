@@ -15,4 +15,12 @@ class UUpsightSettings : public UObject
 public:
 	UUpsightSettings(const FObjectInitializer& ObjectInitializer);
 	
+    UPROPERTY(Config, EditAnywhere, Category=General, meta=(DisplayName="Application Token"))
+    FString ApplicationToken;
+    
+    UPROPERTY(Config, EditAnywhere, Category=General, meta=(DisplayName="Public Key"))
+    FString PublicKey;
+    
+    UPROPERTY(Config, EditAnywhere, Category=General, meta=(DisplayName="Application Package Name"))
+    FString ApplicationPackageName;
 };
