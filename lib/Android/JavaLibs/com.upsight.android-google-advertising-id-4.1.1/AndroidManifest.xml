@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.upsight.android.googleadvertisingid"
+    android:versionName="4.1.1" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="22" />
+
+    <application>
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="4030500" />
+        <meta-data
+            android:name="com.upsight.extension.googleadvertisingid"
+            android:value="com.upsight.android.UpsightGoogleAdvertisingIdExtension" />
+    </application>
+
+</manifest>

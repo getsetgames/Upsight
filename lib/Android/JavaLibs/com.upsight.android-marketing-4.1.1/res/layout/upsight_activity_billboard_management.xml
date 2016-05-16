@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" /><!-- From: file:/Users/kontagent/Applications/TeamCityAgent.app/work/5e9ef075937a5f1f/extensions/marketing/src/main/res/layout/upsight_activity_billboard_management.xml -->

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.upsight.android.marketing"
+    android:versionName="4.1.1" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="22" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application>
+        <meta-data
+            android:name="com.upsight.extension.marketing"
+            android:value="com.upsight.android.UpsightMarketingExtension" />
+
+        <activity
+            android:name="com.upsight.android.marketing.internal.billboard.BillboardManagementActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+    </application>
+
+</manifest>

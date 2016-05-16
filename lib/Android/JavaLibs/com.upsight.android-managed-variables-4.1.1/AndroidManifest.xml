@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.upsight.android.managedvariables"
+    android:versionName="4.1.1" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="22" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application>
+        <meta-data
+            android:name="com.upsight.extension.managedvariables"
+            android:value="com.upsight.android.UpsightManagedVariablesExtension" />
+    </application>
+
+</manifest>

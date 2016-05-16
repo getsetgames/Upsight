@@ -1,0 +1,4 @@
+int raw configurator_config 0x7f020000
+int raw dispatcher_config 0x7f020001
+int string upsight_sdk_build 0x7f030000
+int string upsight_sdk_version 0x7f030001
