@@ -7,6 +7,10 @@
 #include "UpsightSettings.h"
 #include "ISettingsModule.h"
 
+#if PLATFORM_IOS
+#import <UpsightKit/UpsightKit.h>
+#endif
+
 DEFINE_LOG_CATEGORY(LogUpsight);
 
 #define LOCTEXT_NAMESPACE "Upsight"
@@ -30,6 +34,16 @@ void FUpsight::StartupModule()
 										 GetMutableDefault<UUpsightSettings>()
 										 );
 	}
+    
+#if PLATFORM_IOS
+
+#if UE_BUILD_SHIPPING
+    [Upsight setDefaultLogLevel:UpsightLoggerLevelOff];
+#else
+    [Upsight setDefaultLogLevel:UpsightLoggerLevelDebug];
+#endif
+    
+#endif
 }
 
 
