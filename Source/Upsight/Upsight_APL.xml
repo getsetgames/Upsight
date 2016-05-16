@@ -9,13 +9,30 @@ Upsight Android documentation available at http://help.upsight.com/api_sdk_refer
 	<!-- init section is always evaluated once per architecture -->
 	<init>
 		<log text="Upsight init"/>
-		<setStringFromProperty result="sUpsightAppToken"               ini="Engine" section="/Script/Upsight.UpsightSettings" property="UpsightAppToken"               default=""/>
-		<setStringFromProperty result="sUpsightPublicKey"              ini="Engine" section="/Script/Upsight.UpsightSettings" property="UpsightPublicKey"              default=""/>
-		<setStringFromProperty result="sUpsightApplicationPackageName" ini="Engine" section="/Script/Upsight.UpsightSettings" property="UpsightApplicationPackageName" default=""/>
+		<setStringFromProperty result="sUpsightAppToken"       ini="Engine" section="/Script/Upsight.UpsightSettings" property="ApplicationToken"       default=""/>
+		<setStringFromProperty result="sUpsightPublicKey"      ini="Engine" section="/Script/Upsight.UpsightSettings" property="PublicKey"              default=""/>
+		<setStringFromProperty result="sUpsightAppPackageName" ini="Engine" section="/Script/Upsight.UpsightSettings" property="ApplicationPackageName" default=""/>
 	</init>
 
 	<!-- optional updates applied to AndroidManifest.xml -->
 	<androidManifestUpdates>
+
+		<setElement    result="upsight-meta-data-app-token"  value="meta-data"/>
+	    <addAttribute     tag="$upsight-meta-data-app-token"  name="android:name"  value="com.upsight.app_token"/>
+	    <addAttribute     tag="$upsight-meta-data-app-token"  name="android:value" value="$S(sUpsightAppToken)"/>
+    	<addElement       tag="application"                   name="upsight-meta-data-app-token"/>
+
+		<setElement    result="upsight-meta-data-pub-key"  value="meta-data"/>
+	    <addAttribute     tag="$upsight-meta-data-pub-key"  name="android:name"  value="com.upsight.public_key"/>
+	    <addAttribute     tag="$upsight-meta-data-pub-key"  name="android:value" value="$S(sUpsightPublicKey)"/>
+    	<addElement       tag="application"                 name="upsight-app-id-meta-data-pub-key"/>
+
+		<setElement    result="upsight-provider"  value="provider"/>
+	    <addAttribute     tag="$upsight-provider"  name="android:name"        value="com.upsight.android.internal.persistence.ContentProvider"/>
+	    <addAttribute     tag="$upsight-provider"  name="android:authorities" value="$S(sUpsightAppPackageName).upsight"/>
+	    <addAttribute     tag="$upsight-provider"  name="android:enabled"     value="true"/>
+	    <addAttribute     tag="$upsight-provider"  name="android:exported"    value="false"/>
+    	<addElement       tag="application"        name="upsight-provider"/>
 
 	</androidManifestUpdates> 
 
