@@ -27,7 +27,7 @@ Upsight Android documentation available at http://help.upsight.com/api_sdk_refer
 		<setElement    result="upsight-meta-data-pub-key"  value="meta-data"/>
 	    <addAttribute     tag="$upsight-meta-data-pub-key"  name="android:name"  value="com.upsight.public_key"/>
 	    <addAttribute     tag="$upsight-meta-data-pub-key"  name="android:value" value="$S(sUpsightPublicKey)"/>
-    	<addElement       tag="application"                 name="upsight-app-id-meta-data-pub-key"/>
+    	<addElement       tag="application"                 name="upsight-meta-data-pub-key"/>
 
 		<setElement    result="upsight-provider"  value="provider"/>
 	    <addAttribute     tag="$upsight-provider"  name="android:name"        value="com.upsight.android.internal.persistence.ContentProvider"/>
