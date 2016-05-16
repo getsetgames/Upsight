@@ -110,7 +110,7 @@ Upsight Android documentation available at http://help.upsight.com/api_sdk_refer
 	<!-- optional additions to the GameActivity imports in GameActivity.java -->
 	<gameActivityImportAdditions>
 		<insert>
-
+import com.upsight.android.*;
 		</insert>
 	</gameActivityImportAdditions>
 	
@@ -118,7 +118,7 @@ Upsight Android documentation available at http://help.upsight.com/api_sdk_refer
 	<!-- optional additions to the GameActivity class in GameActivity.java -->
 	<gameActivityClassAdditions>
 		<insert>
-	private com.upsight.android.UpsightContext mUpsight;
+	private UpsightContext mUpsight;
 		</insert>
 	</gameActivityClassAdditions>
 	
@@ -131,7 +131,7 @@ Upsight Android documentation available at http://help.upsight.com/api_sdk_refer
 	<gameActivityOnCreateAdditions>
 		<insert>
 	// Create an UpsightContext from any Android Context.
-    mUpsight = com.upsight.android.Upsight.createContext(this);
+    mUpsight = Upsight.createContext(this);
 		</insert>
 	</gameActivityOnCreateAdditions>
 
