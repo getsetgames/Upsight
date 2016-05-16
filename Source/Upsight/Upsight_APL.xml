@@ -52,8 +52,8 @@ Upsight Android documentation available at http://help.upsight.com/api_sdk_refer
 		-dontwarn com.fasterxml.jackson.databind.**
 		-keepattributes *Annotation*,EnclosingMethod,Signature
 		-keepnames class com.fasterxml.jackson.** { *; }
-		-keepclassmembers public final enum org.codehaus.jackson.annotate.JsonAutoDetect$Visibility {
-		    public static final org.codehaus.jackson.annotate.JsonAutoDetect$Visibility *;
+		-keepclassmembers public final enum com.fasterxml.jackson.annotation.JsonAutoDetect$Visibility {
+		    public static final com.fasterxml.jackson.annotation.JsonAutoDetect$Visibility *;
 		}
 
 		# Rx
