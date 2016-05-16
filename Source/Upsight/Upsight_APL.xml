@@ -1,10 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
 <!--
 
 Upsight Android documentation available at http://help.upsight.com/api_sdk_reference/android/#analytics-module-dependencies
 
 -->
 
-<?xml version="1.0" encoding="utf-8"?>
+
 <root xmlns:android="http://schemas.android.com/apk/res/android">
 	<!-- init section is always evaluated once per architecture -->
 	<init>
