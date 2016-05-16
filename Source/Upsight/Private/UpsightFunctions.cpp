@@ -26,6 +26,24 @@ bool ValidateValues(TArray<FString> &Keys, TArray<FString> &Values)
     return true;
 }
 
+#if __OBJC__
+NSDictionary* CreateNSDictionary(TArray<FString> &Keys, TArray<FString> &Values)
+{
+    const int32 kNumKeys = Keys.Num();
+    
+    NSMutableDictionary* d = [NSMutableDictionary dictionaryWithCapacity:kNumKeys];
+    
+    for (uint32 i = 0; i < kNumKeys; i++)
+    {
+        FString &k = Keys[i];
+        FString &v = Values[i];
+        
+        d[k.GetNSString()] = v.GetNSString();
+    }
+    
+    return d;
+}
+#endif
 #if PLATFORM_IOS
 
 #endif
