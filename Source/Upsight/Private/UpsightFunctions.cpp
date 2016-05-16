@@ -44,6 +44,64 @@ NSDictionary* CreateNSDictionary(TArray<FString> &Keys, TArray<FString> &Values)
     return d;
 }
 #endif
-#if PLATFORM_IOS
 
+void UUpsightFunctions::UpsightRecordAnalyticsEventWithName(FString eventName, TArray<FString> eventKeys, TArray<FString> eventValues)
+{
+    if ( ValidateValues(eventKeys, eventValues) )
+    {
+#if PLATFORM_IOS
+        NSDictionary *p = CreateNSDictionary(eventKeys, eventValues);
+    
+        [Upsight recordAnalyticsEventWithName:eventName.GetNSString() properties: p];
+    
+#elif PLATFORM_ANDROID
+        if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+        {
+            static jmethodID Method = FJavaWrapper::FindMethod(Env,
+                                                               FJavaWrapper::GameActivityClassID,
+                                                               "AndroidThunkJava_UpsightRecordAnalyticsEventWithName",
+                                                               "()Ljava/lang/String;[java/lang/String;[java/lang/String;",
+                                                               false);
+            
+            FJavaWrapper::CallObjectMethod(Env, FJavaWrapper::GameActivityThis, Method);
+        }
 #endif
+    }
+    else
+    {
+        UE_LOG(LogUpsight, Log, TEXT("keys and/or value arguments are empty or nil"));
+    }
+}
+
+void UUpsightFunctions::UpsightRecordMilestoneEventForScope(FString scope, TArray<FString> eventKeys, TArray<FString> eventValues)
+{
+    if ( ValidateValues(eventKeys, eventValues) )
+    {
+#if PLATFORM_IOS
+        NSDictionary *p = CreateNSDictionary(eventKeys, eventValues);
+    
+        [Upsight recordMilestoneEventForScope:scope.GetNSString() properties:p];
+    
+#elif PLATFORM_ANDROID
+        
+        if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+        {
+            static jmethodID Method = FJavaWrapper::FindMethod(Env,
+                                                               FJavaWrapper::GameActivityClassID,
+                                                               "AndroidThunkJava_UpsightRecordMilestoneEventForScope",
+                                                               "()Ljava/lang/String;[java/lang/String;[java/lang/String;",
+                                                               false);
+            
+            FJavaWrapper::CallObjectMethod(Env, FJavaWrapper::GameActivityThis, Method);
+        }
+#endif
+    }
+    else
+    {
+        UE_LOG(LogUpsight, Log, TEXT("keys and/or value arguments are empty or nil"));
+    }
+}
+
+
+
+

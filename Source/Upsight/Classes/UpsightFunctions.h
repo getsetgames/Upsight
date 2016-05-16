@@ -11,5 +11,11 @@
 UCLASS(NotBlueprintable)
 class UUpsightFunctions : public UObject {
 	GENERATED_BODY()
-
+    
+public:
+    UFUNCTION(BlueprintCallable, meta = (Keywords = "upsight analytics"), Category = "Upsight")
+    static void UpsightRecordAnalyticsEventWithName(FString eventName, TArray<FString> eventKeys, TArray<FString> eventValues);
+    
+    UFUNCTION(BlueprintCallable, meta = (Keywords = "upsight analytics"), Category = "Upsight")
+    static void UpsightRecordMilestoneEventForScope(FString scope, TArray<FString> eventKeys, TArray<FString> eventValues);
 };
