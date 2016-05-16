@@ -5,8 +5,10 @@
 
 #include "UpsightPrivatePCH.h"
 
+#if PLATFORM_ANDROID
 #include "Android/AndroidJNI.h"
 #include "AndroidApplication.h"
+#endif
 
 bool ValidateValues(TArray<FString> &Keys, TArray<FString> &Values)
 {
