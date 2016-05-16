@@ -5,6 +5,8 @@
 
 #include "UpsightPrivatePCH.h"
 
+#include "Android/AndroidJNI.h"
+#include "AndroidApplication.h"
 #if PLATFORM_IOS
 
 #endif
