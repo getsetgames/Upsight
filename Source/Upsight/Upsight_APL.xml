@@ -6,7 +6,6 @@
 		<log text="Upsight init"/>
 		<setStringFromProperty result="sUpsightAppToken"       ini="Engine" section="/Script/Upsight.UpsightSettings" property="ApplicationToken"       default=""/>
 		<setStringFromProperty result="sUpsightPublicKey"      ini="Engine" section="/Script/Upsight.UpsightSettings" property="PublicKey"              default=""/>
-		<setStringFromProperty result="sUpsightAppPackageName" ini="Engine" section="/Script/Upsight.UpsightSettings" property="ApplicationPackageName" default=""/>
 	</init>
 
 	<!-- optional updates applied to AndroidManifest.xml -->
