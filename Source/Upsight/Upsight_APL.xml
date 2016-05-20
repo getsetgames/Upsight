@@ -115,8 +115,7 @@
 	<!-- optional additions to the GameActivity imports in GameActivity.java -->
 	<gameActivityImportAdditions>
 		<insert>
-import com.upsight.android.Upsight;
-import com.upsight.android.UpsightContext;
+import com.upsight.android.*;
 		</insert>
 	</gameActivityImportAdditions>
 	
