@@ -20,7 +20,4 @@ public:
     
     UPROPERTY(Config, EditAnywhere, Category=General, meta=(DisplayName="Public Key"))
     FString PublicKey;
-    
-    UPROPERTY(Config, EditAnywhere, Category=General, meta=(DisplayName="Application Package Name"))
-    FString ApplicationPackageName;
 };
