@@ -28,6 +28,19 @@
 	    <addAttribute     tag="$upsight-provider"  name="android:exported"    value="false"/>
     	<addElement       tag="application"        name="upsight-provider"/>
 
+    	<addElements tag="application">
+        	<meta-data android:name="com.upsight.extension.analytics" android:value="com.upsight.android.UpsightAnalyticsExtension" />
+			<service   android:name="com.upsight.android.analytics.internal.DispatcherService" />
+
+ 			<receiver android:name="com.upsight.android.analytics.internal.dispatcher.schema.NetworkChangeBroadcastReceiver" >
+            	<intent-filter>
+                	<action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            	</intent-filter>
+        	</receiver>
+
+        	<meta-data android:name="com.upsight.core" android:value="com.upsight.android.internal.CoreComponentFactory" />
+    	</addElements>
+
 	</androidManifestUpdates> 
 
 	<!-- optional additions to proguard -->
@@ -94,15 +107,16 @@
 	</proguardAdditions>
 	
 	<!-- optional files or directories to copy to Intermediate/Android/APK -->
- 	<resourceCopies>
+ 	<prebuildCopies>
 		<copyDir src="$S(EngineDir)/Plugins/GSG/Upsight/lib/Android/libs"     dst="$S(BuildDir)/libs" />
 		<copyDir src="$S(EngineDir)/Plugins/GSG/Upsight/lib/Android/JavaLibs" dst="$S(EngineDir)/Build/Android/Java/JavaLibs" />
-	</resourceCopies>
+	</prebuildCopies>
 
 	<!-- optional additions to the GameActivity imports in GameActivity.java -->
 	<gameActivityImportAdditions>
 		<insert>
-//import com.upsight.android.*;
+import com.upsight.android.Upsight;
+import com.upsight.android.UpsightContext;
 		</insert>
 	</gameActivityImportAdditions>
 	
@@ -110,7 +124,7 @@
 	<!-- optional additions to the GameActivity class in GameActivity.java -->
 	<gameActivityClassAdditions>
 		<insert>
-//private UpsightContext mUpsight;
+private UpsightContext mUpsight;
 		</insert>
 	</gameActivityClassAdditions>
 	
@@ -122,7 +136,7 @@
 	<!-- optional additions to GameActivity onCreate in GameActivity.java -->
 	<gameActivityOnCreateAdditions>
 		<insert>
-//mUpsight = Upsight.createContext(this);
+mUpsight = Upsight.createContext(this.getApplicationContext());
 		</insert>
 	</gameActivityOnCreateAdditions>
 
