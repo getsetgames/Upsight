@@ -21,9 +21,9 @@
 	    <addAttribute     tag="$upsight-meta-data-pub-key"  name="android:value" value="$S(sUpsightPublicKey)"/>
     	<addElement       tag="application"                 name="upsight-meta-data-pub-key"/>
 
-		<setElement    result="upsight-provider"  value="provider"/>
+ 		<setElement    result="upsight-provider"  value="provider"/>
 	    <addAttribute     tag="$upsight-provider"  name="android:name"        value="com.upsight.android.internal.persistence.ContentProvider"/>
-	    <addAttribute     tag="$upsight-provider"  name="android:authorities" value="$S(sUpsightAppPackageName).upsight"/>
+	    <addAttribute     tag="$upsight-provider"  name="android:authorities" value="$S(PackageName).upsight"/>
 	    <addAttribute     tag="$upsight-provider"  name="android:enabled"     value="true"/>
 	    <addAttribute     tag="$upsight-provider"  name="android:exported"    value="false"/>
     	<addElement       tag="application"        name="upsight-provider"/>
