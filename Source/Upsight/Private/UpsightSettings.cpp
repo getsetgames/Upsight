@@ -7,6 +7,8 @@
 #include "UpsightSettings.h"
 
 UUpsightSettings::UUpsightSettings(const FObjectInitializer& ObjectInitializer)
-: Super(ObjectInitializer)
+: Super(ObjectInitializer),
+ApplicationToken(""),
+PublicKey("")
 {
 }
