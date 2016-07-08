@@ -10,7 +10,8 @@
 
 	<!-- optional updates applied to AndroidManifest.xml -->
 	<androidManifestUpdates>
-
+		<setStringFromAttribute result="PackageName"       tag="manifest" name="package"/>
+		
 		<setElement    result="upsight-meta-data-app-token"  value="meta-data"/>
 	    <addAttribute     tag="$upsight-meta-data-app-token"  name="android:name"  value="com.upsight.app_token"/>
 	    <addAttribute     tag="$upsight-meta-data-app-token"  name="android:value" value="$S(sUpsightAppToken)"/>
