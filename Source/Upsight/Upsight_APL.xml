@@ -135,7 +135,7 @@ void AndroidThunkJava_UpsightRecordAnalyticsEventWithName(String eventName, Stri
 
 	for (int i = 0; i < keys.length; i++)
 	{
-		b = b.put(keys[i], values[i]);
+		b.put(keys[i], values[i]);
     }
 
     b.record(mUpsight);
@@ -147,7 +147,7 @@ void AndroidThunkJava_UpsightRecordMilestoneEventForScope(String scope, String[]
 
 	for (int i = 0; i < keys.length; i++)
 	{
-		b = b.put(keys[i], values[i]);
+		b.put(keys[i], values[i]);
     }
 
 	b.record(mUpsight);
