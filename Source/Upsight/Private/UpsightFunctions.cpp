@@ -67,7 +67,7 @@ void UUpsightFunctions::UpsightRecordAnalyticsEventWithName(FString eventName, T
                                                                "(Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;)V",
                                                                false);
             
-            FJavaWrapper::CallObjectMethod(Env, FJavaWrapper::GameActivityThis, Method);
+            FJavaWrapper::CallVoidMethod(Env, FJavaWrapper::GameActivityThis, Method);
         }
 #endif
     }
@@ -96,7 +96,7 @@ void UUpsightFunctions::UpsightRecordMilestoneEventForScope(FString scope, TArra
                                                                "(Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;)V",
                                                                false);
             
-            FJavaWrapper::CallObjectMethod(Env, FJavaWrapper::GameActivityThis, Method);
+            FJavaWrapper::CallVoidMethod(Env, FJavaWrapper::GameActivityThis, Method);
         }
 #endif
     }
