@@ -18,4 +18,10 @@ public:
     
     UFUNCTION(BlueprintCallable, meta = (Keywords = "upsight analytics"), Category = "Upsight")
     static void UpsightRecordMilestoneEventForScope(FString scope, TArray<FString> eventKeys, TArray<FString> eventValues);
+    
+    UFUNCTION(BlueprintCallable, meta = (Keywords = "upsight analytics"), Category = "Upsight")
+    static void UpsightTrackPurchase(int resolution, FString productID,  int quantity, FString currency, float price, TArray<FString> eventKeys, TArray<FString> eventValues);
+    
+    UFUNCTION(BlueprintCallable, meta = (Keywords = "upsight analytics"), Category = "Upsight")
+    static void UpsightTrackPurchaseWithTransactionID(int resolution, FString productID, int quantity, float price, FString currency, FString transactionId, TArray<FString> eventKeys, TArray<FString> eventValues);
 };

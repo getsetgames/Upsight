@@ -5,7 +5,9 @@
 
 #include "UpsightPrivatePCH.h"
 
-#if PLATFORM_ANDROID
+#if PLATFORM_IOS
+#import <UpsightKit/UpsightKit.h>
+#elif PLATFORM_ANDROID
 #include "Android/AndroidJNI.h"
 #include "AndroidApplication.h"
 #endif
@@ -104,6 +106,45 @@ void UUpsightFunctions::UpsightRecordMilestoneEventForScope(FString scope, TArra
     }
 }
 
+void UUpsightFunctions::UpsightTrackPurchase(int resolution, FString productID,  int quantity, FString currency, float price, TArray<FString> keys, TArray<FString> values)
+{
+#if PLATFORM_IOS
+    NSDictionary *p = CreateNSDictionary(keys, values);
+    
+    
+#elif PLATFORM_ANDROID
+    if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+    {
+        static jmethodID Method = FJavaWrapper::FindMethod(Env,
+                                                           FJavaWrapper::GameActivityClassID,
+                                                           "AndroidThunkJava_UpsightTrackPurchase",
+                                                           "",
+                                                           false);
+        
+        FJavaWrapper::CallObjectMethod(Env, FJavaWrapper::GameActivityThis, Method);
+    }
+#endif
+}
+
+void UUpsightFunctions::UpsightTrackPurchaseWithTransactionID(int resolution, FString productID, int quantity, float price, FString currency, FString transactionIdentifier, TArray<FString> keys, TArray<FString> values)
+{
+#if PLATFORM_IOS
+    NSDictionary *p = CreateNSDictionary(keys, values);
+    
+    
+#elif PLATFORM_ANDROID
+    if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+    {
+        static jmethodID Method = FJavaWrapper::FindMethod(Env,
+                                                           FJavaWrapper::GameActivityClassID,
+                                                           "AndroidThunkJava_UpsightTrackPurchaseWithTransactionID",
+                                                           "",
+                                                           false);
+        
+        FJavaWrapper::CallObjectMethod(Env, FJavaWrapper::GameActivityThis, Method);
+    }
+#endif
+}
 
 
 

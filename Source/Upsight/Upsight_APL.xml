@@ -123,9 +123,21 @@ import com.upsight.android.*;
 
 	<!-- optional additions to the GameActivity class in GameActivity.java -->
 	<gameActivityClassAdditions>
-		<insert>
+		<insert><![CDATA[
 private UpsightContext mUpsight;
-		</insert>
+
+
+void AndroidThunkJava_UpsightTrackPurchase(int resolution, String productID, int quantity, float price, String currency, String[] keys, String[] values)
+{
+
+}
+
+void AndroidThunkJava_UpsightTrackPurchaseWithTransactionID(int resolution, String productID, int quantity, float price, String currency, String transactionIdentifier, String[] keys, String[] values)
+{
+	
+}
+
+		]]></insert>
 	</gameActivityClassAdditions>
 	
 	<!-- optional additions to GameActivity onCreate metadata reading in GameActivity.java -->
