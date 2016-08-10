@@ -129,7 +129,7 @@ import com.upsight.android.analytics.event.milestone.UpsightMilestoneEvent;
 private UpsightContext mUpsight;
 
 
-void AndroidThunkJava_UpsightRecordAnalyticsEventWithName(String eventName, String[] keys, String[] values)
+public void AndroidThunkJava_UpsightRecordAnalyticsEventWithName(String eventName, String[] keys, String[] values)
 {
 	UpsightCustomEvent.Builder b = UpsightCustomEvent.createBuilder(eventName);
 
@@ -141,7 +141,7 @@ void AndroidThunkJava_UpsightRecordAnalyticsEventWithName(String eventName, Stri
     b.record(mUpsight);
 }
 
-void AndroidThunkJava_UpsightRecordMilestoneEventForScope(String scope, String[] keys, String[] values)
+public void AndroidThunkJava_UpsightRecordMilestoneEventForScope(String scope, String[] keys, String[] values)
 {
 	UpsightMilestoneEvent.Builder b = UpsightMilestoneEvent.createBuilder(scope);
 
