@@ -64,7 +64,7 @@ void UUpsightFunctions::UpsightRecordAnalyticsEventWithName(FString eventName, T
             static jmethodID Method = FJavaWrapper::FindMethod(Env,
                                                                FJavaWrapper::GameActivityClassID,
                                                                "AndroidThunkJava_UpsightRecordAnalyticsEventWithName",
-                                                               "()Ljava/lang/String;[java/lang/String;[java/lang/String;",
+                                                               "(Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;)V",
                                                                false);
             
             FJavaWrapper::CallObjectMethod(Env, FJavaWrapper::GameActivityThis, Method);
@@ -93,7 +93,7 @@ void UUpsightFunctions::UpsightRecordMilestoneEventForScope(FString scope, TArra
             static jmethodID Method = FJavaWrapper::FindMethod(Env,
                                                                FJavaWrapper::GameActivityClassID,
                                                                "AndroidThunkJava_UpsightRecordMilestoneEventForScope",
-                                                               "()Ljava/lang/String;[java/lang/String;[java/lang/String;",
+                                                               "(Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;)V",
                                                                false);
             
             FJavaWrapper::CallObjectMethod(Env, FJavaWrapper::GameActivityThis, Method);
