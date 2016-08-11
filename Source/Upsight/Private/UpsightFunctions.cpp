@@ -49,6 +49,24 @@ NSDictionary* CreateNSDictionary(TArray<FString> &Keys, TArray<FString> &Values)
 }
 #endif
 
+#if PLATFORM_ANDROID
+void CreateJavaKeyValueArrays(JNIEnv *Env, jobjectArray &jKeysArray, jobjectArray &jValuesArray, TArray<FString> keys, TArray<FString> values)
+{
+    for (uint32 Param = 0; Param < keys.Num(); Param++)
+    {
+        jstring StringValue = Env->NewStringUTF(TCHAR_TO_UTF8(*keys[Param]));
+        
+        Env->SetObjectArrayElement(jKeysArray, Param, StringValue);
+        Env->DeleteLocalRef(StringValue);
+        
+        StringValue = Env->NewStringUTF(TCHAR_TO_UTF8(*values[Param]));
+        
+        Env->SetObjectArrayElement(jValuesArray, Param, StringValue);
+        Env->DeleteLocalRef(StringValue);
+    }
+}
+#endif
+
 void UUpsightFunctions::UpsightRecordAnalyticsEventWithName(FString eventName, TArray<FString> eventKeys, TArray<FString> eventValues)
 {
     if ( ValidateValues(eventKeys, eventValues) )
@@ -59,17 +77,27 @@ void UUpsightFunctions::UpsightRecordAnalyticsEventWithName(FString eventName, T
         [Upsight recordAnalyticsEventWithName:eventName.GetNSString() properties: p];
     
 #elif PLATFORM_ANDROID
-//        if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
-//        {
-//            static jmethodID Method = FJavaWrapper::FindMethod(Env,
-//                                                               FJavaWrapper::GameActivityClassID,
-//                                                               "AndroidThunkJava_UpsightRecordAnalyticsEventWithName",
-//                                                               "(Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;)V",
-//                                                
-//                                                               false);
-//            
-//            FJavaWrapper::CallVoidMethod(Env, FJavaWrapper::GameActivityThis, Method);
-//        }
+        if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+        {
+            static jmethodID Method = FJavaWrapper::FindMethod(Env,
+                                                               FJavaWrapper::GameActivityClassID,
+                                                               "AndroidThunkJava_UpsightRecordAnalyticsEventWithName",
+                                                               "(Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;)V",
+                                                               false);
+            
+            jobjectArray jEventKeys   = (jobjectArray)Env->NewObjectArray(eventKeys.Num(),   FJavaWrapper::JavaStringClass, NULL);
+            jobjectArray jEventValues = (jobjectArray)Env->NewObjectArray(eventValues.Num(), FJavaWrapper::JavaStringClass, NULL);
+            
+            CreateJavaKeyValueArrays(Env, jEventKeys, jEventValues, eventKeys, eventValues);
+            
+            jstring jEventName = Env->NewStringUTF(TCHAR_TO_UTF8(*eventName));
+            
+            FJavaWrapper::CallVoidMethod(Env, FJavaWrapper::GameActivityThis, Method, jEventName, jEventKeys, jEventValues);
+            
+            Env->DeleteLocalRef(jEventKeys);
+            Env->DeleteLocalRef(jEventValues);
+            Env->DeleteLocalRef(jEventName);
+        }
 #endif
     }
     else
@@ -89,16 +117,27 @@ void UUpsightFunctions::UpsightRecordMilestoneEventForScope(FString scope, TArra
     
 #elif PLATFORM_ANDROID
         
-//        if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
-//        {
-//            static jmethodID Method = FJavaWrapper::FindMethod(Env,
-//                                                               FJavaWrapper::GameActivityClassID,
-//                                                               "AndroidThunkJava_UpsightRecordMilestoneEventForScope",
-//                                                               "(Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;)V",
-//                                                               false);
-//            
-//            FJavaWrapper::CallVoidMethod(Env, FJavaWrapper::GameActivityThis, Method);
-//        }
+        if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+        {
+            static jmethodID Method = FJavaWrapper::FindMethod(Env,
+                                                               FJavaWrapper::GameActivityClassID,
+                                                               "AndroidThunkJava_UpsightRecordMilestoneEventForScope",
+                                                               "(Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;)V",
+                                                               false);
+
+            jobjectArray jEventKeys   = (jobjectArray)Env->NewObjectArray(eventKeys.Num(),   FJavaWrapper::JavaStringClass, NULL);
+            jobjectArray jEventValues = (jobjectArray)Env->NewObjectArray(eventValues.Num(), FJavaWrapper::JavaStringClass, NULL);
+            
+            CreateJavaKeyValueArrays(Env, jEventKeys, jEventValues, eventKeys, eventValues);
+            
+            jstring jEventName = Env->NewStringUTF(TCHAR_TO_UTF8(*scope));
+            
+            FJavaWrapper::CallVoidMethod(Env, FJavaWrapper::GameActivityThis, Method, jEventName, jEventKeys, jEventValues);
+            
+            Env->DeleteLocalRef(jEventKeys);
+            Env->DeleteLocalRef(jEventValues);
+            Env->DeleteLocalRef(jEventName);
+        }
 #endif
     }
     else
