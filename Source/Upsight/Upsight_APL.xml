@@ -153,15 +153,21 @@ public void AndroidThunkJava_UpsightRecordMilestoneEventForScope(String scope, S
 	b.record(mUpsight);
 }
 
-void AndroidThunkJava_UpsightTrackPurchase(int resolution, String productID, int quantity, float price, String currency, String[] keys, String[] values)
+public void AndroidThunkJava_UpsightRecordMonetizationEvent(int resolution, String productID, int quantity, String currency, float price,  String[] keys, String[] values)
 {
 
 }
 
-void AndroidThunkJava_UpsightTrackPurchaseWithTransactionID(int resolution, String productID, int quantity, float price, String currency, String transactionIdentifier, String[] keys, String[] values)
+public void AndroidThunkJava_UpsightRecordMonetizationEventWithTotalPrice(int resolution, String productID, int quantity, String currency, float price, float totalPrice, String[] keys, String[] values)
 {
 	
 }
+
+public void AndroidThunkJava_UpsightRecordInAppPurchaseEvent(int resolution, String productID, int quantity,  String currency, float price, String bundle, String[] keys, String[] values)
+{
+
+}
+
 
 		]]></insert>
 	</gameActivityClassAdditions>

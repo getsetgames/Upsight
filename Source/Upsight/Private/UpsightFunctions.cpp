@@ -30,7 +30,7 @@ bool ValidateValues(TArray<FString> &Keys, TArray<FString> &Values)
     return true;
 }
 
-#if __OBJC__
+#if PLATFORM_IOS
 NSDictionary* CreateNSDictionary(TArray<FString> &Keys, TArray<FString> &Values)
 {
     const int32 kNumKeys = Keys.Num();
@@ -47,6 +47,18 @@ NSDictionary* CreateNSDictionary(TArray<FString> &Keys, TArray<FString> &Values)
     
     return d;
 }
+
+int validateData(const void* data, const int dataLength, unsigned char bID[128], unsigned char bVersion[16], void **dOpaque, void **dHash)
+{
+    // iOS receipt validation based off code detailed at https://www.objc.io/issues/17-security/receipt-validation/
+    //
+    
+    char isValid = 0;
+    
+    
+    return isValid;
+}
+
 #endif
 
 #if PLATFORM_ANDROID
@@ -67,6 +79,23 @@ void CreateJavaKeyValueArrays(JNIEnv *Env, jobjectArray &jKeysArray, jobjectArra
 }
 #endif
 
+bool UUpsightFunctions::UpsightClientValidateInAppPurchase(FString receiptData)
+{
+#if PLATFORM_IOS
+    unsigned char bundleId[128]     = { 0 };
+    unsigned char bundleVersion[16] = { 0 };
+    
+    void *opaque = NULL;
+    void *hash   = NULL;
+    
+    const int result = validateData([receipt bytes], (int)[receipt length], bundleId, bundleVersion, &opaque, &hash);
+    return result == 0;
+#else
+    return true;
+#endif
+}
+
+
 void UUpsightFunctions::UpsightRecordAnalyticsEventWithName(FString eventName, TArray<FString> eventKeys, TArray<FString> eventValues)
 {
     if ( ValidateValues(eventKeys, eventValues) )
@@ -85,17 +114,17 @@ void UUpsightFunctions::UpsightRecordAnalyticsEventWithName(FString eventName, T
                                                                "(Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;)V",
                                                                false);
             
-            jobjectArray jEventKeys   = (jobjectArray)Env->NewObjectArray(eventKeys.Num(),   FJavaWrapper::JavaStringClass, NULL);
-            jobjectArray jEventValues = (jobjectArray)Env->NewObjectArray(eventValues.Num(), FJavaWrapper::JavaStringClass, NULL);
+            jobjectArray jKeys   = (jobjectArray)Env->NewObjectArray(eventKeys.Num(),   FJavaWrapper::JavaStringClass, NULL);
+            jobjectArray jValues = (jobjectArray)Env->NewObjectArray(eventValues.Num(), FJavaWrapper::JavaStringClass, NULL);
             
-            CreateJavaKeyValueArrays(Env, jEventKeys, jEventValues, eventKeys, eventValues);
+            CreateJavaKeyValueArrays(Env, jKeys, jValues, eventKeys, eventValues);
             
             jstring jEventName = Env->NewStringUTF(TCHAR_TO_UTF8(*eventName));
             
-            FJavaWrapper::CallVoidMethod(Env, FJavaWrapper::GameActivityThis, Method, jEventName, jEventKeys, jEventValues);
+            FJavaWrapper::CallVoidMethod(Env, FJavaWrapper::GameActivityThis, Method, jEventName, jKeys, jValues);
             
-            Env->DeleteLocalRef(jEventKeys);
-            Env->DeleteLocalRef(jEventValues);
+            Env->DeleteLocalRef(jKeys);
+            Env->DeleteLocalRef(jValues);
             Env->DeleteLocalRef(jEventName);
         }
 #endif
@@ -125,17 +154,17 @@ void UUpsightFunctions::UpsightRecordMilestoneEventForScope(FString scope, TArra
                                                                "(Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;)V",
                                                                false);
 
-            jobjectArray jEventKeys   = (jobjectArray)Env->NewObjectArray(eventKeys.Num(),   FJavaWrapper::JavaStringClass, NULL);
-            jobjectArray jEventValues = (jobjectArray)Env->NewObjectArray(eventValues.Num(), FJavaWrapper::JavaStringClass, NULL);
+            jobjectArray jKeys   = (jobjectArray)Env->NewObjectArray(eventKeys.Num(),   FJavaWrapper::JavaStringClass, NULL);
+            jobjectArray jValues = (jobjectArray)Env->NewObjectArray(eventValues.Num(), FJavaWrapper::JavaStringClass, NULL);
             
-            CreateJavaKeyValueArrays(Env, jEventKeys, jEventValues, eventKeys, eventValues);
+            CreateJavaKeyValueArrays(Env, jKeys, jValues, eventKeys, eventValues);
             
             jstring jEventName = Env->NewStringUTF(TCHAR_TO_UTF8(*scope));
             
-            FJavaWrapper::CallVoidMethod(Env, FJavaWrapper::GameActivityThis, Method, jEventName, jEventKeys, jEventValues);
+            FJavaWrapper::CallVoidMethod(Env, FJavaWrapper::GameActivityThis, Method, jEventName, jKeys, jValues);
             
-            Env->DeleteLocalRef(jEventKeys);
-            Env->DeleteLocalRef(jEventValues);
+            Env->DeleteLocalRef(jKeys);
+            Env->DeleteLocalRef(jValues);
             Env->DeleteLocalRef(jEventName);
         }
 #endif
@@ -146,45 +175,132 @@ void UUpsightFunctions::UpsightRecordMilestoneEventForScope(FString scope, TArra
     }
 }
 
-void UUpsightFunctions::UpsightTrackPurchase(int resolution, FString productID,  int quantity, FString currency, float price, TArray<FString> keys, TArray<FString> values)
+void UUpsightFunctions::UpsightRecordMonetizationEvent(int resolution, FString productID, int quantity, FString currency, float price, TArray<FString> keys, TArray<FString> values)
 {
 #if PLATFORM_IOS
     NSDictionary *p = CreateNSDictionary(keys, values);
     
-    
+    [Upsight recordMonetizationEventWithResolution:(USPurchaseResolution)resolution
+                                          currency:currency.GetNSString()
+                                          quantity:quantity
+                                           product:productID.GetNSString()
+                                             price:price
+                                        properties:p];
+
 #elif PLATFORM_ANDROID
     if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
     {
         static jmethodID Method = FJavaWrapper::FindMethod(Env,
                                                            FJavaWrapper::GameActivityClassID,
-                                                           "AndroidThunkJava_UpsightTrackPurchase",
-                                                           "",
+                                                           "AndroidThunkJava_UpsightRecordMonetizationEvent",
+                                                           "(ILjava/lang/String;ILjava/lang/String;F[Ljava/lang/String;[Ljava/lang/String;)V",
                                                            false);
         
-        FJavaWrapper::CallObjectMethod(Env, FJavaWrapper::GameActivityThis, Method);
+        jobjectArray jKeys   = (jobjectArray)Env->NewObjectArray(keys.Num(),   FJavaWrapper::JavaStringClass, NULL);
+        jobjectArray jValues = (jobjectArray)Env->NewObjectArray(values.Num(), FJavaWrapper::JavaStringClass, NULL);
+        
+        CreateJavaKeyValueArrays(Env, jKeys, jValues, keys, values);
+        
+        jint    jResolution = (jint)resolution;
+        jstring jProductID  = Env->NewStringUTF(TCHAR_TO_UTF8(*productID));
+        jint    jQuantity   = (jint)quantity;
+        jstring jCurrency   = Env->NewStringUTF(TCHAR_TO_UTF8(*currency));
+        jfloat  jPrice      = (jfloat)price;
+        
+        FJavaWrapper::CallVoidMethod(Env, FJavaWrapper::GameActivityThis, Method, jResolution, jProductID, jQuantity, jCurrency, jPrice, jKeys, jValues);
+        
+        Env->DeleteLocalRef(jKeys);
+        Env->DeleteLocalRef(jValues);
+        
+        Env->DeleteLocalRef(jProductID);
+        Env->DeleteLocalRef(jCurrency);
     }
 #endif
 }
 
-void UUpsightFunctions::UpsightTrackPurchaseWithTransactionID(int resolution, FString productID, int quantity, float price, FString currency, FString transactionIdentifier, TArray<FString> keys, TArray<FString> values)
+void UUpsightFunctions::UpsightRecordMonetizationEventWithTotalPrice(int resolution, FString productID, int quantity, FString currency, float price, float totalPrice, TArray<FString> keys, TArray<FString> values)
 {
 #if PLATFORM_IOS
     NSDictionary *p = CreateNSDictionary(keys, values);
     
+    [Upsight recordMonetizationEventWithResolution:(USPurchaseResolution)resolution totalPrice:totalPrice currency:currency.GetNSString() product:productID.GetNSString() properties:p];
+#elif PLATFORM_ANDROID
+    if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+    {
+        static jmethodID Method = FJavaWrapper::FindMethod(Env,
+                                                           FJavaWrapper::GameActivityClassID,
+                                                           "AndroidThunkJava_UpsightRecordMonetizationEventWithTotalPrice",
+                                                           "(ILjava/lang/String;ILjava/lang/String;FF[Ljava/lang/String;[Ljava/lang/String;)V",
+                                                           false);
+        
+        jobjectArray jKeys   = (jobjectArray)Env->NewObjectArray(keys.Num(),   FJavaWrapper::JavaStringClass, NULL);
+        jobjectArray jValues = (jobjectArray)Env->NewObjectArray(values.Num(), FJavaWrapper::JavaStringClass, NULL);
+        
+        CreateJavaKeyValueArrays(Env, jKeys, jValues, keys, values);
+
+        jint    jResolution = (jint)resolution;
+        jstring jProductID  = Env->NewStringUTF(TCHAR_TO_UTF8(*productID));
+        jint    jQuantity   = (jint)quantity;
+        jstring jCurrency   = Env->NewStringUTF(TCHAR_TO_UTF8(*currency));
+        jfloat  jPrice      = (jfloat)price;
+        jfloat  jTotalPrice = (jfloat)totalPrice;
+
+        FJavaWrapper::CallVoidMethod(Env, FJavaWrapper::GameActivityThis, Method, jResolution, jProductID, jQuantity, jCurrency, jPrice, jTotalPrice, jKeys, jValues);
+        
+        Env->DeleteLocalRef(jKeys);
+        Env->DeleteLocalRef(jValues);
+        Env->DeleteLocalRef(jProductID);
+        Env->DeleteLocalRef(jCurrency);
+    }
+#endif
+}
+
+void UUpsightFunctions::UpsightRecordInAppPurchaseEventWithResolution(int resolution, FString productID, int quantity, FString currency, float price, FString bundle, FString transactionIdentifier, TArray<FString> keys, TArray<FString> values)
+{
+#if PLATFORM_IOS
+    NSDictionary *p = CreateNSDictionary(keys, values);
+    
+    [Upsight recordInAppPurchaseEventWithResolution:(USPurchaseResolution)resolution
+                                            product:productID.GetNSString()
+                                           quantity:quantity
+                                              price:price
+                                           currency:currency.GetNSString()
+                              transactionIdentifier:transactionIdentifier.GetNSString()
+                                         properties:p];
     
 #elif PLATFORM_ANDROID
     if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
     {
         static jmethodID Method = FJavaWrapper::FindMethod(Env,
                                                            FJavaWrapper::GameActivityClassID,
-                                                           "AndroidThunkJava_UpsightTrackPurchaseWithTransactionID",
-                                                           "",
+                                                           "AndroidThunkJava_UpsightRecordInAppPurchaseEvent",
+                                                           "(ILjava/lang/String;ILjava/lang/String;FLjava/lang/String;[Ljava/lang/String;[Ljava/lang/String;)V",
                                                            false);
         
-        FJavaWrapper::CallObjectMethod(Env, FJavaWrapper::GameActivityThis, Method);
+        jobjectArray jKeys   = (jobjectArray)Env->NewObjectArray(keys.Num(),   FJavaWrapper::JavaStringClass, NULL);
+        jobjectArray jValues = (jobjectArray)Env->NewObjectArray(values.Num(), FJavaWrapper::JavaStringClass, NULL);
+        
+        CreateJavaKeyValueArrays(Env, jKeys, jValues, keys, values);
+        
+        jint    jResolution = (jint)resolution;
+        jstring jProductID  = Env->NewStringUTF(TCHAR_TO_UTF8(*productID));
+        jint    jQuantity   = (jint)quantity;
+        jstring jCurrency   = Env->NewStringUTF(TCHAR_TO_UTF8(*currency));
+        jfloat  jPrice      = (jfloat)price;
+        jstring jBundle     = Env->NewStringUTF(TCHAR_TO_UTF8(*bundle));
+
+        FJavaWrapper::CallVoidMethod(Env, FJavaWrapper::GameActivityThis, Method, jResolution, jProductID, jQuantity, jCurrency, jPrice, jBundle, jKeys, jValues);
+        
+        Env->DeleteLocalRef(jKeys);
+        Env->DeleteLocalRef(jValues);
+        
+        Env->DeleteLocalRef(jBundle);
+        Env->DeleteLocalRef(jProductID);
+        Env->DeleteLocalRef(jCurrency);
     }
 #endif
 }
+
 
 
 
