@@ -82,16 +82,18 @@ void CreateJavaKeyValueArrays(JNIEnv *Env, jobjectArray &jKeysArray, jobjectArra
 bool UUpsightFunctions::UpsightClientValidateInAppPurchase(FString receiptData)
 {
 #if PLATFORM_IOS
-    unsigned char bundleId[128]     = { 0 };
-    unsigned char bundleVersion[16] = { 0 };
+//    unsigned char bundleId[128]     = { 0 };
+//    unsigned char bundleVersion[16] = { 0 };
+//    
+//    void *opaque = NULL;
+//    void *hash   = NULL;
+//    
+//    NSData *receipt;
+//    
+//    const int result = validateData([receipt bytes], (int)[receipt length], bundleId, bundleVersion, &opaque, &hash);
+//    return result == 0;
     
-    void *opaque = NULL;
-    void *hash   = NULL;
-    
-    NSData *receipt; //receiptData.GetNSString();
-    
-    const int result = validateData([receipt bytes], (int)[receipt length], bundleId, bundleVersion, &opaque, &hash);
-    return result == 0;
+    return true;
 #else
     return true;
 #endif
