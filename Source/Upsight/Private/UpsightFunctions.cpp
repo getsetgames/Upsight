@@ -88,6 +88,8 @@ bool UUpsightFunctions::UpsightClientValidateInAppPurchase(FString receiptData)
     void *opaque = NULL;
     void *hash   = NULL;
     
+    NSString *receipt = receiptData.GetNSString();
+    
     const int result = validateData([receipt bytes], (int)[receipt length], bundleId, bundleVersion, &opaque, &hash);
     return result == 0;
 #else
