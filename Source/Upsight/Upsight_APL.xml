@@ -119,6 +119,11 @@
 import com.upsight.android.*;
 import com.upsight.android.analytics.event.UpsightCustomEvent;
 import com.upsight.android.analytics.event.milestone.UpsightMilestoneEvent;
+import com.upsight.android.analytics.event.monetization.UpsightMonetizationEvent;
+import com.upsight.android.analytics.event.monetization.UpsightMonetizationIapEvent;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 		</insert>
 	</gameActivityImportAdditions>
 	
@@ -153,22 +158,50 @@ public void AndroidThunkJava_UpsightRecordMilestoneEventForScope(String scope, S
 	b.record(mUpsight);
 }
 
-public void AndroidThunkJava_UpsightRecordMonetizationEvent(int resolution, String productID, int quantity, String currency, float price,  String[] keys, String[] values)
+public void AndroidThunkJava_UpsightRecordMonetizationEvent(int resolution, String productID, int quantity, String currency, float price, String[] keys, String[] values)
 {
-
+    UpsightMonetizationEvent
+            .createBuilder(new Double(price * quantity), currency)
+            .setResolution(Integer.toString(resolution))
+            .setProduct(productID)
+            .setQuantity(quantity)
+            .setPrice(new Double(price))
+            .record(mUpsight);
 }
 
 public void AndroidThunkJava_UpsightRecordMonetizationEventWithTotalPrice(int resolution, String productID, int quantity, String currency, float price, float totalPrice, String[] keys, String[] values)
 {
-	
+    UpsightMonetizationEvent
+            .createBuilder(new Double(totalPrice), currency)
+            .setResolution(Integer.toString(resolution))
+            .setProduct(productID)
+            .setQuantity(quantity)
+            .setPrice(new Double(price))
+            .record(mUpsight);
 }
 
-public void AndroidThunkJava_UpsightRecordInAppPurchaseEvent(int resolution, String productID, int quantity,  String currency, float price, String bundle, String[] keys, String[] values)
+public void AndroidThunkJava_UpsightRecordInAppPurchaseEvent(int resolution, String productID, int quantity, String currency, float price, float totalPrice, String store, String bundle, String[] keys, String[] values)
 {
+    try
+    {
+        JSONObject b = new JSONObject(bundle);
 
+        UpsightMonetizationIapEvent.createBuilder(
+                store,
+                b,
+                new Double(totalPrice),
+                new Double(price),
+                quantity,
+                currency,
+                productID)
+        .setResolution(Integer.toString(resolution))
+        .record(mUpsight);
+    }
+    catch (JSONException e)
+    {
+        // Log exception
+    }
 }
-
-
 		]]></insert>
 	</gameActivityClassAdditions>
 	
