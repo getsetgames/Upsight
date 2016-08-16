@@ -25,7 +25,7 @@ public:
     static void UpsightRecordMonetizationEventWithTotalPrice(int resolution, FString productID,  int quantity, FString currency, float price, float totalPrice, TArray<FString> keys, TArray<FString> values);
     
     UFUNCTION(BlueprintCallable, meta = (Keywords = "upsight analytics"), Category = "Upsight")
-    static void UpsightRecordInAppPurchaseEventWithResolution(int resolution, FString productID, int quantity, FString currency, float price, FString bundle, FString transactionIdentifier, TArray<FString> keys, TArray<FString> values);
+    static void UpsightRecordInAppPurchaseEventWithResolution(int resolution, FString productID, int quantity, FString currency, float price, float totalPrice, FString store, FString bundle, FString transactionIdentifier, TArray<FString> keys, TArray<FString> values);
 
     UFUNCTION(BlueprintCallable, meta = (Keywords = "upsight analytics"), Category = "Upsight")
     static bool UpsightClientValidateInAppPurchase(FString receiptData);

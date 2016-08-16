@@ -259,7 +259,7 @@ void UUpsightFunctions::UpsightRecordMonetizationEventWithTotalPrice(int resolut
 #endif
 }
 
-void UUpsightFunctions::UpsightRecordInAppPurchaseEventWithResolution(int resolution, FString productID, int quantity, FString currency, float price, FString bundle, FString transactionIdentifier, TArray<FString> keys, TArray<FString> values)
+void UUpsightFunctions::UpsightRecordInAppPurchaseEventWithResolution(int resolution, FString productID, int quantity, FString currency, float price, float totalPrice, FString store, FString bundle, FString transactionIdentifier, TArray<FString> keys, TArray<FString> values)
 {
 #if PLATFORM_IOS
     NSDictionary *p = CreateNSDictionary(keys, values);
