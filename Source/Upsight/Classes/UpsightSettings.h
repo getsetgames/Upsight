@@ -20,4 +20,16 @@ public:
     
     UPROPERTY(Config, EditAnywhere, Category=General, meta=(DisplayName="Public Key"))
     FString PublicKey;
+    
+    UPROPERTY(Config, EditAnywhere, Category=General, meta=(DisplayName="Include Analytics"))
+    bool IncludeAnalytics;
+    
+    UPROPERTY(Config, EditAnywhere, Category=General, meta=(DisplayName="Include Managed Variables"))
+    bool IncludeManagedVariables;
+    
+    UPROPERTY(Config, EditAnywhere, Category=General, meta=(DisplayName="Include Marketing"))
+    bool IncludeMarketing;
+    
+    UPROPERTY(Config, EditAnywhere, Category=General, meta=(DisplayName="Include Advertising ID"))
+    bool IncludeAdvertisingId;
 };

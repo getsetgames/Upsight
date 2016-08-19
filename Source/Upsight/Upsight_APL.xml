@@ -6,6 +6,11 @@
 		<log text="Upsight init"/>
 		<setStringFromProperty result="sUpsightAppToken"       ini="Engine" section="/Script/Upsight.UpsightSettings" property="ApplicationToken"       default=""/>
 		<setStringFromProperty result="sUpsightPublicKey"      ini="Engine" section="/Script/Upsight.UpsightSettings" property="PublicKey"              default=""/>
+
+		<setBoolFromProperty result="bUpsightIncludeAnalytics"       ini="Engine" section="/Script/Upsight.UpsightSettings" property="IncludeAnalytics"        default=""/>
+		<setBoolFromProperty result="bUpsightIncludeMangedVariables" ini="Engine" section="/Script/Upsight.UpsightSettings" property="IncludeManagedVariables" default=""/>
+		<setBoolFromProperty result="bUpsightIncludeMarketing"       ini="Engine" section="/Script/Upsight.UpsightSettings" property="IncludeMarketing"        default=""/>
+		<setBoolFromProperty result="bUpsightIncludeAdvertisingID"   ini="Engine" section="/Script/Upsight.UpsightSettings" property="IncludeAdvertisingID"    default=""/>
 	</init>
 
 	<!-- optional updates applied to AndroidManifest.xml -->
@@ -110,7 +115,33 @@
 	<!-- optional files or directories to copy to Intermediate/Android/APK -->
 
  	<prebuildCopies>
-		<copyDir src="$S(EngineDir)/Plugins/GSG/Upsight/lib/Android/" dst="$S(BuildDir)" />
+ 		<copyDir src="$S(EngineDir)/Plugins/GSG/Upsight/lib/Android/libs" dst="$S(BuildDir)/libs" />
+		<copyDir src="$S(EngineDir)/Plugins/GSG/Upsight/lib/Android/JavaLibs/com.upsight.android-core-4.1.1" dst="$S(BuildDir)" />
+
+		<if condition="bUpsightIncludeAnalytics">
+			<true>
+				<copyDir src="$S(EngineDir)/Plugins/GSG/Upsight/lib/Android/JavaLibs/com.upsight.android-analytics-4.1.1" dst="$S(BuildDir)" />
+			</true>
+		</if>
+
+		<if condition="bUpsightIncludeMangedVariables">
+			<true>
+				<copyDir src="$S(EngineDir)/Plugins/GSG/Upsight/lib/Android/JavaLibs/com.upsight.android-managed-variables-4.1.1" dst="$S(BuildDir)" />
+			</true>
+		</if>
+
+		<if condition="bUpsightIncludeMarketing">
+			<true>
+				<copyDir src="$S(EngineDir)/Plugins/GSG/Upsight/lib/Android/JavaLibs/com.upsight.android-marketing-4.1.1" dst="$S(BuildDir)" />
+			</true>
+		</if>
+
+		<if condition="bUpsightIncludeAdvertisingID">
+			<true>
+				<copyDir src="$S(EngineDir)/Plugins/GSG/Upsight/lib/Android/JavaLibs/com.upsight.android-google-advertising-id-4.1.1" dst="$S(BuildDir)" />
+			</true>
+		</if>
+
 	</prebuildCopies>
 
 	<!-- optional additions to the GameActivity imports in GameActivity.java -->

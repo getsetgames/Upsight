@@ -9,6 +9,10 @@
 UUpsightSettings::UUpsightSettings(const FObjectInitializer& ObjectInitializer)
 : Super(ObjectInitializer),
 ApplicationToken(""),
-PublicKey("")
+PublicKey(""),
+IncludeAnalytics(false),
+IncludeManagedVariables(false),
+IncludeMarketing(false),
+IncludeAdvertisingId(false)
 {
 }
