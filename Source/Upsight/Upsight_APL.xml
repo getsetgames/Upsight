@@ -116,7 +116,9 @@
 
  	<prebuildCopies>
  		<copyDir src="$S(EngineDir)/Plugins/GSG/Upsight/lib/Android/libs" dst="$S(BuildDir)/libs" /> 
+		
 		<copyDir src="$S(EngineDir)/Plugins/GSG/Upsight/lib/Android/JavaLibs/com.upsight.android-core-4.1.1" dst="$S(BuildDir)/JavaLibs/com.upsight.android-core-4.1.1" />
+		<copyDir src="$S(EngineDir)/Plugins/GSG/Upsight/lib/Android/JavaLibs/io.reactivex-rxandroid-1.0.1"   dst="$S(BuildDir)/JavaLibs/io.reactivex-rxandroid-1.0.1" />
 
 		<if condition="bUpsightIncludeAnalytics">
 			<true>
