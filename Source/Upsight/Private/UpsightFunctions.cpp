@@ -14,15 +14,7 @@
 
 bool ValidateValues(TArray<FString> &Keys, TArray<FString> &Values)
 {
-    const int32 kNumKeys   = Keys.Num();
-    const int32 kNumValues = Values.Num();
-    
-    if (kNumKeys == 0 || kNumValues == 0)
-    {
-        return false;
-    }
-    
-    if (kNumKeys != kNumValues)
+    if (Keys.Num() != Values.Num())
     {
         return false;
     }
