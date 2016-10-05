@@ -13,6 +13,8 @@ PublicKey(""),
 IncludeAnalytics(false),
 IncludeManagedVariables(false),
 IncludeMarketing(false),
-IncludeAdvertisingId(false)
+IncludeAdvertisingId(false),
+IncludePushNotifications(false),
+PushNotificationSenderID("")
 {
 }
