@@ -17,6 +17,10 @@ public:
 	void OnRegister() override;
 	void OnUnregister() override;
 	
-private:	
+private:
+    void ApplicationRegisteredForRemoteNotifications_Handler(TArray<uint8> Token);
+    void ApplicationRegisteredForUserNotificationsDelegate_Handler(int32 inInt);
+    void ApplicationFailedToRegisterForRemoteNotifications_Handler(FString RegisterError);
+    void ApplicationReceivedRemoteNotification_Handler(FString Json);
 
 };
