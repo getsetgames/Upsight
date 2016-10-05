@@ -6,6 +6,7 @@
 		<log text="Upsight init"/>
 		<setStringFromProperty result="sUpsightAppToken"       ini="Engine" section="/Script/Upsight.UpsightSettings" property="ApplicationToken"       default=""/>
 		<setStringFromProperty result="sUpsightPublicKey"      ini="Engine" section="/Script/Upsight.UpsightSettings" property="PublicKey"              default=""/>
+		<setStringFromProperty result="sUpsightSenderID"      ini="Engine" section="/Script/Upsight.UpsightSettings" property="PushNotificationSenderID" default=""/>
 
 		<setBoolFromProperty result="bUpsightIncludeAnalytics"       ini="Engine" section="/Script/Upsight.UpsightSettings" property="IncludeAnalytics"        default="false"/>
 		<setBoolFromProperty result="bUpsightIncludeMangedVariables" ini="Engine" section="/Script/Upsight.UpsightSettings" property="IncludeManagedVariables" default="false"/>
