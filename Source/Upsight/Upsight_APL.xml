@@ -48,6 +48,30 @@
         	<meta-data android:name="com.upsight.core" android:value="com.upsight.android.internal.CoreComponentFactory" />
     	</addElements>
 
+		<if condition="bUpsightIncludePushNotifications">
+			<true>
+				<addPermission android:name="$S(PackageName).permission.C2D_MESSAGE" />
+				<addPermission android:name="android.permission.INTERNET" />
+
+	    		<addElements tag="manifest">
+	    			<permission android:name="$S(PackageName).permission.C2D_MESSAGE" android:protectionLevel="signature" />
+	    		</addElements>
+
+	    		<addElements tag="application">
+					<!-- e.g. android:value="com.yourCompany.yourApplication.0123456789" -->
+		    		<meta-data android:name="com.upsight.gcm" android:value="$S(PackageName).$S(sUpsightSenderID)" />
+		    		<receiver android:name="com.upsight.android.googlepushservices.internal.PushBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND">
+			        	<intent-filter>
+			            	<action android:name="com.google.android.c2dm.intent.RECEIVE" />
+
+			            	<!-- e.g. android:name="com.yourCompany.yourApplication" -->
+			            	<category android:name="$S(PackageName)" />
+			        	</intent-filter>
+		    		</receiver>
+	    		</addElements>
+	    	</true>
+      	</if>
+
 	</androidManifestUpdates> 
 
 	<!-- optional additions to proguard -->
