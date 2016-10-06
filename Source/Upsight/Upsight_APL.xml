@@ -17,7 +17,7 @@
 
 	<!-- optional updates applied to AndroidManifest.xml -->
 	<androidManifestUpdates>
-		<setStringFromAttribute result="PackageName"       tag="manifest" name="package"/>
+		<setStringFromAttribute result="PackageName" tag="manifest" name="package"/>
 		
 		<setElement    result="upsight-meta-data-app-token"  value="meta-data"/>
 	    <addAttribute     tag="$upsight-meta-data-app-token"  name="android:name"  value="com.upsight.app_token"/>
@@ -50,26 +50,40 @@
     	</addElements>
 
 		<if condition="bUpsightIncludePushNotifications">
-			<true>
-				<addPermission android:name="$S(PackageName).permission.C2D_MESSAGE" />
+ 			<true>
+
+ 				<!-- uses-permission additions -->
+				<setElement    result="upsight-c2d-uses-permission"  value="uses-permission"/>
+				<addAttribute     tag="$upsight-c2d-uses-permission"  name="android:name" value="$S(PackageName).permission.C2D_MESSAGE"/>
+				<addElement       tag="manifest"                      name="upsight-c2d-uses-permission"/>
+
 				<addPermission android:name="android.permission.INTERNET" />
 
-	    		<addElements tag="manifest">
-	    			<permission android:name="$S(PackageName).permission.C2D_MESSAGE" android:protectionLevel="signature" />
-	    		</addElements>
+				<setElement    result="upsight-c2d-permission"  value="permission"/>
+				<addAttribute     tag="$upsight-c2d-permission"  name="android:name"            value="$S(PackageName).permission.C2D_MESSAGE"/>
+				<addAttribute     tag="$upsight-c2d-permission"  name="android:protectionLevel" value="signature"/>
+				<addElement       tag="manifest"                 name="upsight-c2d-permission"/>
 
-	    		<addElements tag="application">
-					<!-- e.g. android:value="com.yourCompany.yourApplication.0123456789" -->
-		    		<meta-data android:name="com.upsight.gcm" android:value="$S(PackageName).$S(sUpsightSenderID)" />
-		    		<receiver android:name="com.upsight.android.googlepushservices.internal.PushBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND">
-			        	<intent-filter>
-			            	<action android:name="com.google.android.c2dm.intent.RECEIVE" />
+				<setElement    result="upsight-gcm"  value="meta-data"/>
+				<addAttribute     tag="$upsight-gcm"  name="android:name"  value="com.upsight.gcm"/>
+				<addAttribute     tag="$upsight-gcm"  name="android:value" value="$S(PackageName).$S(sUpsightSenderID)"/>
+				<addElement      tag="application"    name="upsight-gcm"/>
 
-			            	<!-- e.g. android:name="com.yourCompany.yourApplication" -->
-			            	<category android:name="$S(PackageName)" />
-			        	</intent-filter>
-		    		</receiver>
-	    		</addElements>
+				<setElement    result="upsight-broadcast-receiver"  value="receiver"/>
+				<addAttribute     tag="$upsight-broadcast-receiver"  name="android:name"       value="com.upsight.android.googlepushservices.internal.PushBroadcastReceiver"/>
+				<addAttribute     tag="$upsight-broadcast-receiver"  name="android:permission" value="com.google.android.c2dm.permission.SEND"/>
+
+				<setElement result="upsight-broadcast-receiver-intent-filter" value="intent-filter"/>
+				<addElements tag="$upsight-broadcast-receiver-intent-filter">
+					<action android:name="com.google.android.c2dm.intent.RECEIVE" />
+				</addElements>
+
+				<setElement   result="upsight-broadcast-receiver-intent-filter-category"   value="category"/>
+				<addAttribute    tag="$upsight-broadcast-receiver-intent-filter-category"   name="android:name"  value="$S(PackageName)"/>
+				<addElement      tag="$upsight-broadcast-receiver-intent-filter"            name="upsight-broadcast-receiver-intent-filter-category"/>
+
+				<addElement tag="$upsight-broadcast-receiver" name="upsight-broadcast-receiver-intent-filter"/> 		
+				<addElement tag="application"                 name="upsight-broadcast-receiver"/>
 	    	</true>
       	</if>
 
