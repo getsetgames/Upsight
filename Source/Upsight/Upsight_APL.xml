@@ -328,6 +328,9 @@ public void AndroidThunkJava_UpsightRecordInAppPurchaseEvent(int resolution, Str
 	<gameActivityOnCreateAdditions>
 		<insert>
 mUpsight = Upsight.createContext(this.getApplicationContext());
+
+mUpsight.getLogger().setLogLevel(Upsight.LOG_TAG, EnumSet.allOf(UpsightLogger.Level.class));
+
 		</insert>
 	</gameActivityOnCreateAdditions>
 
