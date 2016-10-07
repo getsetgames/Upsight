@@ -74,6 +74,54 @@ com.google.android.gms,play-services-gcm,9.2.0
         	<meta-data android:name="com.upsight.core" android:value="com.upsight.android.internal.CoreComponentFactory" />
     	</addElements>
 
+		<if condition="bUpsightIncludePushNotifications">
+ 			<true>
+ 				<!-- uses-permission additions -->
+				<setElement    result="upsight-c2d-uses-permission"  value="uses-permission"/>
+				<addAttribute     tag="$upsight-c2d-uses-permission"  name="android:name" value="$S(PackageName).permission.C2D_MESSAGE"/>
+				<addElement       tag="manifest"                      name="upsight-c2d-uses-permission"/>
+
+				<addPermission android:name="android.permission.INTERNET" />
+				<addPermission android:name="android.permission.WAKE_LOCK" />
+    			<addPermission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+				<setElement    result="upsight-c2d-permission"  value="permission"/>
+				<addAttribute     tag="$upsight-c2d-permission"  name="android:name"            value="$S(PackageName).permission.C2D_MESSAGE"/>
+				<addAttribute     tag="$upsight-c2d-permission"  name="android:protectionLevel" value="signature"/>
+				<addElement       tag="manifest"                 name="upsight-c2d-permission"/>
+
+				<setElement    result="upsight-gcm"  value="meta-data"/>
+				<addAttribute     tag="$upsight-gcm"  name="android:name"  value="com.upsight.gcm"/>
+				<addAttribute     tag="$upsight-gcm"  name="android:value" value="$S(PackageName).$S(sUpsightSenderID)"/>
+				<addElement      tag="application"    name="upsight-gcm"/>
+
+				<setElement    result="upsight-broadcast-receiver"  value="receiver"/>
+				<addAttribute     tag="$upsight-broadcast-receiver"  name="android:name"       value="com.upsight.android.googlepushservices.internal.PushBroadcastReceiver"/>
+				<addAttribute     tag="$upsight-broadcast-receiver"  name="android:permission" value="com.google.android.c2dm.permission.SEND"/>
+
+				<setElement result="upsight-broadcast-receiver-intent-filter" value="intent-filter"/>
+				<addElements tag="$upsight-broadcast-receiver-intent-filter">
+					<action android:name="com.google.android.c2dm.intent.RECEIVE" />
+				</addElements>
+
+				<setElement   result="upsight-broadcast-receiver-intent-filter-category"   value="category"/>
+				<addAttribute    tag="$upsight-broadcast-receiver-intent-filter-category"   name="android:name"  value="$S(PackageName)"/>
+				<addElement      tag="$upsight-broadcast-receiver-intent-filter"            name="upsight-broadcast-receiver-intent-filter-category"/>
+
+				<addElement tag="$upsight-broadcast-receiver" name="upsight-broadcast-receiver-intent-filter"/> 		
+				<addElement tag="application"                 name="upsight-broadcast-receiver"/>
+
+				<addElements tag="application">
+					<meta-data android:name="com.upsight.extension.googlepushservices" android:value="com.upsight.android.UpsightGooglePushServicesExtension" />
+					<service android:name="com.upsight.android.googlepushservices.internal.PushIntentService" />
+        			<service android:name="com.upsight.android.googlepushservices.internal.PushClickIntentService" />
+
+        			<meta-data android:name="com.upsight.extension.marketing" android:value="com.upsight.android.UpsightMarketingExtension" />
+        			<activity android:name="com.upsight.android.marketing.internal.billboard.BillboardManagementActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        		</addElements>
+	    	</true>
+      	</if>
+
 	</androidManifestUpdates> 
 
 	<!-- optional additions to proguard -->
