@@ -11,6 +11,7 @@
 		<setBoolFromProperty result="bUpsightIncludeMangedVariables" ini="Engine" section="/Script/Upsight.UpsightSettings" property="IncludeManagedVariables" default="false"/>
 		<setBoolFromProperty result="bUpsightIncludeMarketing"       ini="Engine" section="/Script/Upsight.UpsightSettings" property="IncludeMarketing"        default="false"/>
 		<setBoolFromProperty result="bUpsightIncludeAdvertisingID"   ini="Engine" section="/Script/Upsight.UpsightSettings" property="IncludeAdvertisingID"    default="false"/>
+		<setBoolFromProperty result="bUpsightIncludePushNotifications" ini="Engine" section="/Script/Upsight.UpsightSettings" property="IncludePushNotifications" default="false"/>
 	</init>
 
   	<AARImports>
