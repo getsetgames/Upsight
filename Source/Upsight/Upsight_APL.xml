@@ -13,6 +13,23 @@
 		<setBoolFromProperty result="bUpsightIncludeAdvertisingID"   ini="Engine" section="/Script/Upsight.UpsightSettings" property="IncludeAdvertisingID"    default="false"/>
 	</init>
 
+  	<AARImports>
+  		<insertValue value="repositories $S(PluginDir)/../../Source/ThirdParty/AndroidRepository"/>
+		<insertNewline/>
+
+		<insert>
+com.upsight.android,core,4.1.1
+		</insert>
+
+		<if condition="bUpsightIncludeAnalytics">
+			<true>
+				<insert>
+com.upsight.android,analytics,4.1.1
+				</insert>
+			</true>
+		</if>
+  	</AARImports>
+
 	<!-- optional updates applied to AndroidManifest.xml -->
 	<androidManifestUpdates>
 		<setStringFromAttribute result="PackageName"       tag="manifest" name="package"/>

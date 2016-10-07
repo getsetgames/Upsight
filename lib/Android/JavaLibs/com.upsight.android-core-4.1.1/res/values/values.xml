@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <!-- From: file:/Users/kontagent/Applications/TeamCityAgent.app/work/5e9ef075937a5f1f/core/build/generated/res/resValues/release/values/generated.xml -->
-    <eat-comment/>
-    <string name="upsight_sdk_build">+release.c2c687d</string>
-    <string name="upsight_sdk_version">4.1.1</string>
-</resources>
