@@ -4,14 +4,16 @@
 	<!-- init section is always evaluated once per architecture -->
 	<init>
 		<log text="Upsight init"/>
-		<setStringFromProperty result="sUpsightAppToken"       ini="Engine" section="/Script/Upsight.UpsightSettings" property="ApplicationToken"       default=""/>
-		<setStringFromProperty result="sUpsightPublicKey"      ini="Engine" section="/Script/Upsight.UpsightSettings" property="PublicKey"              default=""/>
+		<setStringFromProperty result="sUpsightAppToken"   ini="Engine" section="/Script/Upsight.UpsightSettings" property="ApplicationToken"         default=""/>
+		<setStringFromProperty result="sUpsightPublicKey"  ini="Engine" section="/Script/Upsight.UpsightSettings" property="PublicKey"                default=""/>
+		<setStringFromProperty result="sUpsightSenderID"   ini="Engine" section="/Script/Upsight.UpsightSettings" property="PushNotificationSenderID" default=""/>
 
-		<setBoolFromProperty result="bUpsightIncludeAnalytics"       ini="Engine" section="/Script/Upsight.UpsightSettings" property="IncludeAnalytics"        default="false"/>
-		<setBoolFromProperty result="bUpsightIncludeMangedVariables" ini="Engine" section="/Script/Upsight.UpsightSettings" property="IncludeManagedVariables" default="false"/>
-		<setBoolFromProperty result="bUpsightIncludeMarketing"       ini="Engine" section="/Script/Upsight.UpsightSettings" property="IncludeMarketing"        default="false"/>
-		<setBoolFromProperty result="bUpsightIncludeAdvertisingID"   ini="Engine" section="/Script/Upsight.UpsightSettings" property="IncludeAdvertisingID"    default="false"/>
+		<setBoolFromProperty result="bUpsightIncludeAnalytics"         ini="Engine" section="/Script/Upsight.UpsightSettings" property="IncludeAnalytics"         default="false"/>
+		<setBoolFromProperty result="bUpsightIncludeMangedVariables"   ini="Engine" section="/Script/Upsight.UpsightSettings" property="IncludeManagedVariables"  default="false"/>
+		<setBoolFromProperty result="bUpsightIncludeMarketing"         ini="Engine" section="/Script/Upsight.UpsightSettings" property="IncludeMarketing"         default="false"/>
+		<setBoolFromProperty result="bUpsightIncludeAdvertisingID"     ini="Engine" section="/Script/Upsight.UpsightSettings" property="IncludeAdvertisingID"     default="false"/>
 		<setBoolFromProperty result="bUpsightIncludePushNotifications" ini="Engine" section="/Script/Upsight.UpsightSettings" property="IncludePushNotifications" default="false"/>
+		<setBoolFromProperty result="bUpsightEnableLogging"            ini="Engine" section="/Script/Upsight.UpsightSettings" property="EnableLogging"            default="false"/>
 	</init>
 
   	<AARImports>
@@ -36,13 +38,12 @@ com.upsight.android,analytics,4.1.1
 com.google.android.gms,play-services-gcm,9.2.0
 				</insert>
 			</true>
-		</if>
-	
+		</if>	
   	</AARImports>
 
 	<!-- optional updates applied to AndroidManifest.xml -->
 	<androidManifestUpdates>
-		<setStringFromAttribute result="PackageName"       tag="manifest" name="package"/>
+		<setStringFromAttribute result="PackageName" tag="manifest" name="package"/>
 		
 		<setElement    result="upsight-meta-data-app-token"  value="meta-data"/>
 	    <addAttribute     tag="$upsight-meta-data-app-token"  name="android:name"  value="com.upsight.app_token"/>
@@ -326,10 +327,16 @@ public void AndroidThunkJava_UpsightRecordInAppPurchaseEvent(int resolution, Str
 	<gameActivityOnCreateAdditions>
 		<insert>
 mUpsight = Upsight.createContext(this.getApplicationContext());
-
-mUpsight.getLogger().setLogLevel(Upsight.LOG_TAG, EnumSet.allOf(UpsightLogger.Level.class));
-
 		</insert>
+
+		<if condition="bUpsightEnableLogging">
+			<true>
+				<insert>
+mUpsight.getLogger().setLogLevel(Upsight.LOG_TAG, EnumSet.allOf(UpsightLogger.Level.class));
+				</insert>
+			</true>
+		</if>
+	
 	</gameActivityOnCreateAdditions>
 
 	<!-- optional additions to GameActivity onDestroy in GameActivity.java -->
@@ -357,19 +364,27 @@ mUpsight.getLogger().setLogLevel(Upsight.LOG_TAG, EnumSet.allOf(UpsightLogger.Le
 
 	<!-- optional additions to GameActivity onPause in GameActivity.java	-->
 	<gameActivityOnPauseAdditions>
-		<insert>
+		<if condition="bUpsightIncludePushNotifications">
+ 			<true> 			
+				<insert>
 mUpsightPushBillboard.destroy();
-		</insert>
+				</insert>
+			</true>
+		</if>
 	</gameActivityOnPauseAdditions>
 
 
 	<!-- optional additions to GameActivity onResume in GameActivity.java	-->
 	<gameActivityOnResumeAdditions>
-		<insert>
+		<if condition="bUpsightIncludePushNotifications">
+ 			<true>
+				<insert>
 UpsightBillboard.Handler UpsightPushBillboardHandler = UpsightBillboardHandlers.forDefault(this);
 
 mUpsightPushBillboard = UpsightPushBillboard.create(mUpsight, UpsightPushBillboardHandler);
-		</insert>
+				</insert>
+			</true>
+		</if>
 	</gameActivityOnResumeAdditions>
 
 

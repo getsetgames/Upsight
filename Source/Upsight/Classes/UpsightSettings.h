@@ -32,4 +32,10 @@ public:
     
     UPROPERTY(Config, EditAnywhere, Category=General, meta=(DisplayName="Include Advertising ID"))
     bool IncludeAdvertisingId;
+    
+    UPROPERTY(Config, EditAnywhere, Category=General, meta=(DisplayName="Include Push Notifications"))
+    bool IncludePushNotifications;
+    
+    UPROPERTY(Config, EditAnywhere, Category=General, meta=(DisplayName="Push Notification Sender ID"))
+    FString PushNotificationSenderID;
 };
