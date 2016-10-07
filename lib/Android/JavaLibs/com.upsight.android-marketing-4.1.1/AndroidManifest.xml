@@ -7,16 +7,4 @@
         android:minSdkVersion="14"
         android:targetSdkVersion="22" />
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <application>
-        <meta-data
-            android:name="com.upsight.extension.marketing"
-            android:value="com.upsight.android.UpsightMarketingExtension" />
-
-        <activity
-            android:name="com.upsight.android.marketing.internal.billboard.BillboardManagementActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-    </application>
-
 </manifest>
