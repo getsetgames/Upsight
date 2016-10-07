@@ -246,7 +246,7 @@ import org.json.JSONObject;
 	<gameActivityClassAdditions>
 		<insert><![CDATA[
 private UpsightContext mUpsight;
-
+private UpsightBillboard mUpsightPushBillboard;
 
 public void AndroidThunkJava_UpsightRecordAnalyticsEventWithName(String eventName, String[] keys, String[] values)
 {
@@ -357,7 +357,7 @@ mUpsight = Upsight.createContext(this.getApplicationContext());
 	<!-- optional additions to GameActivity onPause in GameActivity.java	-->
 	<gameActivityOnPauseAdditions>
 		<insert>
-
+mUpsightPushBillboard.destroy();
 		</insert>
 	</gameActivityOnPauseAdditions>
 
@@ -365,7 +365,9 @@ mUpsight = Upsight.createContext(this.getApplicationContext());
 	<!-- optional additions to GameActivity onResume in GameActivity.java	-->
 	<gameActivityOnResumeAdditions>
 		<insert>
+UpsightBillboard.Handler UpsightPushBillboardHandler = UpsightBillboardHandlers.forDefault(this);
 
+mUpsightPushBillboard = UpsightPushBillboard.create(mUpsight, UpsightPushBillboardHandler);
 		</insert>
 	</gameActivityOnResumeAdditions>
 
