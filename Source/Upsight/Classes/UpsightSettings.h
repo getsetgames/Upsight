@@ -38,4 +38,7 @@ public:
     
     UPROPERTY(Config, EditAnywhere, Category=General, meta=(DisplayName="Push Notification Sender ID"))
     FString PushNotificationSenderID;
+    
+    UPROPERTY(Config, EditAnywhere, Category=General, meta=(DisplayName="Enable Logging"))
+    bool EnableLogging;
 };
