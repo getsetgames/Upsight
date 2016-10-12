@@ -15,6 +15,7 @@ IncludeManagedVariables(false),
 IncludeMarketing(false),
 IncludeAdvertisingId(false),
 IncludePushNotifications(false),
-PushNotificationSenderID("")
+PushNotificationSenderID(""),
+EnableLogging(false)
 {
 }
