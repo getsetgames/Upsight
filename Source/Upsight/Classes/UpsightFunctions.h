@@ -30,4 +30,6 @@ public:
     UFUNCTION(BlueprintCallable, meta = (Keywords = "upsight analytics"), Category = "Upsight")
     static bool UpsightClientValidateInAppPurchase(FString receiptData);
     
+    UFUNCTION(BlueprintCallable, meta = (Keywords = "upsight analytics"), Category = "Upsight")
+    static void UpsightRegisterForPushNotifications();
 };

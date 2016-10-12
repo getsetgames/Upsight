@@ -300,6 +300,13 @@ void UUpsightFunctions::UpsightRecordInAppPurchaseEventWithResolution(int resolu
 #endif
 }
 
+void UUpsightFunctions::UpsightRegisterForPushNotifications()
+{
+#if PLATFORM_IOS
+    [USPush registerForPushNotifications];
+#endif
+}
+
 
 
 
