@@ -12,7 +12,7 @@
 
 #if PLATFORM_IOS
 
-@interface UUpsightComponentDelegate <USBillboardDelegate>
+@interface UUpsightComponentDelegate : NSObject <USBillboardDelegate>
 -(UIViewController *)presentingViewControllerForBillboard:(id<USBillboard>)aBillboard;
 @end
 
