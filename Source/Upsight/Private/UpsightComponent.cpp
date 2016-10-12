@@ -12,7 +12,7 @@
 
 #if PLATFORM_IOS
 
-@interface UUpsightComponentDelegate <USBillboardDelegate>
+@interface UUpsightComponentDelegate : NSObject <USBillboardDelegate>
 -(UIViewController *)presentingViewControllerForBillboard:(id<USBillboard>)aBillboard;
 @end
 
@@ -92,7 +92,7 @@ void UUpsightComponent::OnUnregister()
 void UUpsightComponent::ApplicationRegisteredForUserNotificationsDelegate_Handler(int32 inInt)
 {
 #if PLATFORM_IOS
-    UIUserNotificationSettings *notificationSettings = (UIUserNotificationSettings *)types;
+    UIUserNotificationSettings *notificationSettings = (UIUserNotificationSettings *)inInt;
     
     [USPush didRegisterUserNotificationSettings:notificationSettings];
 #endif
@@ -117,7 +117,7 @@ void UUpsightComponent::ApplicationReceivedRemoteNotification_Handler(FString Js
 #if PLATFORM_IOS
     [USPush pushBillboard].delegate = ucd;
     
-    NSDictionary *userInfo = @{ @"message" : Json };
+    NSDictionary *userInfo = @{ @"message" : @"" };
     
     [USPush handleRemoteNotificationWithUserInfo:userInfo];
 #endif
