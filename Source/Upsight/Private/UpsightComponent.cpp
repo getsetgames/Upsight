@@ -118,6 +118,7 @@ void UUpsightComponent::ApplicationReceivedRemoteNotification_Handler(FString Js
     [USPush pushBillboard].delegate = ucd;
     
     NSDictionary *userInfo = @{ @"message" : Json };
+    NSDictionary *userInfo = @{ @"message" : @"" };
     
     [USPush handleRemoteNotificationWithUserInfo:userInfo];
 #endif
