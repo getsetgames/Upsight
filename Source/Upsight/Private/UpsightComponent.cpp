@@ -55,7 +55,9 @@ static UUpsightComponentDelegate* ucd;
     
     if (!dLaunchOptionsUrl)
     {
-        [USPush registerForPushNotifications];
+        // [RS] - TBD - There is an engine issue with registering for push notifications in applicationDidFinishLaunching currently
+        //
+        // [USPush registerForPushNotifications];
     }
 }
 
