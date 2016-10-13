@@ -32,6 +32,14 @@ com.upsight.android,analytics,4.1.1
 			</true>
 		</if>
 
+		<if condition="bUpsightIncludeMarketing">
+			<true>
+				<insert>
+com.upsight.android,marketing,4.1.1
+				</insert>
+			</true>
+		</if>
+
 		<if condition="bUpsightIncludePushNotifications">
  			<true>
  				<insert>
@@ -197,12 +205,6 @@ com.google.android.gms,play-services-gcm,9.2.0
 		<if condition="bUpsightIncludeMangedVariables">
 			<true>
 				<copyDir src="$S(EngineDir)/Plugins/GSG/Upsight/lib/Android/JavaLibs/com.upsight.android-managed-variables-4.1.1" dst="$S(BuildDir)/JavaLibs/com.upsight.android-managed-variables-4.1.1" />
-			</true>
-		</if>
-
-		<if condition="bUpsightIncludeMarketing">
-			<true>
-				<copyDir src="$S(EngineDir)/Plugins/GSG/Upsight/lib/Android/JavaLibs/com.upsight.android-marketing-4.1.1" dst="$S(BuildDir)/JavaLibs/com.upsight.android-marketing-4.1.1" />
 			</true>
 		</if>
 
