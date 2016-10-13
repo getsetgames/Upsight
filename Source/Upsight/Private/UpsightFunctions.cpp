@@ -303,7 +303,11 @@ void UUpsightFunctions::UpsightRecordInAppPurchaseEventWithResolution(int resolu
 void UUpsightFunctions::UpsightRegisterForPushNotifications()
 {
 #if PLATFORM_IOS
+    NSLog(@"UpsightRegisterForPushNotifications");
+    
     [USPush registerForPushNotifications];
+    
+    NSLog(@"UpsightRegisterForPushNotifications done");
 #endif
 }
 
