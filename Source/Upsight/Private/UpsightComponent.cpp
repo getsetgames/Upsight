@@ -117,11 +117,22 @@ void UUpsightComponent::ApplicationFailedToRegisterForRemoteNotifications_Handle
 void UUpsightComponent::ApplicationReceivedRemoteNotification_Handler(FString Json)
 {
 #if PLATFORM_IOS
-    [USPush pushBillboard].delegate = ucd;
+    if (Json.Len())
+    {
+        NSError      *error;
+        NSData       *data = [Json.GetNSString() dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary *d    = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
     
-    NSDictionary *userInfo = @{ @"message" : @"" };
-    
-    [USPush handleRemoteNotificationWithUserInfo:userInfo];
+        if (!error)
+        {
+            [USPush pushBillboard].delegate = ucd;
+            [USPush handleRemoteNotificationWithUserInfo:d];
+        }
+        else
+        {
+            //UE_LOG(LogUpsight, Log, TEXT("Error parsing JSON data: %s"), error);
+        }
+    }
 #endif
     
     UE_LOG(LogUpsight, Log, TEXT("ApplicationReceivedRemoteNotification: %s"), *Json);
