@@ -92,9 +92,11 @@ void UUpsightComponent::OnUnregister()
 void UUpsightComponent::ApplicationRegisteredForUserNotificationsDelegate_Handler(int32 inInt)
 {
 #if PLATFORM_IOS
-    UIUserNotificationSettings *notificationSettings = (UIUserNotificationSettings *)inInt;
+    NSUInteger t = [[NSNumber numberWithInt:inInt] unsignedIntegerValue];
     
-    [USPush didRegisterUserNotificationSettings:notificationSettings];
+    UIUserNotificationSettings *s = [UIUserNotificationSettings settingsForTypes:t categories:nil];
+    
+    [USPush didRegisterUserNotificationSettings:s];
 #endif
 }
 
