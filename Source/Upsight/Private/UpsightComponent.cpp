@@ -80,15 +80,28 @@ void UUpsightComponent::OnRegister()
 {
 	Super::OnRegister();
     
-    FCoreDelegates::ApplicationRegisteredForRemoteNotificationsDelegate.AddUObject(this, &UUpsightComponent::ApplicationRegisteredForRemoteNotifications_Handler);
-    FCoreDelegates::ApplicationRegisteredForUserNotificationsDelegate.AddUObject(this, &UUpsightComponent::ApplicationRegisteredForUserNotificationsDelegate_Handler);
-    FCoreDelegates::ApplicationFailedToRegisterForRemoteNotificationsDelegate.AddUObject(this, &UUpsightComponent::ApplicationFailedToRegisterForRemoteNotifications_Handler);
-    FCoreDelegates::ApplicationReceivedRemoteNotificationDelegate.AddUObject(this, &UUpsightComponent::ApplicationReceivedRemoteNotification_Handler);
+    const UUpsightSettings* settings = GetDefault<UUpsightSettings>();
+    
+    if (settings->IncludePushNotifications)
+    {
+        FCoreDelegates::ApplicationRegisteredForRemoteNotificationsDelegate.AddUObject(this, &UUpsightComponent::ApplicationRegisteredForRemoteNotifications_Handler);
+        FCoreDelegates::ApplicationRegisteredForUserNotificationsDelegate.AddUObject(this, &UUpsightComponent::ApplicationRegisteredForUserNotificationsDelegate_Handler);
+        FCoreDelegates::ApplicationFailedToRegisterForRemoteNotificationsDelegate.AddUObject(this, &UUpsightComponent::ApplicationFailedToRegisterForRemoteNotifications_Handler);
+        FCoreDelegates::ApplicationReceivedRemoteNotificationDelegate.AddUObject(this, &UUpsightComponent::ApplicationReceivedRemoteNotification_Handler);
+    }
 }
 
 void UUpsightComponent::OnUnregister()
 {
 	Super::OnUnregister();
+    
+    if (settings->IncludePushNotifications)
+    {
+        FCoreDelegates::ApplicationRegisteredForRemoteNotificationsDelegate.RemoveAll(this);
+        FCoreDelegates::ApplicationRegisteredForUserNotificationsDelegate.RemoveAll(this);
+        FCoreDelegates::ApplicationFailedToRegisterForRemoteNotificationsDelegate.RemoveAll(this);
+        FCoreDelegates::ApplicationReceivedRemoteNotificationDelegate.RemoveAll(this);
+    }
 }
 
 void UUpsightComponent::ApplicationRegisteredForUserNotificationsDelegate_Handler(int32 inInt)
