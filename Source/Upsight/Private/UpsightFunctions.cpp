@@ -303,7 +303,7 @@ void UUpsightFunctions::UpsightRecordInAppPurchaseEventWithResolution(int resolu
 void UUpsightFunctions::UpsightRegisterForPushNotifications()
 {
 #if PLATFORM_IOS
-    [USPush registerForPushNotifications];
+    //[USPush registerForPushNotifications];
 #endif
 }
 
