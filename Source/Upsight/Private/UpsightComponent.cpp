@@ -80,18 +80,10 @@ void UUpsightComponent::OnRegister()
 {
 	Super::OnRegister();
     
-#if PLATFORM_IOS
-     NSLog(@"OnRegister");
-#endif
-    
     FCoreDelegates::ApplicationRegisteredForRemoteNotificationsDelegate.AddUObject(this, &UUpsightComponent::ApplicationRegisteredForRemoteNotifications_Handler);
     FCoreDelegates::ApplicationRegisteredForUserNotificationsDelegate.AddUObject(this, &UUpsightComponent::ApplicationRegisteredForUserNotificationsDelegate_Handler);
     FCoreDelegates::ApplicationFailedToRegisterForRemoteNotificationsDelegate.AddUObject(this, &UUpsightComponent::ApplicationFailedToRegisterForRemoteNotifications_Handler);
     FCoreDelegates::ApplicationReceivedRemoteNotificationDelegate.AddUObject(this, &UUpsightComponent::ApplicationReceivedRemoteNotification_Handler);
-    
-#if PLATFORM_IOS
-    NSLog(@"OnRegister done");
-#endif
 }
 
 void UUpsightComponent::OnUnregister()
@@ -102,28 +94,20 @@ void UUpsightComponent::OnUnregister()
 void UUpsightComponent::ApplicationRegisteredForUserNotificationsDelegate_Handler(int32 inInt)
 {
 #if PLATFORM_IOS
-    NSLog(@"ApplicationRegisteredForUserNotificationsDelegate_Handler");
-    
     NSUInteger t = [[NSNumber numberWithInt:inInt] unsignedIntegerValue];
     
     UIUserNotificationSettings *s = [UIUserNotificationSettings settingsForTypes:t categories:nil];
     
     [USPush didRegisterUserNotificationSettings:s];
-    
-    NSLog(@"ApplicationRegisteredForUserNotificationsDelegate_Handler done");
 #endif
 }
 
 void UUpsightComponent::ApplicationRegisteredForRemoteNotifications_Handler(TArray<uint8> Token)
 {
 #if PLATFORM_IOS
-    NSLog(@"ApplicationRegisteredForRemoteNotifications_Handler");
-    
     NSData* TokenData = [NSData dataWithBytes:Token.GetData() length:Token.Num()];
     
     [USPush registerPushToken:TokenData];
-    
-    NSLog(@"ApplicationRegisteredForRemoteNotifications_Handler done");
 #endif
 }
 
@@ -135,8 +119,6 @@ void UUpsightComponent::ApplicationFailedToRegisterForRemoteNotifications_Handle
 void UUpsightComponent::ApplicationReceivedRemoteNotification_Handler(FString Json)
 {
 #if PLATFORM_IOS
-    NSLog(@"ApplicationReceivedRemoteNotification_Handler");
-    
     if (Json.Len())
     {
         NSError      *error;
@@ -153,8 +135,6 @@ void UUpsightComponent::ApplicationReceivedRemoteNotification_Handler(FString Js
             //UE_LOG(LogUpsight, Log, TEXT("Error parsing JSON data: %s"), error);
         }
     }
-    
-    NSLog(@"ApplicationReceivedRemoteNotification_Handler done");
 #endif
     
     UE_LOG(LogUpsight, Log, TEXT("ApplicationReceivedRemoteNotification: %s"), *Json);
