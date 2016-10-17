@@ -80,49 +80,47 @@ void UUpsightComponent::OnRegister()
 {
 	Super::OnRegister();
     
-//    const UUpsightSettings* settings = GetDefault<UUpsightSettings>();
-//    
-//    if (settings->IncludePushNotifications)
-//    {
-//        FCoreDelegates::ApplicationRegisteredForRemoteNotificationsDelegate.AddUObject(this, &UUpsightComponent::ApplicationRegisteredForRemoteNotifications_Handler);
-//        FCoreDelegates::ApplicationRegisteredForUserNotificationsDelegate.AddUObject(this, &UUpsightComponent::ApplicationRegisteredForUserNotificationsDelegate_Handler);
-//        FCoreDelegates::ApplicationFailedToRegisterForRemoteNotificationsDelegate.AddUObject(this, &UUpsightComponent::ApplicationFailedToRegisterForRemoteNotifications_Handler);
-//        FCoreDelegates::ApplicationReceivedRemoteNotificationDelegate.AddUObject(this, &UUpsightComponent::ApplicationReceivedRemoteNotification_Handler);
-//    }
+    const UUpsightSettings* settings = GetDefault<UUpsightSettings>();
+    
+    if (settings->IncludePushNotifications)
+    {
+        FCoreDelegates::ApplicationRegisteredForRemoteNotificationsDelegate.AddUObject(this, &UUpsightComponent::ApplicationRegisteredForRemoteNotifications_Handler);
+        FCoreDelegates::ApplicationRegisteredForUserNotificationsDelegate.AddUObject(this, &UUpsightComponent::ApplicationRegisteredForUserNotificationsDelegate_Handler);
+        FCoreDelegates::ApplicationFailedToRegisterForRemoteNotificationsDelegate.AddUObject(this, &UUpsightComponent::ApplicationFailedToRegisterForRemoteNotifications_Handler);
+        FCoreDelegates::ApplicationReceivedRemoteNotificationDelegate.AddUObject(this, &UUpsightComponent::ApplicationReceivedRemoteNotification_Handler);
+    }
 }
 
 void UUpsightComponent::OnUnregister()
 {
 	Super::OnUnregister();
     
-//    const UUpsightSettings* settings = GetDefault<UUpsightSettings>();
-//    
-//    if (settings->IncludePushNotifications)
-//    {
-//        FCoreDelegates::ApplicationRegisteredForRemoteNotificationsDelegate.RemoveAll(this);
-//        FCoreDelegates::ApplicationRegisteredForUserNotificationsDelegate.RemoveAll(this);
-//        FCoreDelegates::ApplicationFailedToRegisterForRemoteNotificationsDelegate.RemoveAll(this);
-//        FCoreDelegates::ApplicationReceivedRemoteNotificationDelegate.RemoveAll(this);
-//    }
+    if (settings->IncludePushNotifications)
+    {
+        FCoreDelegates::ApplicationRegisteredForRemoteNotificationsDelegate.RemoveAll(this);
+        FCoreDelegates::ApplicationRegisteredForUserNotificationsDelegate.RemoveAll(this);
+        FCoreDelegates::ApplicationFailedToRegisterForRemoteNotificationsDelegate.RemoveAll(this);
+        FCoreDelegates::ApplicationReceivedRemoteNotificationDelegate.RemoveAll(this);
+    }
 }
 
 void UUpsightComponent::ApplicationRegisteredForUserNotificationsDelegate_Handler(int32 inInt)
 {
 #if PLATFORM_IOS
-//    NSUInteger t = [[NSNumber numberWithInt:inInt] unsignedIntegerValue];
-//    
-//    UIUserNotificationSettings *s = [UIUserNotificationSettings settingsForTypes:t categories:nil];
-//    
-//    [USPush didRegisterUserNotificationSettings:s];
+    NSUInteger t = [[NSNumber numberWithInt:inInt] unsignedIntegerValue];
+    
+    UIUserNotificationSettings *s = [UIUserNotificationSettings settingsForTypes:t categories:nil];
+    
+    [USPush didRegisterUserNotificationSettings:s];
 #endif
 }
 
 void UUpsightComponent::ApplicationRegisteredForRemoteNotifications_Handler(TArray<uint8> Token)
 {
 #if PLATFORM_IOS
-//    NSData* TokenData = [NSData dataWithBytes:Token.GetData() length:Token.Num()];
-//    
-//    [USPush registerPushToken:TokenData];
+    NSData* TokenData = [NSData dataWithBytes:Token.GetData() length:Token.Num()];
+    
+    [USPush registerPushToken:TokenData];
 #endif
 }
 
@@ -134,22 +132,22 @@ void UUpsightComponent::ApplicationFailedToRegisterForRemoteNotifications_Handle
 void UUpsightComponent::ApplicationReceivedRemoteNotification_Handler(FString Json)
 {
 #if PLATFORM_IOS
-//    if (Json.Len())
-//    {
-//        NSError      *error;
-//        NSData       *data = [Json.GetNSString() dataUsingEncoding:NSUTF8StringEncoding];
-//        NSDictionary *d    = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
-//    
-//        if (!error)
-//        {
-//            [USPush pushBillboard].delegate = ucd;
-//            [USPush handleRemoteNotificationWithUserInfo:d];
-//        }
-//        else
-//        {
-//            //UE_LOG(LogUpsight, Log, TEXT("Error parsing JSON data: %s"), error);
-//        }
-//    }
+    if (Json.Len())
+    {
+        NSError      *error;
+        NSData       *data = [Json.GetNSString() dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary *d    = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+    
+        if (!error)
+        {
+            [USPush pushBillboard].delegate = ucd;
+            [USPush handleRemoteNotificationWithUserInfo:d];
+        }
+        else
+        {
+            //UE_LOG(LogUpsight, Log, TEXT("Error parsing JSON data: %s"), error);
+        }
+    }
 #endif
     
     UE_LOG(LogUpsight, Log, TEXT("ApplicationReceivedRemoteNotification: %s"), *Json);
