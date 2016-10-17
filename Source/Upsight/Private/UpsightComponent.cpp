@@ -95,6 +95,8 @@ void UUpsightComponent::OnUnregister()
 {
 	Super::OnUnregister();
     
+    const UUpsightSettings* settings = GetDefault<UUpsightSettings>();
+    
     if (settings->IncludePushNotifications)
     {
         FCoreDelegates::ApplicationRegisteredForRemoteNotificationsDelegate.RemoveAll(this);
