@@ -102,6 +102,8 @@ void UUpsightFunctions::UpsightRecordAnalyticsEventWithName(FString eventName, T
         [Upsight recordAnalyticsEventWithName:eventName.GetNSString() properties: p];
     
 #elif PLATFORM_ANDROID
+        UE_LOG(LogUpsight, Log, TEXT("UUpsightFunctions::UpsightRecordAnalyticsEventWithName - event: %s"), *eventName);
+        
         if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
         {
             static jmethodID Method = FJavaWrapper::FindMethod(Env,
@@ -141,6 +143,8 @@ void UUpsightFunctions::UpsightRecordMilestoneEventForScope(FString scope, TArra
         [Upsight recordMilestoneEventForScope:scope.GetNSString() properties:p];
     
 #elif PLATFORM_ANDROID
+        UE_LOG(LogUpsight, Log, TEXT("UUpsightFunctions::UpsightRecordMilestoneEventForScope - scope: %s"), *scope);
+        
         if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
         {
             static jmethodID Method = FJavaWrapper::FindMethod(Env,
