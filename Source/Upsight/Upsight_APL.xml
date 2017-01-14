@@ -251,6 +251,8 @@ private UpsightBillboard mUpsightPushBillboard;
 
 public void AndroidThunkJava_UpsightRecordAnalyticsEventWithName(String eventName, String[] keys, String[] values)
 {
+	Log.debug("AndroidThunkJava_UpsightRecordAnalyticsEventWithName - event:" + eventName + ", keys:" + keys + ", values:" + values);
+
 	UpsightCustomEvent.Builder b = UpsightCustomEvent.createBuilder(eventName);
 
 	for (int i = 0; i < keys.length; i++)
@@ -263,6 +265,8 @@ public void AndroidThunkJava_UpsightRecordAnalyticsEventWithName(String eventNam
 
 public void AndroidThunkJava_UpsightRecordMilestoneEventForScope(String scope, String[] keys, String[] values)
 {
+	Log.debug("AndroidThunkJava_UpsightRecordMilestoneEventForScope - scope:" + scope + ", keys:" + keys + ", values:" + values);
+
 	UpsightMilestoneEvent.Builder b = UpsightMilestoneEvent.createBuilder(scope);
 
 	for (int i = 0; i < keys.length; i++)
@@ -297,25 +301,52 @@ public void AndroidThunkJava_UpsightRecordMonetizationEventWithTotalPrice(int re
 
 public void AndroidThunkJava_UpsightRecordInAppPurchaseEvent(int resolution, String productID, int quantity, String currency, float price, float totalPrice, String store, String bundle, String[] keys, String[] values)
 {
-    try
-    {
-        JSONObject b = new JSONObject(bundle);
+	Log.debug("AndroidThunkJava_UpsightRecordInAppPurchaseEvent - resolution:" + resolution + ", product ID:" + productID + ", quantity:" + quantity + ", currency:" + currency + ", price:" + price + ", totalPrice:" + totalPrice + ", store:" + store + ", bundle:" + bundle + ", keys:" + keys + ", values:" + values);
 
-        UpsightMonetizationIapEvent.createBuilder(
-                store,
-                b,
-                new Double(totalPrice),
-                new Double(price),
-                quantity,
-                currency,
-                productID)
-        .setResolution(Integer.toString(resolution))
-        .record(mUpsight);
-    }
-    catch (JSONException e)
-    {
-        // Log exception
-    }
+	try
+	{
+    	JSONObject b = new JSONObject(bundle);
+
+	    UpsightMonetizationIapEvent.createBuilder(
+	            store,
+	            b,
+	            new Double(totalPrice),
+	            new Double(price),
+	            quantity,
+	            currency,
+	            productID)
+	            .setResolution(Integer.toString(resolution))
+	            .record(mUpsight);
+	}
+	catch (JSONException e)
+	{
+    	// Failed to convert bundle parameter into a JSONObject will retry using empty JSON literal
+    	//
+    	Log.debug("Failed to create JSONObject from '" + bundle + "'" + " exception: " + e.getMessage());
+	
+	    try
+	    {
+	        // JSONObject creation failed default to using empty JSON string which will not throw an exception
+	        //
+	        JSONObject b = new JSONObject("{}");
+
+	        UpsightMonetizationIapEvent.createBuilder(
+	                store,
+	                b,
+	                new Double(totalPrice),
+	                new Double(price),
+	                quantity,
+	                currency,
+	                productID)
+	                .setResolution(Integer.toString(resolution))
+	                .record(mUpsight);
+	    }
+	    catch (Exception ex)
+	    {
+	        Log.debug("Failed to create JSONObject exception: " + ex.getMessage());
+	    }
+	}
+
 }
 		]]></insert>
 	</gameActivityClassAdditions>
