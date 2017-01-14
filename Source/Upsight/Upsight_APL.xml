@@ -341,9 +341,9 @@ public void AndroidThunkJava_UpsightRecordInAppPurchaseEvent(int resolution, Str
 	                .setResolution(Integer.toString(resolution))
 	                .record(mUpsight);
 	    }
-	    catch (Exception e)
+	    catch (Exception ex)
 	    {
-	        Log.debug("Failed to create JSONObject exception: " + e.getMessage());
+	        Log.debug("Failed to create JSONObject exception: " + ex.getMessage());
 	    }
 	}
 
