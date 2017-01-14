@@ -251,6 +251,8 @@ private UpsightBillboard mUpsightPushBillboard;
 
 public void AndroidThunkJava_UpsightRecordAnalyticsEventWithName(String eventName, String[] keys, String[] values)
 {
+	Log.debug("AndroidThunkJava_UpsightRecordAnalyticsEventWithName - event:" + eventName + ", keys:" + keys + ", values:" + values);
+
 	UpsightCustomEvent.Builder b = UpsightCustomEvent.createBuilder(eventName);
 
 	for (int i = 0; i < keys.length; i++)
@@ -263,6 +265,8 @@ public void AndroidThunkJava_UpsightRecordAnalyticsEventWithName(String eventNam
 
 public void AndroidThunkJava_UpsightRecordMilestoneEventForScope(String scope, String[] keys, String[] values)
 {
+	Log.debug("AndroidThunkJava_UpsightRecordMilestoneEventForScope - scope:" + scope + ", keys:" + keys + ", values:" + values);
+
 	UpsightMilestoneEvent.Builder b = UpsightMilestoneEvent.createBuilder(scope);
 
 	for (int i = 0; i < keys.length; i++)
@@ -316,6 +320,7 @@ public void AndroidThunkJava_UpsightRecordInAppPurchaseEvent(int resolution, Str
     {
         // Log exception
     }
+	Log.debug("AndroidThunkJava_UpsightRecordInAppPurchaseEvent - resolution:" + resolution + ", product ID:" + productID + ", quantity:" + quantity + ", currency:" + currency + ", price:" + price + ", totalPrice:" + totalPrice + ", store:" + store + ", bundle:" + bundle + ", keys:" + keys + ", values:" + values);
 }
 		]]></insert>
 	</gameActivityClassAdditions>
