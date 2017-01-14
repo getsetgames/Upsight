@@ -258,12 +258,16 @@ void UUpsightFunctions::UpsightRecordInAppPurchaseEventWithResolution(int resolu
 #if PLATFORM_IOS
     NSDictionary *p = CreateNSDictionary(keys, values);
     
+    NSString *nsProductId     = productID.GetNSString();
+    NSString *nsCurrencyId    = currency.GetNSString();
+    NSString *nsTransactionId = transactionIdentifier.GetNSString();
+    
     [Upsight recordInAppPurchaseEventWithResolution:(USPurchaseResolution)resolution
-                                            product:productID.GetNSString()
+                                            product:nsProductId
                                            quantity:quantity
                                               price:price
-                                           currency:currency.GetNSString()
-                              transactionIdentifier:transactionIdentifier.GetNSString()
+                                           currency:nsCurrencyId
+                              transactionIdentifier:nsTransactionId
                                          properties:p];
     
 #elif PLATFORM_ANDROID
