@@ -323,9 +323,7 @@ public void AndroidThunkJava_UpsightRecordInAppPurchaseEvent(int resolution, Str
     	// Failed to convert bundle parameter into a JSONObject will retry using empty JSON literal
     	//
     	Log.debug("Failed to create JSONObject from '" + bundle + "'" + " exception: " + e.getMessage());
-	}
-	finally 
-	{
+	
 	    try
 	    {
 	        // JSONObject creation failed default to using empty JSON string which will not throw an exception
@@ -348,6 +346,7 @@ public void AndroidThunkJava_UpsightRecordInAppPurchaseEvent(int resolution, Str
 	        Log.debug("Failed to create JSONObject exception: " + e.getMessage());
 	    }
 	}
+
 }
 		]]></insert>
 	</gameActivityClassAdditions>
