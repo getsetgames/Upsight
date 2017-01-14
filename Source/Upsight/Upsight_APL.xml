@@ -301,26 +301,53 @@ public void AndroidThunkJava_UpsightRecordMonetizationEventWithTotalPrice(int re
 
 public void AndroidThunkJava_UpsightRecordInAppPurchaseEvent(int resolution, String productID, int quantity, String currency, float price, float totalPrice, String store, String bundle, String[] keys, String[] values)
 {
-    try
-    {
-        JSONObject b = new JSONObject(bundle);
-
-        UpsightMonetizationIapEvent.createBuilder(
-                store,
-                b,
-                new Double(totalPrice),
-                new Double(price),
-                quantity,
-                currency,
-                productID)
-        .setResolution(Integer.toString(resolution))
-        .record(mUpsight);
-    }
-    catch (JSONException e)
-    {
-        // Log exception
-    }
 	Log.debug("AndroidThunkJava_UpsightRecordInAppPurchaseEvent - resolution:" + resolution + ", product ID:" + productID + ", quantity:" + quantity + ", currency:" + currency + ", price:" + price + ", totalPrice:" + totalPrice + ", store:" + store + ", bundle:" + bundle + ", keys:" + keys + ", values:" + values);
+
+	try
+	{
+    	JSONObject b = new JSONObject(bundle);
+
+	    UpsightMonetizationIapEvent.createBuilder(
+	            store,
+	            b,
+	            new Double(totalPrice),
+	            new Double(price),
+	            quantity,
+	            currency,
+	            productID)
+	            .setResolution(Integer.toString(resolution))
+	            .record(mUpsight);
+	}
+	catch (JSONException e)
+	{
+    	// Failed to convert bundle parameter into a JSONObject will retry using empty JSON literal
+    	//
+    	Log.debug("Failed to create JSONObject from '" + bundle + "'" + " exception: " + e.getMessage());
+	}
+	finally 
+	{
+	    try
+	    {
+	        // JSONObject creation failed default to using empty JSON string which will not throw an exception
+	        //
+	        JSONObject b = new JSONObject("{}");
+
+	        UpsightMonetizationIapEvent.createBuilder(
+	                store,
+	                b,
+	                new Double(totalPrice),
+	                new Double(price),
+	                quantity,
+	                currency,
+	                productID)
+	                .setResolution(Integer.toString(resolution))
+	                .record(mUpsight);
+	    }
+	    catch (Exception e)
+	    {
+	        Log.debug("Failed to create JSONObject exception: " + e.getMessage());
+	    }
+	}
 }
 		]]></insert>
 	</gameActivityClassAdditions>
