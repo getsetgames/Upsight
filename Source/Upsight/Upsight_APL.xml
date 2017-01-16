@@ -248,6 +248,7 @@ import java.util.EnumSet;
 		<insert><![CDATA[
 private UpsightContext mUpsight;
 private UpsightBillboard mUpsightPushBillboard;
+private Intent           mUpsightPurchaseResultIntent;
 
 public void AndroidThunkJava_UpsightRecordAnalyticsEventWithName(String eventName, String[] keys, String[] values)
 {
@@ -303,50 +304,23 @@ public void AndroidThunkJava_UpsightRecordInAppPurchaseEvent(int resolution, Str
 {
 	Log.debug("AndroidThunkJava_UpsightRecordInAppPurchaseEvent - resolution:" + resolution + ", product ID:" + productID + ", quantity:" + quantity + ", currency:" + currency + ", price:" + price + ", totalPrice:" + totalPrice + ", store:" + store + ", bundle:" + bundle + ", keys:" + keys + ", values:" + values);
 
+	UpsightPublisherData.Builder upsightPublisherDataBuilder = new UpsightPublisherData.Builder();
+
+	for (int i = 0; i < keys.length; i++)
+	{
+    	upsightPublisherDataBuilder.put(keys[i], values[i]);
+	}
+
+	UpsightPublisherData upsightPurchasePublisherData = upsightPublisherDataBuilder.build();
+
 	try
 	{
-    	JSONObject b = new JSONObject(bundle);
-
-	    UpsightMonetizationIapEvent.createBuilder(
-	            store,
-	            b,
-	            new Double(totalPrice),
-	            new Double(price),
-	            quantity,
-	            currency,
-	            productID)
-	            .setResolution(Integer.toString(resolution))
-	            .record(mUpsight);
+	    UpsightGooglePlayHelper.trackPurchase(mUpsight, quantity, currency, new Double(price), new Double(totalPrice), productID, mUpsightPurchaseResultIntent, upsightPurchasePublisherData);
 	}
-	catch (JSONException e)
+	catch (Exception e)
 	{
-    	// Failed to convert bundle parameter into a JSONObject will retry using empty JSON literal
-    	//
-    	Log.debug("Failed to create JSONObject from '" + bundle + "'" + " exception: " + e.getMessage());
-	
-	    try
-	    {
-	        // JSONObject creation failed default to using empty JSON string which will not throw an exception
-	        //
-	        JSONObject b = new JSONObject("{}");
-
-	        UpsightMonetizationIapEvent.createBuilder(
-	                store,
-	                b,
-	                new Double(totalPrice),
-	                new Double(price),
-	                quantity,
-	                currency,
-	                productID)
-	                .setResolution(Integer.toString(resolution))
-	                .record(mUpsight);
-	    }
-	    catch (Exception ex)
-	    {
-	        Log.debug("Failed to create JSONObject exception: " + ex.getMessage());
-	    }
+		Log.debug("AndroidThunkJava_UpsightRecordInAppPurchaseEvent - exception tracking purchase: " + e.getMessage());
 	}
-
 }
 		]]></insert>
 	</gameActivityClassAdditions>
@@ -423,10 +397,13 @@ mUpsightPushBillboard = UpsightPushBillboard.create(mUpsight, UpsightPushBillboa
 
 	<!-- optional additions to GameActivity onActivityResult in GameActivity.java -->
 	<gameActivityOnActivityResultAdditions>
-		<insert>
+		<insert><![CDATA[
+if (requestCode == 1001)
+{
+	mUpsightPurchaseResultIntent = new Intent(data);
+}
 
-
-		</insert>
+		]]></insert>
 	</gameActivityOnActivityResultAdditions>
 	
 
