@@ -226,7 +226,9 @@ com.google.android.gms,play-services-gcm,9.2.0
 	<gameActivityImportAdditions>
 		<insert>
 import com.upsight.android.*;
+import com.upsight.android.analytics.UpsightGooglePlayHelper;
 import com.upsight.android.analytics.event.UpsightCustomEvent;
+import com.upsight.android.analytics.event.UpsightPublisherData;
 import com.upsight.android.analytics.event.milestone.UpsightMilestoneEvent;
 import com.upsight.android.analytics.event.monetization.UpsightMonetizationEvent;
 import com.upsight.android.analytics.event.monetization.UpsightMonetizationIapEvent;
