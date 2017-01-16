@@ -257,15 +257,21 @@ void UUpsightFunctions::UpsightRecordMonetizationEventWithTotalPrice(int resolut
 
 void UUpsightFunctions::UpsightRecordInAppPurchaseEventWithResolution(int resolution, FString productID, int quantity, FString currency, float price, float totalPrice, FString store, FString bundle, FString transactionIdentifier, TArray<FString> keys, TArray<FString> values)
 {
+     UE_LOG(LogUpsight, Log, TEXT("UpsightRecordInAppPurchaseEventWithResolution - resolution: %d, productId: %s, quantity: %d, currency: %s, price: %f, totalPrice: %f, store: %s, bundle: %s, transactionId: %s"), resolution, *productID, quantity, *currency, price, totalPrice, *store, *bundle, *transactionIdentifier);
+
 #if PLATFORM_IOS
     NSDictionary *p = CreateNSDictionary(keys, values);
     
+    NSString *nsProductId     = productID.GetNSString();
+    NSString *nsCurrencyId    = currency.GetNSString();
+    NSString *nsTransactionId = transactionIdentifier.GetNSString();
+    
     [Upsight recordInAppPurchaseEventWithResolution:(USPurchaseResolution)resolution
-                                            product:productID.GetNSString()
+                                            product:nsProductId
                                            quantity:quantity
                                               price:price
-                                           currency:currency.GetNSString()
-                              transactionIdentifier:transactionIdentifier.GetNSString()
+                                           currency:nsCurrencyId
+                              transactionIdentifier:nsTransactionId
                                          properties:p];
     
 #elif PLATFORM_ANDROID
