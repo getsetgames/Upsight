@@ -246,7 +246,7 @@ import java.util.EnumSet;
 	<!-- optional additions to the GameActivity class in GameActivity.java -->
 	<gameActivityClassAdditions>
 		<insert><![CDATA[
-private UpsightContext mUpsight;
+private UpsightContext   mUpsight;
 private UpsightBillboard mUpsightPushBillboard;
 private Intent           mUpsightPurchaseResultIntent;
 
