@@ -10,10 +10,16 @@
 #import <UpsightKit/UpsightKit.h>
 #endif
 
+
+UUpsightComponent::FUpsightBillboardDidDismissDelegate                    UUpsightComponent::BillboardDidDismissDelegate;
+UUpsightComponent::FUpsightBillboardWillDismissDelegate                   UUpsightComponent::BillboardWillDismissDelegate;
+UUpsightComponent::FUpsightBillboardDidAppearDelegate                     UUpsightComponent::BillboardDidAppearDelegate;
+UUpsightComponent::FUpsightBillboardWillAppearDelegate                    UUpsightComponent::BillboardWillAppearDelegate;
+
+
 #if PLATFORM_IOS
 
-@interface UUpsightComponentDelegate : NSObject <USBillboardDelegate>
--(UIViewController *)presentingViewControllerForBillboard:(id<USBillboard>)aBillboard;
+@interface UUpsightComponentDelegate : NSObject<USBillboardDelegate>
 @end
 
 static UUpsightComponentDelegate* ucd;
@@ -65,7 +71,8 @@ static UUpsightComponentDelegate* ucd;
 {
     UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
     
-    while (topController.presentedViewController) {
+    while (topController.presentedViewController)
+    {
         topController = topController.presentedViewController;
     }
     
@@ -104,6 +111,26 @@ void UUpsightComponent::OnUnregister()
         FCoreDelegates::ApplicationFailedToRegisterForRemoteNotificationsDelegate.RemoveAll(this);
         FCoreDelegates::ApplicationReceivedRemoteNotificationDelegate.RemoveAll(this);
     }
+void UUpsightComponent::BillboardDidAppearDelegate_Handler(const FString& scope)
+{
+    BillboardDidAppearDelegate.Broadcast(scope);
+}
+
+void UUpsightComponent::BillboardWillAppearDelegate_Handler(const FString& scope)
+{
+    BillboardWillAppearDelegate.Broadcast(scope);
+}
+
+void UUpsightComponent::BillboardDidDismissDelegate_Handler(const FString& scope)
+{
+    BillboardDidDismissDelegate.Broadcast(scope);
+}
+
+void UUpsightComponent::BillboardWillDismissDelegate_Handler(const FString& scope)
+{
+    BillboardWillDismissDelegate.Broadcast(scope);
+}
+
 }
 
 void UUpsightComponent::ApplicationRegisteredForUserNotificationsDelegate_Handler(int32 inInt)
