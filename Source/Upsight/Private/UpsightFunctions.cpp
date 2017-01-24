@@ -12,6 +12,109 @@
 #include "AndroidApplication.h"
 #endif
 
+#if PLATFORM_IOS
+
+@interface UUpsightFunctionsDelegate : NSObject <USBillboardDelegate>
+-(UIViewController *)presentingViewControllerForBillboard:(id<USBillboard>)aBillboard;
+@end
+
+static UUpsightFunctionsDelegate* ufd;
+
+@implementation UUpsightFunctionsDelegate
+
++(void)load
+{
+    if (!ufd)
+    {
+        ufd = [[UUpsightFunctionsDelegate alloc] init];
+    }
+}
+
+-(void)billboardWillAppear:(id<USBillboard>)aBillboard
+{
+    UE_LOG(LogUpsight, Log, TEXT("UpsightFunctions - billboardWillAppear: - scope '%s'"), *FString([aBillboard.scope autorelease]));
+    
+    UUpsightComponent::BillboardWillAppearDelegate.Broadcast(FString([aBillboard.scope autorelease]));
+}
+
+-(void)billboardDidAppear:(id<USBillboard>)aBillboard
+{
+     UE_LOG(LogUpsight, Log, TEXT("UpsightFunctions - billboardDidAppear: - scope '%s'"), *FString([aBillboard.scope autorelease]));
+    
+     UUpsightComponent::BillboardDidAppearDelegate.Broadcast(FString([aBillboard.scope autorelease]));
+}
+
+-(void)billboardWillDismiss:(id<USBillboard>)aBillboard
+{
+    UE_LOG(LogUpsight, Log, TEXT("UpsightFunctions - billboardWillDismiss: - scope '%s'"), *FString([aBillboard.scope autorelease]));
+    
+    UUpsightComponent::BillboardWillDismissDelegate.Broadcast(FString([aBillboard.scope autorelease]));
+}
+
+-(void)billboardDidDismiss:(id<USBillboard>)aBillboard
+{
+    UE_LOG(LogUpsight, Log, TEXT("UpsightFunctions - billboardDidDismiss: - scope '%s'"), *FString([aBillboard.scope autorelease]));
+    
+    UUpsightComponent::BillboardDidDismissDelegate.Broadcast(FString([aBillboard.scope autorelease]));
+}
+
+-(UIViewController *)presentingViewControllerForBillboard:(id<USBillboard>)aBillboard
+{
+    UE_LOG(LogUpsight, Log, TEXT("UpsightFunctions - presentingViewControllerForBillboard - presenting billboard for scope '%s'"), *FString([aBillboard.scope autorelease]));
+    
+    UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
+    
+    while (topController.presentedViewController)
+    {
+        topController = topController.presentedViewController;
+    }
+    
+    if (!topController)
+    {
+        UE_LOG(LogUpsight, Log, TEXT("UpsightFunctions - presentingViewControllerForBillboard - unable to find billboard for scope '%s'"), *FString([aBillboard.scope autorelease]));
+    }
+    
+    return topController;
+}
+
+-(void)billboard:(id<USBillboard>)aBillboard didReceiveReward:(id<USReward>)aReward
+{
+    UE_LOG(LogUpsight, Log, TEXT("UpsightFunctions - billboard:didReceiveReward: - scope:%s, reward:%s, quantity:%d, signatureData:%s"), *FString([aBillboard.scope autorelease]), *FString(aReward.productIdentifier), aReward.quantity, *FString([NSString stringWithCString:(const char *)[aReward.signatureData bytes] encoding:NSUTF8StringEncoding]));
+    
+    TArray<UUpsightReward *> Rewards;
+    
+    UUpsightReward *r = NewObject<UUpsightReward>();
+    
+    r->Name          = FString(aReward.productIdentifier);
+    r->Quantity      = aReward.quantity;
+    r->SignatureData = FString([NSString stringWithCString:(const char *)[aReward.signatureData bytes] encoding:NSUTF8StringEncoding]);
+    
+    Rewards.Add(r);
+    
+    UUpsightComponent::DidReceieveRewardDelegate.Broadcast(Rewards);
+}
+
+-(void)billboard:(id<USBillboard>)aBillboard didReceivePurchase:(id<USPurchase>)aPurchase
+{
+    UE_LOG(LogUpsight, Log, TEXT("UpsightFunctions - billboard:didReceiveReward: - scope:%s, reward:%s, quantity:%d, signatureData:%s"), *FString([aBillboard.scope autorelease]), *FString(aReward.productIdentifier), aReward.quantity, *FString([NSString stringWithCString:(const char *)[aReward.signatureData bytes] encoding:NSUTF8StringEncoding]));
+    
+    TArray<UUpsightVirtualGoodPromotionPurchase *> Purchases;
+    
+    UUpsightVirtualGoodPromotionPurchase *p = NewObject<UUpsightVirtualGoodPromotionPurchase>();
+    
+    p->Name     = FString(aPurchase.productIdentifier);
+    p->Quantity = aPurchase.quantity;
+
+    Purchases.Add(p);
+    
+    UUpsightComponent::DidReceieveVirtualGoodPromotionPurchaseDelegate.Broadcast(Purchases);
+}
+
+@end
+
+#endif
+
+
 bool ValidateValues(TArray<FString> &Keys, TArray<FString> &Values)
 {
     if (Keys.Num() != Values.Num())
