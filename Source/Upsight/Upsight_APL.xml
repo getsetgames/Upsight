@@ -237,6 +237,7 @@ import com.upsight.android.googlepushservices.UpsightPushBillboard;
 import com.upsight.android.logger.UpsightLogger;
 import com.upsight.android.marketing.UpsightBillboard;
 import com.upsight.android.marketing.UpsightBillboardHandlers;
+import com.upsight.android.marketing.UpsightMarketingContentStore;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -323,6 +324,10 @@ public void AndroidThunkJava_UpsightRecordInAppPurchaseEvent(int resolution, Str
 	{
 		Log.debug("AndroidThunkJava_UpsightRecordInAppPurchaseEvent - exception tracking purchase: " + e.getMessage());
 	}
+}
+public boolean AndroidThunkJava_UpsightScopeIsContentReady(String scope)
+{
+    return UpsightMarketingContentStore.isContentReady(mUpsight, scope);
 }
 		]]></insert>
 	</gameActivityClassAdditions>
