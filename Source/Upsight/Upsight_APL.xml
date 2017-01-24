@@ -253,6 +253,8 @@ private UpsightContext   mUpsight;
 private UpsightBillboard mUpsightPushBillboard;
 private Intent           mUpsightPurchaseResultIntent;
 
+private HashMap<String, UpsightBillboard> mUpsightBillboards = new HashMap<>();
+
 public void AndroidThunkJava_UpsightRecordAnalyticsEventWithName(String eventName, String[] keys, String[] values)
 {
 	Log.debug("AndroidThunkJava_UpsightRecordAnalyticsEventWithName - event:" + eventName + ", keys:" + keys + ", values:" + values);
@@ -461,6 +463,13 @@ mUpsight.getLogger().setLogLevel(Upsight.LOG_TAG, EnumSet.allOf(UpsightLogger.Le
 
 	<!-- optional additions to GameActivity onPause in GameActivity.java	-->
 	<gameActivityOnPauseAdditions>
+		<insert>
+for (UpsightBillboard b : mUpsightBillboards.values())
+{
+	b.destroy();
+}
+		</insert>
+
 		<if condition="bUpsightIncludePushNotifications">
  			<true> 			
 				<insert>
@@ -488,11 +497,12 @@ mUpsightPushBillboard = UpsightPushBillboard.create(mUpsight, UpsightPushBillboa
 	<!-- optional additions to GameActivity onActivityResult in GameActivity.java -->
 	<gameActivityOnActivityResultAdditions>
 		<insert><![CDATA[
+// This is the request code for purchases taken from GameActivity
+//			
 if (requestCode == 1001)
 {
 	mUpsightPurchaseResultIntent = new Intent(data);
 }
-
 		]]></insert>
 	</gameActivityOnActivityResultAdditions>
 	
