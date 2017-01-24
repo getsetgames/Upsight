@@ -441,6 +441,8 @@ void UUpsightFunctions::UpsightBillboardForScopeUnregisterForCallbacks(FString s
 
 bool UUpsightFunctions::UpsightBillboardForScopeIsContentReady(FString scope)
 {
+    bool isContentReady = false;
+    
 #if PLATFORM_IOS
     id<USBillboard> billboard = [Upsight billboardForScope:scope.GetNSString()];
     
@@ -449,7 +451,7 @@ bool UUpsightFunctions::UpsightBillboardForScopeIsContentReady(FString scope)
         UE_LOG(LogUpsight, Log, TEXT("UpsightBillboardForScopeIsContentReady - Unabled to find billboard for scope: %s"), *scope);
     }
     
-    return billboard.contentReady;
+    isContentReady = billboard.contentReady;
 #elif PLATFORM_ANDROID
     if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
     {
@@ -461,17 +463,15 @@ bool UUpsightFunctions::UpsightBillboardForScopeIsContentReady(FString scope)
         
         jstring jScope = Env->NewStringUTF(TCHAR_TO_UTF8(*scope));
         
-        jboolean jIsContentReady = FJavaWrapper::CallBooleanMethod(Env, FJavaWrapper::GameActivityThis, Method, jScope);
+        isContentReady = FJavaWrapper::CallBooleanMethod(Env, FJavaWrapper::GameActivityThis, Method, jScope);
 
         Env->DeleteLocalRef(jScope);
-        
-        return jIsContentReady;
     }
 #else
     UE_LOG(LogUpsight, Log, TEXT("UpsightBillboardForScopeIsContentReady - Not supported on this platform"));
-    
-    return false;
 #endif
+    
+    return isContentReady;
 }
 
 
