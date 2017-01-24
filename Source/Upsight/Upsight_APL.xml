@@ -249,6 +249,12 @@ import java.util.EnumSet;
 	<!-- optional additions to the GameActivity class in GameActivity.java -->
 	<gameActivityClassAdditions>
 		<insert><![CDATA[
+
+nativeUpsightBillboardOnPurchases(String[] productIDs, Integer[] quantities);
+nativeUpsightBillboardOnRewards(String[] productIDs, Integer[] quantities, String[] signatureDatas);
+nativeUpsightBillboardOnNextView();
+nativeUpsightBillboardOnDetach();
+
 private UpsightContext   mUpsight;
 private UpsightBillboard mUpsightPushBillboard;
 private Intent           mUpsightPurchaseResultIntent;
