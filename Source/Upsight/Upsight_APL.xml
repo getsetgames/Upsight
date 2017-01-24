@@ -325,6 +325,89 @@ public void AndroidThunkJava_UpsightRecordInAppPurchaseEvent(int resolution, Str
 		Log.debug("AndroidThunkJava_UpsightRecordInAppPurchaseEvent - exception tracking purchase: " + e.getMessage());
 	}
 }
+
+public void AndroidThunkJava_UpsightBillboardForScopeRegisterForCallbacks(String scope)
+{
+	try
+	{
+	    UpsightBillboard billboard = UpsightBillboard.create(mUpsight, scope, new UpsightBillboardHandlers.DefaultHandler(this)
+	    {
+	 		@Override
+	        public void onPurchases(List<UpsightPurchase> list)
+	        {
+	            String[]  productIDs     = new String[list.size()];
+	            Integer[] quantities     = new Integer[list.size()];
+
+	            for (int i = 0; i < list.size(); i++)
+	            {
+	                UpsightPurchase purchase = list.get(i);
+
+	                String  p = purchase.getProduct();
+	                Integer q = purchase.getQuantity();
+
+	                productIDs[i] = p;
+	                quantities[i] = q;
+	            }
+
+	            nativeUpsightBillboardOnPurchases(productIDs, quantities);
+	        }
+
+	        @Override
+	        public void onRewards(List<UpsightReward> list)
+	        {
+	            String[]  productIDs     = new String[list.size()];
+	            Integer[] quantities     = new Integer[list.size()];
+	            String[]  signatureDatas = new String[list.size()];
+
+	            for (int i = 0; i < list.size(); i++)
+	            {
+	                UpsightReward reward = list.get(i);
+
+	                String     p = reward.getProduct();
+	                Integer    q = reward.getQuantity();
+	                JSONObject j = reward.getSignatureData();
+
+	                productIDs[i]     = p;
+	                quantities[i]     = q;
+	                signatureDatas[i] = j.toString();
+	            }
+
+	            nativeUpsightBillboardOnRewards(productIDs, quantities, signatureDatas);
+	        }
+
+	        @Override
+	        public void onNextView()
+	        {
+				nativeUpsightBillboardOnNextView();
+	        }
+
+	        @Override
+	        public void onDetach()
+	        {
+				nativeUpsightBillboardOnDetach();
+	        }
+	    });
+
+    	mUpsightBillboards.put(scope, billboard);
+    }
+	catch (Exception e)
+	{
+		Log.debug("AndroidThunkJava_UpsightBillboardForScopeRegisterForCallbacks - exception creating billboard: " + e.getMessage());
+	}
+}
+
+public void AndroidThunkJava_UpsightBillboardForScopeUnregisterForCallbacks(String scope)
+{
+	if (mUpsightBillboards.containsKey(scope)) 
+	{
+    	mUpsightBillboards.get(scope).destroy();
+    }
+    else
+    {
+		Log.debug("AndroidThunkJava_UpsightBillboardForScopeUnregisterForCallbacks - couldn't find billboard for scope");
+    }
+}
+
 public boolean AndroidThunkJava_UpsightScopeIsContentReady(String scope)
 {
     return UpsightMarketingContentStore.isContentReady(mUpsight, scope);
