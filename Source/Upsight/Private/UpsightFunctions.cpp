@@ -380,6 +380,102 @@ void UUpsightFunctions::UpsightRecordInAppPurchaseEventWithResolution(int resolu
 #endif
 }
 
+void UUpsightFunctions::UpsightBillboardForScopeRegisterForCallbacks(FString scope)
+{
+    UE_LOG(LogUpsight, Log, TEXT("UUpsightFunctions::UpsightBillboardForScopeRegisterForCallbacks - scope '%s'"), *scope);
+    
+    #if PLATFORM_IOS
+        id<USBillboard> billboard = [Upsight billboardForScope:scope.GetNSString()];
+    
+        if (!billboard)
+        {
+            UE_LOG(LogUpsight, Log, TEXT("UUpsightFunctions::UpsightBillboardForScopeRegisterForCallbacks - couldn't find billboard for scope '%s'"), *scope);
+        }
+    
+        billboard.delegate = ufd;
+    #elif PLATFORM_ANDROID
+        if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+        {
+            static jmethodID Method = FJavaWrapper::FindMethod(Env,
+                                                               FJavaWrapper::GameActivityClassID,
+                                                               "AndroidThunkJava_UpsightBillboardForScope",
+                                                               "(Ljava/lang/String;)V",
+                                                               false);
+            
+            jstring jScope = Env->NewStringUTF(TCHAR_TO_UTF8(*scope));
+            
+            FJavaWrapper::CallVoidMethod(Env, FJavaWrapper::GameActivityThis, Method, jScope);
+            
+            Env->DeleteLocalRef(jScope);
+        }
+    #else
+         UE_LOG(LogUpsight, Log, TEXT("UpsightBillboardForScopeRegisterForCallbacks - Not supported on this platform"));
+    #endif
+}
+
+void UUpsightFunctions::UpsightBillboardForScopeUnregisterForCallbacks(FString scope)
+{
+#if PLATFORM_IOS
+    id<USBillboard> billboard = [Upsight billboardForScope:scope.GetNSString()];
+    
+    billboard.delegate = nil;
+#elif PLATFORM_ANDROID
+    if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+    {
+        static jmethodID Method = FJavaWrapper::FindMethod(Env,
+                                                           FJavaWrapper::GameActivityClassID,
+                                                           "AndroidThunkJava_UpsightBillboardForScope",
+                                                           "(Ljava/lang/String;)V",
+                                                           false);
+        
+        jstring jScope = Env->NewStringUTF(TCHAR_TO_UTF8(*scope));
+        
+        FJavaWrapper::CallVoidMethod(Env, FJavaWrapper::GameActivityThis, Method, jScope);
+        
+        Env->DeleteLocalRef(jScope);
+    }
+#else
+    UE_LOG(LogUpsight, Log, TEXT("UpsightBillboardForScopeUnregisterForCallbacks - Not supported on this platform"));
+#endif
+}
+
+bool UUpsightFunctions::UpsightBillboardForScopeIsContentReady(FString scope)
+{
+#if PLATFORM_IOS
+    id<USBillboard> billboard = [Upsight billboardForScope:scope.GetNSString()];
+    
+    if (!billboard)
+    {
+        UE_LOG(LogUpsight, Log, TEXT("UpsightBillboardForScopeIsContentReady - Unabled to find billboard for scope: %s"), *scope);
+    }
+    
+    return billboard.contentReady;
+#elif PLATFORM_ANDROID
+    if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+    {
+        static jmethodID Method = FJavaWrapper::FindMethod(Env,
+                                                           FJavaWrapper::GameActivityClassID,
+                                                           "AndroidThunkJava_UpsightScopeIsContentReady",
+                                                           "(Ljava/lang/String;)V",
+                                                           false);
+        
+        jstring jScope = Env->NewStringUTF(TCHAR_TO_UTF8(*scope));
+        
+        jboolean jIsContentReady = FJavaWrapper::CallBoolMethod(Env, FJavaWrapper::GameActivityThis, Method, jScope);
+        CHECK_JNI_RESULT(jIsContentReady)
+        
+        Env->DeleteLocalRef(jIsContentReady);
+        
+        return jIsContentReady;
+    }
+#else
+    UE_LOG(LogUpsight, Log, TEXT("UpsightBillboardForScopeIsContentReady - Not supported on this platform"));
+    
+    return false;
+#endif
+}
+
+
 void UUpsightFunctions::UpsightRegisterForPushNotifications()
 {
 #if PLATFORM_IOS

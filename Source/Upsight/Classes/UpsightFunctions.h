@@ -28,6 +28,13 @@ public:
     static void UpsightRecordInAppPurchaseEventWithResolution(int resolution, FString productID, int quantity, FString currency, float price, float totalPrice, FString store, FString bundle, FString transactionIdentifier, TArray<FString> keys, TArray<FString> values);
 
     UFUNCTION(BlueprintCallable, meta = (Keywords = "upsight analytics"), Category = "Upsight")
+    static void UpsightBillboardForScopeRegisterForCallbacks(FString scope);
+
+    UFUNCTION(BlueprintCallable, meta = (Keywords = "upsight analytics"), Category = "Upsight")
+    static void UpsightBillboardForScopeUnregisterForCallbacks(FString scope);
+    
+    UFUNCTION(BlueprintCallable, meta = (Keywords = "upsight analytics"), Category = "Upsight")
+    static bool UpsightBillboardForScopeIsContentReady(FString scope);
     
     UFUNCTION(BlueprintCallable, meta = (Keywords = "upsight analytics"), Category = "Upsight")
     static void UpsightRegisterForPushNotifications();
