@@ -96,7 +96,7 @@ static UUpsightFunctionsDelegate* ufd;
 
 -(void)billboard:(id<USBillboard>)aBillboard didReceivePurchase:(id<USPurchase>)aPurchase
 {
-    UE_LOG(LogUpsight, Log, TEXT("UpsightFunctions - billboard:didReceiveReward: - scope:%s, reward:%s, quantity:%d, signatureData:%s"), *FString([aBillboard.scope autorelease]), *FString(aReward.productIdentifier), aReward.quantity, *FString([NSString stringWithCString:(const char *)[aReward.signatureData bytes] encoding:NSUTF8StringEncoding]));
+    UE_LOG(LogUpsight, Log, TEXT("UpsightFunctions - billboard:didReceivePurchase: - scope:%s, purchase:%s, quantity:%d"), *FString([aBillboard.scope autorelease]), *FString(aPurchase.productIdentifier), aPurchase.quantity);
     
     TArray<UUpsightVirtualGoodPromotionPurchase *> Purchases;
     
