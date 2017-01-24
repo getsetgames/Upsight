@@ -10,6 +10,8 @@
 #import <UpsightKit/UpsightKit.h>
 #endif
 
+UUpsightComponent::FUpsightDidReceiveRewardDelegate                       UUpsightComponent::DidReceieveRewardDelegate;
+UUpsightComponent::FUpsightDidReceiveVirtualGoodPromotionPurchaseDelegate UUpsightComponent::DidReceieveVirtualGoodPromotionPurchaseDelegate;
 
 UUpsightComponent::FUpsightBillboardDidDismissDelegate                    UUpsightComponent::BillboardDidDismissDelegate;
 UUpsightComponent::FUpsightBillboardWillDismissDelegate                   UUpsightComponent::BillboardWillDismissDelegate;
@@ -96,6 +98,9 @@ void UUpsightComponent::OnRegister()
         FCoreDelegates::ApplicationFailedToRegisterForRemoteNotificationsDelegate.AddUObject(this, &UUpsightComponent::ApplicationFailedToRegisterForRemoteNotifications_Handler);
         FCoreDelegates::ApplicationReceivedRemoteNotificationDelegate.AddUObject(this, &UUpsightComponent::ApplicationReceivedRemoteNotification_Handler);
     }
+    
+    UUpsightComponent::DidReceieveRewardDelegate.AddUObject(this, &UUpsightComponent::DidReceieveReward_Handler);
+    UUpsightComponent::DidReceieveVirtualGoodPromotionPurchaseDelegate.AddUObject(this, &UUpsightComponent::DidReceieveVirtualGoodPromotionPurchase_Handler);
 }
 
 void UUpsightComponent::OnUnregister()
@@ -111,6 +116,11 @@ void UUpsightComponent::OnUnregister()
         FCoreDelegates::ApplicationFailedToRegisterForRemoteNotificationsDelegate.RemoveAll(this);
         FCoreDelegates::ApplicationReceivedRemoteNotificationDelegate.RemoveAll(this);
     }
+    
+    UUpsightComponent::DidReceieveRewardDelegate.RemoveAll(this);
+    UUpsightComponent::DidReceieveVirtualGoodPromotionPurchaseDelegate.RemoveAll(this);
+}
+
 void UUpsightComponent::BillboardDidAppearDelegate_Handler(const FString& scope)
 {
     BillboardDidAppearDelegate.Broadcast(scope);
@@ -131,6 +141,14 @@ void UUpsightComponent::BillboardWillDismissDelegate_Handler(const FString& scop
     BillboardWillDismissDelegate.Broadcast(scope);
 }
 
+void UUpsightComponent::DidReceieveReward_Handler(const TArray<UUpsightReward *>& rewards)
+{
+    DidReceieveReward.Broadcast(rewards);
+}
+
+void UUpsightComponent::DidReceieveVirtualGoodPromotionPurchase_Handler(const TArray<UUpsightVirtualGoodPromotionPurchase *>& purchases)
+{
+    DidReceieveVirtualGoodPromotionPurchase.Broadcast(purchases);
 }
 
 void UUpsightComponent::ApplicationRegisteredForUserNotificationsDelegate_Handler(int32 inInt)

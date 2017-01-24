@@ -17,24 +17,45 @@ public:
 	void OnRegister() override;
 	void OnUnregister() override;
 	
+    DECLARE_MULTICAST_DELEGATE_OneParam(FUpsightDidReceiveRewardDelegate, const TArray<UUpsightReward *>&);
+    DECLARE_MULTICAST_DELEGATE_OneParam(FUpsightDidReceiveVirtualGoodPromotionPurchaseDelegate, const TArray<UUpsightVirtualGoodPromotionPurchase *>&);
+    
     // Billboard callbacks
     //
     DECLARE_MULTICAST_DELEGATE_OneParam(FUpsightBillboardDidDismissDelegate,  const FString&);
     DECLARE_MULTICAST_DELEGATE_OneParam(FUpsightBillboardWillDismissDelegate, const FString&);
     DECLARE_MULTICAST_DELEGATE_OneParam(FUpsightBillboardDidAppearDelegate,   const FString&);
     DECLARE_MULTICAST_DELEGATE_OneParam(FUpsightBillboardWillAppearDelegate,  const FString&);
+
+    // Virtual good delegates
+    //
+    static FUpsightDidReceiveRewardDelegate                       DidReceieveRewardDelegate;
+    static FUpsightDidReceiveVirtualGoodPromotionPurchaseDelegate DidReceieveVirtualGoodPromotionPurchaseDelegate;
+
     // Billboard delegates
     //
     static FUpsightBillboardDidDismissDelegate  BillboardDidDismissDelegate;
     static FUpsightBillboardWillDismissDelegate BillboardWillDismissDelegate;
     static FUpsightBillboardDidAppearDelegate   BillboardDidAppearDelegate;
     static FUpsightBillboardWillAppearDelegate  BillboardWillAppearDelegate;
+    
+    DECLARE_DYNAMIC_MULTICAST_DELEGATE(FUpsightDynDelegate);
+    DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FUpsightDidReceiveRewardDynDelegate, const TArray<UUpsightReward *>&, Rewards);
+    DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FUpsightDidReceiveVirtualGoodPromotionPurchaseDynDelegate, const TArray<UUpsightVirtualGoodPromotionPurchase *>&, Purchases);
+   
     // Billboard delegates
     //
     DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam (FUpsightBillboardDidAppearDynDelegate,   const FString&, Scope);
     DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam (FUpsightBillboardWillAppearDynDelegate,  const FString&, Scope);
     DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam (FUpsightBillboardDidDismissDynDelegate,  const FString&, Scope);
     DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam (FUpsightBillboardWillDismissDynDelegate, const FString&, Scope);
+    
+    UPROPERTY(BlueprintAssignable)
+    FUpsightDidReceiveRewardDynDelegate DidReceieveReward;
+  
+    UPROPERTY(BlueprintAssignable)
+    FUpsightDidReceiveVirtualGoodPromotionPurchaseDynDelegate DidReceieveVirtualGoodPromotionPurchase;
+    
     UPROPERTY(BlueprintAssignable)
     FUpsightBillboardDidAppearDynDelegate BillboardDidAppear;
     
@@ -49,6 +70,8 @@ public:
     
 
 protected:
+    void DidReceieveReward_Handler(const TArray<UUpsightReward *>& rewards);
+    void DidReceieveVirtualGoodPromotionPurchase_Handler(const TArray<UUpsightVirtualGoodPromotionPurchase *>& purchases);
     
     void BillboardDidAppearDelegate_Handler  (const FString& scope);
     void BillboardWillAppearDelegate_Handler (const FString& scope);
