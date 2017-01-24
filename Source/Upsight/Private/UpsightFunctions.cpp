@@ -461,10 +461,9 @@ bool UUpsightFunctions::UpsightBillboardForScopeIsContentReady(FString scope)
         
         jstring jScope = Env->NewStringUTF(TCHAR_TO_UTF8(*scope));
         
-        jboolean jIsContentReady = FJavaWrapper::CallBoolMethod(Env, FJavaWrapper::GameActivityThis, Method, jScope);
-        CHECK_JNI_RESULT(jIsContentReady)
-        
-        Env->DeleteLocalRef(jIsContentReady);
+        jboolean jIsContentReady = FJavaWrapper::CallBooleanMethod(Env, FJavaWrapper::GameActivityThis, Method, jScope);
+
+        Env->DeleteLocalRef(jScope);
         
         return jIsContentReady;
     }
