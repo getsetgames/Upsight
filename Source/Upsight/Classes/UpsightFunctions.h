@@ -28,7 +28,6 @@ public:
     static void UpsightRecordInAppPurchaseEventWithResolution(int resolution, FString productID, int quantity, FString currency, float price, float totalPrice, FString store, FString bundle, FString transactionIdentifier, TArray<FString> keys, TArray<FString> values);
 
     UFUNCTION(BlueprintCallable, meta = (Keywords = "upsight analytics"), Category = "Upsight")
-    static bool UpsightClientValidateInAppPurchase(FString receiptData);
     
     UFUNCTION(BlueprintCallable, meta = (Keywords = "upsight analytics"), Category = "Upsight")
     static void UpsightRegisterForPushNotifications();

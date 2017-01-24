@@ -39,18 +39,6 @@ NSDictionary* CreateNSDictionary(TArray<FString> &Keys, TArray<FString> &Values)
     
     return d;
 }
-
-int validateData(const void* data, const int dataLength, unsigned char bID[128], unsigned char bVersion[16], void **dOpaque, void **dHash)
-{
-    // iOS receipt validation based off code detailed at https://www.objc.io/issues/17-security/receipt-validation/
-    //
-    
-    char isValid = 0;
-    
-    
-    return isValid;
-}
-
 #endif
 
 #if PLATFORM_ANDROID
@@ -70,27 +58,6 @@ void CreateJavaKeyValueArrays(JNIEnv *Env, jobjectArray &jKeysArray, jobjectArra
     }
 }
 #endif
-
-bool UUpsightFunctions::UpsightClientValidateInAppPurchase(FString receiptData)
-{
-#if PLATFORM_IOS
-//    unsigned char bundleId[128]     = { 0 };
-//    unsigned char bundleVersion[16] = { 0 };
-//    
-//    void *opaque = NULL;
-//    void *hash   = NULL;
-//    
-//    NSData *receipt;
-//    
-//    const int result = validateData([receipt bytes], (int)[receipt length], bundleId, bundleVersion, &opaque, &hash);
-//    return result == 0;
-    
-    return true;
-#else
-    return true;
-#endif
-}
-
 
 void UUpsightFunctions::UpsightRecordAnalyticsEventWithName(FString eventName, TArray<FString> eventKeys, TArray<FString> eventValues)
 {
