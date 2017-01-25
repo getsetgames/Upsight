@@ -511,7 +511,7 @@ extern "C" void Java_com_epicgames_ue4_GameActivity_nativeUpsightBillboardOnPurc
         Purchases.Add(p);
     }
     
-    UUpsightComponent::DidReceieveRewardDelegate.Broadcast(Purchases);
+    UUpsightComponent::DidReceieveVirtualGoodPromotionPurchaseDelegate.Broadcast(Purchases);
 }
 
 extern "C" void Java_com_epicgames_ue4_GameActivity_nativeUpsightBillboardOnRewards(JNIEnv* jenv,
