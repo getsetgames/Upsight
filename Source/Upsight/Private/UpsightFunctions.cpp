@@ -499,7 +499,7 @@ void UUpsightFunctions::UpsightBillboardUnregisterCallbacks()
 {
 #if PLATFORM_IOS
     
-    for (USBillboard b in ufd.UpsightBillboards)
+    for (id<USBillboard> b in ufd.UpsightBillboards)
     {
         b.delegate = nil;
     }
