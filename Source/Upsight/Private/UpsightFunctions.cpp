@@ -495,17 +495,17 @@ extern "C" void Java_com_epicgames_ue4_GameActivity_nativeUpsightBillboardOnPurc
     
     for (int i = 0; i < jNumPurchases; i++)
     {
-        jstring jRewardID = (jstring)jenv->GetObjectArrayElement(rewardIDs, Idx);
-        const char* charsRewardID = jenv->GetStringUTFChars(jRewardID, 0);
-        FString RewardId(FString(UTF8_TO_TCHAR(charsRewardID)));
+        jstring jProductID = (jstring)jenv->GetObjectArrayElement(productIDs, i);
+        const char* charsProductID = jenv->GetStringUTFChars(jProductID, 0);
         
-        jenv->ReleaseStringUTFChars(jRewardID, charsRewardID);
-        jenv->DeleteLocalRef(jRewardID);
+        FString ProductID(FString(UTF8_TO_TCHAR(charsProductID)));
         
+        jenv->ReleaseStringUTFChars(jProductID, charsProductID);
+        jenv->DeleteLocalRef(jProductID);
         
         UUpsightVirtualGoodPromotionPurchase *p = NewObject<UUpsightVirtualGoodPromotionPurchase>();
         
-        p->Name          = RewardId;
+        p->Name          = ProductID;
         p->Quantity      = jQuantities[i];
 
         Purchases.Add(p);
