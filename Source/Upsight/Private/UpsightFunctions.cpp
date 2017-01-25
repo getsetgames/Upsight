@@ -15,6 +15,9 @@
 #if PLATFORM_IOS
 
 @interface UUpsightFunctionsDelegate : NSObject <USBillboardDelegate>
+
+@property (strong, nonatomic) NSMutableDictionary *UpsightBillboards;
+
 -(UIViewController *)presentingViewControllerForBillboard:(id<USBillboard>)aBillboard;
 @end
 
@@ -27,7 +30,16 @@ static UUpsightFunctionsDelegate* ufd;
     if (!ufd)
     {
         ufd = [[UUpsightFunctionsDelegate alloc] init];
+        
+        ufd.UpsightBillboards = [NSMutableDictionary dictionaryWithCapacity:10];
     }
+}
+
+-(void)dealloc
+{
+    ufd.UpsightBillboards = nil;
+    
+    [super dealloc];
 }
 
 -(void)billboardWillAppear:(id<USBillboard>)aBillboard
@@ -384,41 +396,20 @@ void UUpsightFunctions::UpsightBillboardForScopeRegisterForCallbacks(FString sco
 {
     UE_LOG(LogUpsight, Log, TEXT("UUpsightFunctions::UpsightBillboardForScopeRegisterForCallbacks - scope '%s'"), *scope);
     
-    #if PLATFORM_IOS
-        id<USBillboard> billboard = [Upsight billboardForScope:scope.GetNSString()];
-    
-        if (!billboard)
-        {
-            UE_LOG(LogUpsight, Log, TEXT("UUpsightFunctions::UpsightBillboardForScopeRegisterForCallbacks - couldn't find billboard for scope '%s'"), *scope);
-        }
-    
-        billboard.delegate = ufd;
-    #elif PLATFORM_ANDROID
-        if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
-        {
-            static jmethodID Method = FJavaWrapper::FindMethod(Env,
-                                                               FJavaWrapper::GameActivityClassID,
-                                                               "AndroidThunkJava_UpsightBillboardForScope",
-                                                               "(Ljava/lang/String;)V",
-                                                               false);
-            
-            jstring jScope = Env->NewStringUTF(TCHAR_TO_UTF8(*scope));
-            
-            FJavaWrapper::CallVoidMethod(Env, FJavaWrapper::GameActivityThis, Method, jScope);
-            
-            Env->DeleteLocalRef(jScope);
-        }
-    #else
-         UE_LOG(LogUpsight, Log, TEXT("UpsightBillboardForScopeRegisterForCallbacks - Not supported on this platform"));
-    #endif
-}
-
-void UUpsightFunctions::UpsightBillboardForScopeUnregisterForCallbacks(FString scope)
-{
 #if PLATFORM_IOS
-    id<USBillboard> billboard = [Upsight billboardForScope:scope.GetNSString()];
+    NSString *nsScope = scope.GetNSString();
+
+    id<USBillboard> billboard = [Upsight billboardForScope:nsScope];
+
+    if (!billboard)
+    {
+        UE_LOG(LogUpsight, Log, TEXT("UUpsightFunctions::UpsightBillboardForScopeRegisterForCallbacks - couldn't find billboard for scope '%s'"), *scope);
+    }
+
+    billboard.delegate = ufd;
     
-    billboard.delegate = nil;
+    ufd.UpsightBillboards[nsScope] = billboard;
+
 #elif PLATFORM_ANDROID
     if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
     {
@@ -435,7 +426,37 @@ void UUpsightFunctions::UpsightBillboardForScopeUnregisterForCallbacks(FString s
         Env->DeleteLocalRef(jScope);
     }
 #else
-    UE_LOG(LogUpsight, Log, TEXT("UpsightBillboardForScopeUnregisterForCallbacks - Not supported on this platform"));
+     UE_LOG(LogUpsight, Log, TEXT("UpsightBillboardForScopeRegisterForCallbacks - not supported on this platform"));
+#endif
+}
+
+void UUpsightFunctions::UpsightBillboardForScopeUnregisterForCallbacks(FString scope)
+{
+#if PLATFORM_IOS
+    NSString *nsScope = scope.GetNSString();
+    
+    id<USBillboard> billboard = [Upsight billboardForScope:nsScope];
+    
+    billboard.delegate = nil;
+    
+    [ufd.UpsightBillboards removeObjectForKey:nsScope];
+#elif PLATFORM_ANDROID
+    if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+    {
+        static jmethodID Method = FJavaWrapper::FindMethod(Env,
+                                                           FJavaWrapper::GameActivityClassID,
+                                                           "AndroidThunkJava_UpsightBillboardForScope",
+                                                           "(Ljava/lang/String;)V",
+                                                           false);
+        
+        jstring jScope = Env->NewStringUTF(TCHAR_TO_UTF8(*scope));
+        
+        FJavaWrapper::CallVoidMethod(Env, FJavaWrapper::GameActivityThis, Method, jScope);
+        
+        Env->DeleteLocalRef(jScope);
+    }
+#else
+    UE_LOG(LogUpsight, Log, TEXT("UpsightBillboardForScopeUnregisterForCallbacks - not supported on this platform"));
 #endif
 }
 
@@ -448,7 +469,7 @@ bool UUpsightFunctions::UpsightBillboardForScopeIsContentReady(FString scope)
     
     if (!billboard)
     {
-        UE_LOG(LogUpsight, Log, TEXT("UpsightBillboardForScopeIsContentReady - Unabled to find billboard for scope: %s"), *scope);
+        UE_LOG(LogUpsight, Log, TEXT("UpsightBillboardForScopeIsContentReady - unable to find billboard for scope: %s"), *scope);
     }
     
     isContentReady = billboard.contentReady;
@@ -457,7 +478,7 @@ bool UUpsightFunctions::UpsightBillboardForScopeIsContentReady(FString scope)
     {
         static jmethodID Method = FJavaWrapper::FindMethod(Env,
                                                            FJavaWrapper::GameActivityClassID,
-                                                           "AndroidThunkJava_UpsightScopeIsContentReady",
+                                                           "AndroidThunkJava_UpsightBillboardForScopeIsContentReady",
                                                            "(Ljava/lang/String;)V",
                                                            false);
         
@@ -468,12 +489,35 @@ bool UUpsightFunctions::UpsightBillboardForScopeIsContentReady(FString scope)
         Env->DeleteLocalRef(jScope);
     }
 #else
-    UE_LOG(LogUpsight, Log, TEXT("UpsightBillboardForScopeIsContentReady - Not supported on this platform"));
+    UE_LOG(LogUpsight, Log, TEXT("UpsightBillboardForScopeIsContentReady - not supported on this platform"));
 #endif
     
     return isContentReady;
 }
 
+void UUpsightFunctions::UpsightBillboardUnregisterCallbacks()
+{
+#if PLATFORM_IOS
+    
+    for (id<USBillboard> b in ufd.UpsightBillboards)
+    {
+        b.delegate = nil;
+    }
+    
+    [ufd.UpsightBillboards removeAllObjects];
+#elif PLATFORM_ANDROID
+    if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+    {
+        static jmethodID Method = FJavaWrapper::FindMethod(Env,
+                                                           FJavaWrapper::GameActivityClassID,
+                                                           "AndroidThunkJava_UpsightBillboardUnregisterCallbacks",
+                                                           "()V",
+                                                           false);
+    }
+#else
+     UE_LOG(LogUpsight, Log, TEXT("UpsightBillboardUnregisterCallbacks - not supported on this platform"));
+#endif
+}
 
 void UUpsightFunctions::UpsightRegisterForPushNotifications()
 {
