@@ -523,6 +523,8 @@ extern "C" void Java_com_epicgames_ue4_GameActivity_nativeUpsightBillboardOnRewa
     TArray<UUpsightReward *> Rewards;
     
     jsize jNumRewards = jenv->GetArrayLength(productIDs);
+    jint* jQuantities = jenv->GetIntArrayElements(quantities, NULL);
+    
     for (int i = 0; i < jNumRewards; i++)
     {
         jstring jRewardID = (jstring)jenv->GetObjectArrayElement(rewardIDs, Idx);
@@ -532,7 +534,6 @@ extern "C" void Java_com_epicgames_ue4_GameActivity_nativeUpsightBillboardOnRewa
         jenv->ReleaseStringUTFChars(jRewardID, charsRewardID);
         jenv->DeleteLocalRef(jRewardID);
 
-        jint jQuantity = (jint)jenv->GetObjectArrayElement(quantities, Idx);
         
         jstring jSignatureData = (jstring)jenv->GetObjectArrayElement(signatureDatas, Idx);
         const char* charsSignatureData = jenv->GetStringUTFChars(jSignatureData, 0);
@@ -545,7 +546,7 @@ extern "C" void Java_com_epicgames_ue4_GameActivity_nativeUpsightBillboardOnRewa
         UUpsightReward *r = NewObject<UUpsightReward>();
         
         r->Name          = RewardId;
-        r->Quantity      = jQuantity;
+        r->Quantity      = jQuantities[i];
         r->SignatureData = RewardSignatureData;
         
         Rewards.Add(r);
