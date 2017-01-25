@@ -502,7 +502,6 @@ extern "C" void Java_com_epicgames_ue4_GameActivity_nativeUpsightBillboardOnPurc
         jenv->ReleaseStringUTFChars(jRewardID, charsRewardID);
         jenv->DeleteLocalRef(jRewardID);
         
-        jint jQuantity = (jint)jenv->GetObjectArrayElement(quantities, Idx);
         
         UUpsightVirtualGoodPromotionPurchase *p = NewObject<UUpsightVirtualGoodPromotionPurchase>();
         
