@@ -522,9 +522,8 @@ extern "C" void Java_com_epicgames_ue4_GameActivity_nativeUpsightBillboardOnRewa
 {
     TArray<UUpsightReward *> Rewards;
     
-    jsize NumRewards = jenv->GetArrayLength(rewardIDs);
-
-    for (jsize Idx = 0; Idx < NumRewards; Idx++)
+    jsize jNumRewards = jenv->GetArrayLength(productIDs);
+    for (int i = 0; i < jNumRewards; i++)
     {
         jstring jRewardID = (jstring)jenv->GetObjectArrayElement(rewardIDs, Idx);
         const char* charsRewardID = jenv->GetStringUTFChars(jRewardID, 0);
