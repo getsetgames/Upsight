@@ -490,10 +490,7 @@ mUpsight.getLogger().setLogLevel(Upsight.LOG_TAG, EnumSet.allOf(UpsightLogger.Le
 	<!-- optional additions to GameActivity onPause in GameActivity.java	-->
 	<gameActivityOnPauseAdditions>
 		<insert>
-for (UpsightBillboard b : mUpsightBillboards.values())
-{
-	b.destroy();
-}
+AndroidThunkJava_UpsightBillboardUnregisterCallbacks();
 		</insert>
 
 		<if condition="bUpsightIncludePushNotifications">
