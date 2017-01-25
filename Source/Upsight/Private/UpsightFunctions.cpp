@@ -516,7 +516,7 @@ extern "C" void Java_com_epicgames_ue4_GameActivity_nativeUpsightBillboardOnPurc
 
 extern "C" void Java_com_epicgames_ue4_GameActivity_nativeUpsightBillboardOnRewards(JNIEnv* jenv,
                                                                                     jobject thiz,
-                                                                                    jobjectArray rewardIDs,
+                                                                                    jobjectArray productIDs,
                                                                                     jintArray    quantities,
                                                                                     jobjectArray signatureDatas)
 {
