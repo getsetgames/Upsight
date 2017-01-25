@@ -32,6 +32,9 @@ public:
 
     UFUNCTION(BlueprintCallable, meta = (Keywords = "upsight analytics"), Category = "Upsight")
     static void UpsightBillboardForScopeUnregisterForCallbacks(FString scope);
+  
+    UFUNCTION(BlueprintCallable, meta = (Keywords = "upsight analytics"), Category = "Upsight")
+    static void UpsightBillboardUnregisterCallbacks();
     
     UFUNCTION(BlueprintCallable, meta = (Keywords = "upsight analytics"), Category = "Upsight")
     static bool UpsightBillboardForScopeIsContentReady(FString scope);

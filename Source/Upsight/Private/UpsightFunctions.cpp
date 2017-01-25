@@ -15,6 +15,9 @@
 #if PLATFORM_IOS
 
 @interface UUpsightFunctionsDelegate : NSObject <USBillboardDelegate>
+
+@property (strong, nonatomic) NSMutableDictionary *UpsightBillboards;
+
 -(UIViewController *)presentingViewControllerForBillboard:(id<USBillboard>)aBillboard;
 @end
 
@@ -27,7 +30,16 @@ static UUpsightFunctionsDelegate* ufd;
     if (!ufd)
     {
         ufd = [[UUpsightFunctionsDelegate alloc] init];
+        
+        ufd.UpsightBillboards = [NSMutableDictionary dictionaryWithCapacity:10];
     }
+}
+
+-(void)dealloc
+{
+    ufd.UpsightBillboards = nil;
+    
+    [super dealloc];
 }
 
 -(void)billboardWillAppear:(id<USBillboard>)aBillboard
@@ -474,6 +486,29 @@ bool UUpsightFunctions::UpsightBillboardForScopeIsContentReady(FString scope)
     return isContentReady;
 }
 
+void UUpsightFunctions::UpsightBillboardUnregisterCallbacks()
+{
+#if PLATFORM_IOS
+    
+    for (USBillboard b in ufd.UpsightBillboards)
+    {
+        b.delegate = nil;
+    }
+    
+    [ufd.UpsightBillboards removeAllObjects];
+#elif PLATFORM_ANDROID
+    if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
+    {
+        static jmethodID Method = FJavaWrapper::FindMethod(Env,
+                                                           FJavaWrapper::GameActivityClassID,
+                                                           "AndroidThunkJava_UpsightBillboardUnregisterCallbacks",
+                                                           "()V",
+                                                           false);
+    }
+#else
+     UE_LOG(LogUpsight, Log, TEXT("UpsightBillboardUnregisterCallbacks - not supported on this platform"));
+#endif
+}
 
 void UUpsightFunctions::UpsightRegisterForPushNotifications()
 {
