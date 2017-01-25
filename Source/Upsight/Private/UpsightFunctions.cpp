@@ -507,7 +507,7 @@ extern "C" void Java_com_epicgames_ue4_GameActivity_nativeUpsightBillboardOnPurc
         UUpsightVirtualGoodPromotionPurchase *p = NewObject<UUpsightVirtualGoodPromotionPurchase>();
         
         p->Name          = RewardId;
-        p->Quantity      = RewardQuantity;
+        p->Quantity      = jQuantities[i];
 
         Purchases.Add(p);
     }
