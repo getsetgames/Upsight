@@ -527,25 +527,25 @@ extern "C" void Java_com_epicgames_ue4_GameActivity_nativeUpsightBillboardOnRewa
     
     for (int i = 0; i < jNumRewards; i++)
     {
-        jstring jRewardID = (jstring)jenv->GetObjectArrayElement(rewardIDs, Idx);
-        const char* charsRewardID = jenv->GetStringUTFChars(jRewardID, 0);
-        FString RewardId(FString(UTF8_TO_TCHAR(charsRewardID)));
+        jstring jProductID = (jstring)jenv->GetObjectArrayElement(productIDs, i);
+        const char* charsProductID = jenv->GetStringUTFChars(jProductID, 0);
         
-        jenv->ReleaseStringUTFChars(jRewardID, charsRewardID);
-        jenv->DeleteLocalRef(jRewardID);
+        FString ProductID(FString(UTF8_TO_TCHAR(charsProductID)));
+        
+        jenv->ReleaseStringUTFChars(jProductID, charsProductID);
+        jenv->DeleteLocalRef(jProductID);
 
-        
-        jstring jSignatureData = (jstring)jenv->GetObjectArrayElement(signatureDatas, Idx);
+        jstring jSignatureData = (jstring)jenv->GetObjectArrayElement(signatureDatas, i);
         const char* charsSignatureData = jenv->GetStringUTFChars(jSignatureData, 0);
+        
         FString RewardSignatureData(FString(UTF8_TO_TCHAR(charsSignatureData)));
         
         jenv->ReleaseStringUTFChars(jSignatureData, charsSignatureData);
         jenv->DeleteLocalRef(jSignatureData);
         
-        
         UUpsightReward *r = NewObject<UUpsightReward>();
         
-        r->Name          = RewardId;
+        r->Name          = ProductID;
         r->Quantity      = jQuantities[i];
         r->SignatureData = RewardSignatureData;
         
