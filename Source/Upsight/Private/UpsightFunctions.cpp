@@ -491,6 +491,7 @@ extern "C" void Java_com_epicgames_ue4_GameActivity_nativeUpsightBillboardOnPurc
     TArray<UUpsightVirtualGoodPromotionPurchase *> Purchases;
     
     jsize jNumPurchases = jenv->GetArrayLength(productIDs);
+    jint* jQuantities   = jenv->GetIntArrayElements(quantities, NULL);
     
     for (int i = 0; i < jNumPurchases; i++)
     {
