@@ -492,7 +492,7 @@ extern "C" void Java_com_epicgames_ue4_GameActivity_nativeUpsightBillboardOnPurc
     
     jsize jNumPurchases = jenv->GetArrayLength(productIDs);
     
-    for (jsize Idx = 0; Idx < NumRewards; Idx++)
+    for (int i = 0; i < jNumPurchases; i++)
     {
         jstring jRewardID = (jstring)jenv->GetObjectArrayElement(rewardIDs, Idx);
         const char* charsRewardID = jenv->GetStringUTFChars(jRewardID, 0);
