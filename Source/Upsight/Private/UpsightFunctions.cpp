@@ -435,7 +435,7 @@ void UUpsightFunctions::UpsightBillboardForScopeUnregisterForCallbacks(FString s
         Env->DeleteLocalRef(jScope);
     }
 #else
-    UE_LOG(LogUpsight, Log, TEXT("UpsightBillboardForScopeUnregisterForCallbacks - Not supported on this platform"));
+    UE_LOG(LogUpsight, Log, TEXT("UpsightBillboardForScopeUnregisterForCallbacks - not supported on this platform"));
 #endif
 }
 
@@ -448,7 +448,7 @@ bool UUpsightFunctions::UpsightBillboardForScopeIsContentReady(FString scope)
     
     if (!billboard)
     {
-        UE_LOG(LogUpsight, Log, TEXT("UpsightBillboardForScopeIsContentReady - Unabled to find billboard for scope: %s"), *scope);
+        UE_LOG(LogUpsight, Log, TEXT("UpsightBillboardForScopeIsContentReady - unable to find billboard for scope: %s"), *scope);
     }
     
     isContentReady = billboard.contentReady;
@@ -468,7 +468,7 @@ bool UUpsightFunctions::UpsightBillboardForScopeIsContentReady(FString scope)
         Env->DeleteLocalRef(jScope);
     }
 #else
-    UE_LOG(LogUpsight, Log, TEXT("UpsightBillboardForScopeIsContentReady - Not supported on this platform"));
+    UE_LOG(LogUpsight, Log, TEXT("UpsightBillboardForScopeIsContentReady - not supported on this platform"));
 #endif
     
     return isContentReady;
