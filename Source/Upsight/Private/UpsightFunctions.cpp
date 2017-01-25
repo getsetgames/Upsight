@@ -478,7 +478,7 @@ bool UUpsightFunctions::UpsightBillboardForScopeIsContentReady(FString scope)
     {
         static jmethodID Method = FJavaWrapper::FindMethod(Env,
                                                            FJavaWrapper::GameActivityClassID,
-                                                           "AndroidThunkJava_UpsightScopeIsContentReady",
+                                                           "AndroidThunkJava_UpsightBillboardForScopeIsContentReady",
                                                            "(Ljava/lang/String;)V",
                                                            false);
         
