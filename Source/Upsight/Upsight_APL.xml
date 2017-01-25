@@ -246,6 +246,7 @@ import org.json.JSONObject;
 
 import java.util.EnumSet;
 import java.util.List;
+import java.util.Set;
 		</insert>
 	</gameActivityImportAdditions>
 	
@@ -420,7 +421,22 @@ public void AndroidThunkJava_UpsightBillboardForScopeUnregisterForCallbacks(Stri
     }
 }
 
-public boolean AndroidThunkJava_UpsightScopeIsContentReady(String scope)
+public void AndroidThunkJava_UpsightBillboardUnregisterCallbacks()
+{
+	for (UpsightBillboard b : UpsightBillboards.values())
+    {
+        b.destroy();
+    }
+    
+    Set<String> keys = UpsightBillboards.keySet();
+    
+    for (String s : keys) 
+    {
+        UpsightBillboards.remove(s);
+    }
+}
+
+public boolean AndroidThunkJava_UpsightBillboardForScopeIsContentReady(String scope)
 {
     return UpsightMarketingContentStore.isContentReady(mUpsight, scope);
 }
