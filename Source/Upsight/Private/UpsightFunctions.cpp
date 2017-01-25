@@ -439,7 +439,7 @@ void UUpsightFunctions::UpsightBillboardForScopeUnregisterForCallbacks(FString s
     
     billboard.delegate = nil;
     
-    [ufd.UpsightBillboards removeObjectForKey:scope];
+    [ufd.UpsightBillboards removeObjectForKey:nsScope];
 #elif PLATFORM_ANDROID
     if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
     {
