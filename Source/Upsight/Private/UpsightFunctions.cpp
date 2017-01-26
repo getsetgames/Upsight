@@ -71,6 +71,14 @@ static UUpsightFunctionsDelegate* ufd;
     
     UUpsightComponent::BillboardDidDismissDelegate.Broadcast(FString(aBillboard.scope));
     
+    id<USBillboard> registeredBillboard = ufd.UpsightBillboards[aBillboard.scope];
+    
+    if (registeredBillboard)
+    {
+        registeredBillboard.delegate = nil;
+        [ufd.UpsightBillboards removeObjectForKey:aBillboard.scope];
+    }
+    
     aBillboard.delegate = nil;
 }
 
