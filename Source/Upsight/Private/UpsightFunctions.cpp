@@ -15,9 +15,6 @@
 #if PLATFORM_IOS
 
 @interface UUpsightFunctionsDelegate : NSObject <USBillboardDelegate>
-
-@property (strong, nonatomic) NSMutableDictionary *UpsightBillboards;
-
 -(UIViewController *)presentingViewControllerForBillboard:(id<USBillboard>)aBillboard;
 @end
 
@@ -30,16 +27,7 @@ static UUpsightFunctionsDelegate* ufd;
     if (!ufd)
     {
         ufd = [[UUpsightFunctionsDelegate alloc] init];
-        
-        ufd.UpsightBillboards = [NSMutableDictionary dictionaryWithCapacity:10];
     }
-}
-
--(void)dealloc
-{
-    ufd.UpsightBillboards = nil;
-    
-    [super dealloc];
 }
 
 -(void)billboardWillAppear:(id<USBillboard>)aBillboard
@@ -399,27 +387,10 @@ void UUpsightFunctions::UpsightBillboardForScopeRegisterForCallbacks(FString sco
     UE_LOG(LogUpsight, Log, TEXT("UUpsightFunctions::UpsightBillboardForScopeRegisterForCallbacks - scope '%s'"), *scope);
     
 #if PLATFORM_IOS
-    NSString *nsScope = scope.GetNSString();
+    id<USBillboard> billboard = [Upsight billboardForScope:scope.GetNSString()];
 
-    id<USBillboard> billboard = [Upsight billboardForScope:nsScope];
-
-    if (!billboard)
-    {
-        UE_LOG(LogUpsight, Log, TEXT("UUpsightFunctions::UpsightBillboardForScopeRegisterForCallbacks - couldn't find billboard for scope '%s'"), *scope);
-    }
-
-    id<USBillboard> registeredBillboard = ufd.UpsightBillboards[nsScope];
-    
-    if (registeredBillboard)
-    {
-        [ufd.UpsightBillboards removeObjectForKey:nsScope];
-        registeredBillboard.delegate = nil;
-    }
-    
     billboard.delegate = ufd;
     
-    ufd.UpsightBillboards[nsScope] = billboard;
-
 #elif PLATFORM_ANDROID
     if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
     {
@@ -442,23 +413,13 @@ void UUpsightFunctions::UpsightBillboardForScopeRegisterForCallbacks(FString sco
 
 void UUpsightFunctions::UpsightBillboardForScopeUnregisterForCallbacks(FString scope)
 {
+    UE_LOG(LogUpsight, Log, TEXT("UUpsightFunctions::UpsightBillboardForScopeUnregisterForCallbacks - scope '%s'"), *scope);
+    
 #if PLATFORM_IOS
-    NSString *nsScope = scope.GetNSString();
-    
-    if ([ufd.UpsightBillboards.allKeys containsObject:nsScope])
-    {
-        id<USBillboard> b = ufd.UpsightBillboards[nsScope];
-        
-        b.delegate = nil;
-        
-        [ufd.UpsightBillboards removeObjectForKey:nsScope];
-    }
-    
-    id<USBillboard> billboard = [Upsight billboardForScope:nsScope];
+    id<USBillboard> billboard = [Upsight billboardForScope:scope.GetNSString()];
     
     billboard.delegate = nil;
     
-    [ufd.UpsightBillboards removeObjectForKey:nsScope];
 #elif PLATFORM_ANDROID
     if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
     {
@@ -491,7 +452,7 @@ bool UUpsightFunctions::UpsightBillboardForScopeIsContentReady(FString scope)
         UE_LOG(LogUpsight, Log, TEXT("UpsightBillboardForScopeIsContentReady - unable to find billboard for scope: %s"), *scope);
     }
     
-    isContentReady = billboard.contentReady;
+    isContentReady = billboard.contentReady == YES ? true : false;
 #elif PLATFORM_ANDROID
     if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
     {
@@ -511,19 +472,17 @@ bool UUpsightFunctions::UpsightBillboardForScopeIsContentReady(FString scope)
     UE_LOG(LogUpsight, Log, TEXT("UpsightBillboardForScopeIsContentReady - not supported on this platform"));
 #endif
     
+    UE_LOG(LogUpsight, Log, TEXT("UpsightBillboardForScopeIsContentReady - content is '%s'"), isContentReady ? TEXT("yes") : TEXT("no"));
+    
     return isContentReady;
 }
 
 void UUpsightFunctions::UpsightBillboardUnregisterCallbacks()
 {
+    UE_LOG(LogUpsight, Log, TEXT("UUpsightFunctions::UpsightBillboardUnregisterCallbacks"));
+    
 #if PLATFORM_IOS
     
-    for (id<USBillboard> b in ufd.UpsightBillboards.allValues)
-    {
-        b.delegate = nil;
-    }
-    
-    [ufd.UpsightBillboards removeAllObjects];
 #elif PLATFORM_ANDROID
     if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
     {
