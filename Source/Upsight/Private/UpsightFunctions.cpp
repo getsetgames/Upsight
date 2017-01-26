@@ -37,6 +37,8 @@ static UUpsightFunctionsDelegate* ufd;
 
 -(void)dealloc
 {
+    [ufd.UpsightBillboards removeAllObjects];
+    
     ufd.UpsightBillboards = nil;
     
     [super dealloc];
