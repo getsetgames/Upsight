@@ -445,6 +445,15 @@ void UUpsightFunctions::UpsightBillboardForScopeUnregisterForCallbacks(FString s
 #if PLATFORM_IOS
     NSString *nsScope = scope.GetNSString();
     
+    if ([ufd.UpsightBillboards.allKeys containsObject:nsScope])
+    {
+        id<USBillboard> b = ufd.UpsightBillboards[nsScope];
+        
+        b.delegate = nil;
+        
+        [ufd.UpsightBillboards removeObjectForKey:nsScope];
+    }
+    
     id<USBillboard> billboard = [Upsight billboardForScope:nsScope];
     
     billboard.delegate = nil;
