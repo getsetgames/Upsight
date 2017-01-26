@@ -423,16 +423,16 @@ public void AndroidThunkJava_UpsightBillboardForScopeUnregisterForCallbacks(Stri
 
 public void AndroidThunkJava_UpsightBillboardUnregisterCallbacks()
 {
-	for (UpsightBillboard b : UpsightBillboards.values())
+	for (UpsightBillboard b : mUpsightBillboards.values())
     {
         b.destroy();
     }
     
-    Set<String> keys = UpsightBillboards.keySet();
+    Set<String> keys = mUpsightBillboards.keySet();
     
     for (String s : keys) 
     {
-        UpsightBillboards.remove(s);
+        mUpsightBillboards.remove(s);
     }
 }
 

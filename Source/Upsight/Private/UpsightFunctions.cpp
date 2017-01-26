@@ -435,7 +435,7 @@ void UUpsightFunctions::UpsightBillboardForScopeRegisterForCallbacks(FString sco
     {
         static jmethodID Method = FJavaWrapper::FindMethod(Env,
                                                            FJavaWrapper::GameActivityClassID,
-                                                           "AndroidThunkJava_UpsightBillboardForScope",
+                                                           "AndroidThunkJava_UpsightBillboardForScopeRegisterForCallbacks",
                                                            "(Ljava/lang/String;)V",
                                                            false);
         
@@ -474,7 +474,7 @@ void UUpsightFunctions::UpsightBillboardForScopeUnregisterForCallbacks(FString s
     {
         static jmethodID Method = FJavaWrapper::FindMethod(Env,
                                                            FJavaWrapper::GameActivityClassID,
-                                                           "AndroidThunkJava_UpsightBillboardForScope",
+                                                           "AndroidThunkJava_UpsightBillboardForScopeUnregisterForCallbacks",
                                                            "(Ljava/lang/String;)V",
                                                            false);
         
