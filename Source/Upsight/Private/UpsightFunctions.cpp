@@ -408,6 +408,14 @@ void UUpsightFunctions::UpsightBillboardForScopeRegisterForCallbacks(FString sco
         UE_LOG(LogUpsight, Log, TEXT("UUpsightFunctions::UpsightBillboardForScopeRegisterForCallbacks - couldn't find billboard for scope '%s'"), *scope);
     }
 
+    id<USBillboard> registeredBillboard = ufd.UpsightBillboards[nsScope];
+    
+    if (registeredBillboard)
+    {
+        [ufd.UpsightBillboards removeObjectForKey:nsScope];
+        registeredBillboard.delegate = nil;
+    }
+    
     billboard.delegate = ufd;
     
     ufd.UpsightBillboards[nsScope] = billboard;
