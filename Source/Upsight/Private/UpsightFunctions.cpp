@@ -68,6 +68,8 @@ static UUpsightFunctionsDelegate* ufd;
     UE_LOG(LogUpsight, Log, TEXT("UpsightFunctions - billboardDidDismiss: - scope '%s'"), *FString(aBillboard.scope));
     
     UUpsightComponent::BillboardDidDismissDelegate.Broadcast(FString(aBillboard.scope));
+    
+    aBillboard.delegate = nil;
 }
 
 -(UIViewController *)presentingViewControllerForBillboard:(id<USBillboard>)aBillboard
