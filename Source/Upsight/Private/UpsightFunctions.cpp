@@ -44,35 +44,37 @@ static UUpsightFunctionsDelegate* ufd;
 
 -(void)billboardWillAppear:(id<USBillboard>)aBillboard
 {
-    UE_LOG(LogUpsight, Log, TEXT("UpsightFunctions - billboardWillAppear: - scope '%s'"), *FString([aBillboard.scope autorelease]));
+    UE_LOG(LogUpsight, Log, TEXT("UpsightFunctions - billboardWillAppear: - scope '%s'"), *FString(aBillboard.scope));
     
-    UUpsightComponent::BillboardWillAppearDelegate.Broadcast(FString([aBillboard.scope autorelease]));
+    UUpsightComponent::BillboardWillAppearDelegate.Broadcast(FString(aBillboard.scope));
 }
 
 -(void)billboardDidAppear:(id<USBillboard>)aBillboard
 {
-     UE_LOG(LogUpsight, Log, TEXT("UpsightFunctions - billboardDidAppear: - scope '%s'"), *FString([aBillboard.scope autorelease]));
+     UE_LOG(LogUpsight, Log, TEXT("UpsightFunctions - billboardDidAppear: - scope '%s'"), *FString(aBillboard.scope));
     
-     UUpsightComponent::BillboardDidAppearDelegate.Broadcast(FString([aBillboard.scope autorelease]));
+     UUpsightComponent::BillboardDidAppearDelegate.Broadcast(FString(aBillboard.scope));
 }
 
 -(void)billboardWillDismiss:(id<USBillboard>)aBillboard
 {
-    UE_LOG(LogUpsight, Log, TEXT("UpsightFunctions - billboardWillDismiss: - scope '%s'"), *FString([aBillboard.scope autorelease]));
+    UE_LOG(LogUpsight, Log, TEXT("UpsightFunctions - billboardWillDismiss: - scope '%s'"), *FString(aBillboard.scope));
     
-    UUpsightComponent::BillboardWillDismissDelegate.Broadcast(FString([aBillboard.scope autorelease]));
+    UUpsightComponent::BillboardWillDismissDelegate.Broadcast(FString(aBillboard.scope));
 }
 
 -(void)billboardDidDismiss:(id<USBillboard>)aBillboard
 {
-    UE_LOG(LogUpsight, Log, TEXT("UpsightFunctions - billboardDidDismiss: - scope '%s'"), *FString([aBillboard.scope autorelease]));
+    UE_LOG(LogUpsight, Log, TEXT("UpsightFunctions - billboardDidDismiss: - scope '%s'"), *FString(aBillboard.scope));
     
-    UUpsightComponent::BillboardDidDismissDelegate.Broadcast(FString([aBillboard.scope autorelease]));
+    UUpsightComponent::BillboardDidDismissDelegate.Broadcast(FString(aBillboard.scope));
+    
+    aBillboard.delegate = nil;
 }
 
 -(UIViewController *)presentingViewControllerForBillboard:(id<USBillboard>)aBillboard
 {
-    UE_LOG(LogUpsight, Log, TEXT("UpsightFunctions - presentingViewControllerForBillboard - presenting billboard for scope '%s'"), *FString([aBillboard.scope autorelease]));
+    UE_LOG(LogUpsight, Log, TEXT("UpsightFunctions - presentingViewControllerForBillboard - presenting billboard for scope '%s'"), *FString(aBillboard.scope));
     
     UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
     
@@ -83,7 +85,7 @@ static UUpsightFunctionsDelegate* ufd;
     
     if (!topController)
     {
-        UE_LOG(LogUpsight, Log, TEXT("UpsightFunctions - presentingViewControllerForBillboard - unable to find billboard for scope '%s'"), *FString([aBillboard.scope autorelease]));
+        UE_LOG(LogUpsight, Log, TEXT("UpsightFunctions - presentingViewControllerForBillboard - unable to find billboard for scope '%s'"), *FString(aBillboard.scope));
     }
     
     return topController;
@@ -91,7 +93,7 @@ static UUpsightFunctionsDelegate* ufd;
 
 -(void)billboard:(id<USBillboard>)aBillboard didReceiveReward:(id<USReward>)aReward
 {
-    UE_LOG(LogUpsight, Log, TEXT("UpsightFunctions - billboard:didReceiveReward: - scope:%s, reward:%s, quantity:%d, signatureData:%s"), *FString([aBillboard.scope autorelease]), *FString(aReward.productIdentifier), aReward.quantity, *FString([NSString stringWithCString:(const char *)[aReward.signatureData bytes] encoding:NSUTF8StringEncoding]));
+    UE_LOG(LogUpsight, Log, TEXT("UpsightFunctions - billboard:didReceiveReward: - scope:%s, reward:%s, quantity:%d, signatureData:%s"), *FString(aBillboard.scope), *FString(aReward.productIdentifier), aReward.quantity, *FString([NSString stringWithCString:(const char *)[aReward.signatureData bytes] encoding:NSUTF8StringEncoding]));
     
     TArray<UUpsightReward *> Rewards;
     
@@ -108,7 +110,7 @@ static UUpsightFunctionsDelegate* ufd;
 
 -(void)billboard:(id<USBillboard>)aBillboard didReceivePurchase:(id<USPurchase>)aPurchase
 {
-    UE_LOG(LogUpsight, Log, TEXT("UpsightFunctions - billboard:didReceivePurchase: - scope:%s, purchase:%s, quantity:%d"), *FString([aBillboard.scope autorelease]), *FString(aPurchase.productIdentifier), aPurchase.quantity);
+    UE_LOG(LogUpsight, Log, TEXT("UpsightFunctions - billboard:didReceivePurchase: - scope:%s, purchase:%s, quantity:%d"), *FString(aBillboard.scope), *FString(aPurchase.productIdentifier), aPurchase.quantity);
     
     TArray<UUpsightVirtualGoodPromotionPurchase *> Purchases;
     
@@ -406,6 +408,14 @@ void UUpsightFunctions::UpsightBillboardForScopeRegisterForCallbacks(FString sco
         UE_LOG(LogUpsight, Log, TEXT("UUpsightFunctions::UpsightBillboardForScopeRegisterForCallbacks - couldn't find billboard for scope '%s'"), *scope);
     }
 
+    id<USBillboard> registeredBillboard = ufd.UpsightBillboards[nsScope];
+    
+    if (registeredBillboard)
+    {
+        [ufd.UpsightBillboards removeObjectForKey:nsScope];
+        registeredBillboard.delegate = nil;
+    }
+    
     billboard.delegate = ufd;
     
     ufd.UpsightBillboards[nsScope] = billboard;
@@ -434,6 +444,15 @@ void UUpsightFunctions::UpsightBillboardForScopeUnregisterForCallbacks(FString s
 {
 #if PLATFORM_IOS
     NSString *nsScope = scope.GetNSString();
+    
+    if ([ufd.UpsightBillboards.allKeys containsObject:nsScope])
+    {
+        id<USBillboard> b = ufd.UpsightBillboards[nsScope];
+        
+        b.delegate = nil;
+        
+        [ufd.UpsightBillboards removeObjectForKey:nsScope];
+    }
     
     id<USBillboard> billboard = [Upsight billboardForScope:nsScope];
     
@@ -499,7 +518,7 @@ void UUpsightFunctions::UpsightBillboardUnregisterCallbacks()
 {
 #if PLATFORM_IOS
     
-    for (id<USBillboard> b in ufd.UpsightBillboards)
+    for (id<USBillboard> b in ufd.UpsightBillboards.allValues)
     {
         b.delegate = nil;
     }
@@ -523,6 +542,8 @@ void UUpsightFunctions::UpsightRegisterForPushNotifications()
 {
 #if PLATFORM_IOS
     [USPush registerForPushNotifications];
+#else
+    UE_LOG(LogUpsight, Log, TEXT("UpsightRegisterForPushNotifications - not supported on this platform"));
 #endif
 }
 
