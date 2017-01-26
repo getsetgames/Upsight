@@ -542,6 +542,8 @@ void UUpsightFunctions::UpsightRegisterForPushNotifications()
 {
 #if PLATFORM_IOS
     [USPush registerForPushNotifications];
+#else
+    UE_LOG(LogUpsight, Log, TEXT("UpsightRegisterForPushNotifications - not supported on this platform"));
 #endif
 }
 
