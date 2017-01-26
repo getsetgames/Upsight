@@ -123,22 +123,22 @@ void UUpsightComponent::OnUnregister()
 
 void UUpsightComponent::BillboardDidAppearDelegate_Handler(const FString& scope)
 {
-    BillboardDidAppearDelegate.Broadcast(scope);
+    BillboardDidAppear.Broadcast(scope);
 }
 
 void UUpsightComponent::BillboardWillAppearDelegate_Handler(const FString& scope)
 {
-    BillboardWillAppearDelegate.Broadcast(scope);
+    BillboardWillAppear.Broadcast(scope);
 }
 
 void UUpsightComponent::BillboardDidDismissDelegate_Handler(const FString& scope)
 {
-    BillboardDidDismissDelegate.Broadcast(scope);
+    BillboardDidDismiss.Broadcast(scope);
 }
 
 void UUpsightComponent::BillboardWillDismissDelegate_Handler(const FString& scope)
 {
-    BillboardWillDismissDelegate.Broadcast(scope);
+    BillboardWillDismiss.Broadcast(scope);
 }
 
 void UUpsightComponent::DidReceieveReward_Handler(const TArray<UUpsightReward *>& rewards)
