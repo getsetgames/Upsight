@@ -46,28 +46,28 @@ static UUpsightFunctionsDelegate* ufd;
 {
     UE_LOG(LogUpsight, Log, TEXT("UpsightFunctions - billboardWillAppear: - scope '%s'"), *FString([aBillboard.scope autorelease]));
     
-    UUpsightComponent::BillboardWillAppearDelegate.Broadcast(FString([aBillboard.scope autorelease]));
+    UUpsightComponent::BillboardWillAppearDelegate.Broadcast(FString(aBillboard.scope));
 }
 
 -(void)billboardDidAppear:(id<USBillboard>)aBillboard
 {
      UE_LOG(LogUpsight, Log, TEXT("UpsightFunctions - billboardDidAppear: - scope '%s'"), *FString([aBillboard.scope autorelease]));
     
-     UUpsightComponent::BillboardDidAppearDelegate.Broadcast(FString([aBillboard.scope autorelease]));
+     UUpsightComponent::BillboardDidAppearDelegate.Broadcast(FString(aBillboard.scope));
 }
 
 -(void)billboardWillDismiss:(id<USBillboard>)aBillboard
 {
     UE_LOG(LogUpsight, Log, TEXT("UpsightFunctions - billboardWillDismiss: - scope '%s'"), *FString([aBillboard.scope autorelease]));
     
-    UUpsightComponent::BillboardWillDismissDelegate.Broadcast(FString([aBillboard.scope autorelease]));
+    UUpsightComponent::BillboardWillDismissDelegate.Broadcast(FString(aBillboard.scope));
 }
 
 -(void)billboardDidDismiss:(id<USBillboard>)aBillboard
 {
     UE_LOG(LogUpsight, Log, TEXT("UpsightFunctions - billboardDidDismiss: - scope '%s'"), *FString([aBillboard.scope autorelease]));
     
-    UUpsightComponent::BillboardDidDismissDelegate.Broadcast(FString([aBillboard.scope autorelease]));
+    UUpsightComponent::BillboardDidDismissDelegate.Broadcast(FString(aBillboard.scope));
 }
 
 -(UIViewController *)presentingViewControllerForBillboard:(id<USBillboard>)aBillboard
