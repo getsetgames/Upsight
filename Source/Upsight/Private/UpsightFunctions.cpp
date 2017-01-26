@@ -547,6 +547,91 @@ void UUpsightFunctions::UpsightRegisterForPushNotifications()
 #endif
 }
 
+#if PLATFORM_ANDROID
+extern "C" void Java_com_epicgames_ue4_GameActivity_nativeUpsightBillboardOnPurchases(JNIEnv* jenv,
+                                                                                      jobject thiz,
+                                                                                      jobjectArray productIDs,
+                                                                                      jintArray quantities)
+{
+    TArray<UUpsightVirtualGoodPromotionPurchase *> Purchases;
+    
+    jsize jNumPurchases = jenv->GetArrayLength(productIDs);
+    jint* jQuantities   = jenv->GetIntArrayElements(quantities, NULL);
+    
+    for (int i = 0; i < jNumPurchases; i++)
+    {
+        jstring jProductID = (jstring)jenv->GetObjectArrayElement(productIDs, i);
+        const char* charsProductID = jenv->GetStringUTFChars(jProductID, 0);
+        
+        FString ProductID(FString(UTF8_TO_TCHAR(charsProductID)));
+        
+        jenv->ReleaseStringUTFChars(jProductID, charsProductID);
+        jenv->DeleteLocalRef(jProductID);
+        
+        UUpsightVirtualGoodPromotionPurchase *p = NewObject<UUpsightVirtualGoodPromotionPurchase>();
+        
+        p->Name          = ProductID;
+        p->Quantity      = jQuantities[i];
+
+        Purchases.Add(p);
+    }
+    
+    UUpsightComponent::DidReceieveVirtualGoodPromotionPurchaseDelegate.Broadcast(Purchases);
+}
+
+extern "C" void Java_com_epicgames_ue4_GameActivity_nativeUpsightBillboardOnRewards(JNIEnv* jenv,
+                                                                                    jobject thiz,
+                                                                                    jobjectArray productIDs,
+                                                                                    jintArray    quantities,
+                                                                                    jobjectArray signatureDatas)
+{
+    TArray<UUpsightReward *> Rewards;
+    
+    jsize jNumRewards = jenv->GetArrayLength(productIDs);
+    jint* jQuantities = jenv->GetIntArrayElements(quantities, NULL);
+    
+    for (int i = 0; i < jNumRewards; i++)
+    {
+        jstring jProductID = (jstring)jenv->GetObjectArrayElement(productIDs, i);
+        const char* charsProductID = jenv->GetStringUTFChars(jProductID, 0);
+        
+        FString ProductID(FString(UTF8_TO_TCHAR(charsProductID)));
+        
+        jenv->ReleaseStringUTFChars(jProductID, charsProductID);
+        jenv->DeleteLocalRef(jProductID);
+
+        jstring jSignatureData = (jstring)jenv->GetObjectArrayElement(signatureDatas, i);
+        const char* charsSignatureData = jenv->GetStringUTFChars(jSignatureData, 0);
+        
+        FString RewardSignatureData(FString(UTF8_TO_TCHAR(charsSignatureData)));
+        
+        jenv->ReleaseStringUTFChars(jSignatureData, charsSignatureData);
+        jenv->DeleteLocalRef(jSignatureData);
+        
+        UUpsightReward *r = NewObject<UUpsightReward>();
+        
+        r->Name          = ProductID;
+        r->Quantity      = jQuantities[i];
+        r->SignatureData = RewardSignatureData;
+        
+        Rewards.Add(r);
+    }
+    
+    UUpsightComponent::DidReceieveRewardDelegate.Broadcast(Rewards);
+}
+
+extern "C" void Java_com_epicgames_ue4_GameActivity_nativeUpsightBillboardOnNextView(JNIEnv* jenv, jobject thiz)
+{
+    
+}
+
+extern "C" void Java_com_epicgames_ue4_GameActivity_nativeUpsightBillboardOnDetach(JNIEnv* jenv, jobject thiz)
+{
+    
+}
+#endif
+
+
 
 
 
