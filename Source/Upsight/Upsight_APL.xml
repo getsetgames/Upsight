@@ -341,7 +341,9 @@ public void AndroidThunkJava_UpsightRecordInAppPurchaseEvent(int resolution, Str
 
 public void AndroidThunkJava_UpsightBillboardForScopeRegisterForCallbacks(String scope)
 {
-	Log.debug("AndroidThunkJava_UpsightBillboardForScopeRegisterForCallbacks - scope:" + scope);
+	final String fScope = scope;
+
+	Log.debug("AndroidThunkJava_UpsightBillboardForScopeRegisterForCallbacks - scope:" + fScope);
 
 	try
 	{
@@ -350,7 +352,7 @@ public void AndroidThunkJava_UpsightBillboardForScopeRegisterForCallbacks(String
 	 		@Override
 	        public void onPurchases(List<UpsightPurchase> list)
 	        {
-				Log.debug("AndroidThunkJava_UpsightBillboardForScopeRegisterForCallbacks::onPurchases - scope:" + scope);
+				Log.debug("AndroidThunkJava_UpsightBillboardForScopeRegisterForCallbacks::onPurchases - scope:" + fScope);
 
 	            String[] productIDs = new String[list.size()];
 	            int[]    quantities = new int[list.size()];
@@ -372,7 +374,7 @@ public void AndroidThunkJava_UpsightBillboardForScopeRegisterForCallbacks(String
 	        @Override
 	        public void onRewards(List<UpsightReward> list)
 	        {
-				Log.debug("AndroidThunkJava_UpsightBillboardForScopeRegisterForCallbacks::onRewards - scope:" + scope);
+				Log.debug("AndroidThunkJava_UpsightBillboardForScopeRegisterForCallbacks::onRewards - scope:" + fScope);
 
 	            String[]  productIDs     = new String[list.size()];
 	            int[]     quantities     = new int[list.size()];
@@ -411,7 +413,7 @@ public void AndroidThunkJava_UpsightBillboardForScopeRegisterForCallbacks(String
     }
 	catch (Exception e)
 	{
-		Log.debug("AndroidThunkJava_UpsightBillboardForScopeRegisterForCallbacks - exception creating billboard for scope - '" + scope + "': " + e.getMessage());
+		Log.debug("AndroidThunkJava_UpsightBillboardForScopeRegisterForCallbacks - exception creating billboard for scope - '" + fScope + "': " + e.getMessage());
 	}
 }
 
