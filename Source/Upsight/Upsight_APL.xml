@@ -255,8 +255,8 @@ import java.util.Set;
 	<gameActivityClassAdditions>
 		<insert><![CDATA[
 
-public native void nativeUpsightBillboardOnPurchases(String[] productIDs, Integer[] quantities);
-public native void nativeUpsightBillboardOnRewards(String[] productIDs, Integer[] quantities, String[] signatureDatas);
+public native void nativeUpsightBillboardOnPurchases(String[] productIDs, int[] quantities);
+public native void nativeUpsightBillboardOnRewards(String[] productIDs, int[] quantities, String[] signatureDatas);
 public native void nativeUpsightBillboardOnNextView();
 public native void nativeUpsightBillboardOnDetach();
 
@@ -348,15 +348,16 @@ public void AndroidThunkJava_UpsightBillboardForScopeRegisterForCallbacks(String
 	 		@Override
 	        public void onPurchases(List<UpsightPurchase> list)
 	        {
-	            String[]  productIDs     = new String[list.size()];
-	            Integer[] quantities     = new Integer[list.size()];
+
+	            String[] productIDs = new String[list.size()];
+	            int[]    quantities = new int[list.size()];
 
 	            for (int i = 0; i < list.size(); i++)
 	            {
 	                UpsightPurchase purchase = list.get(i);
 
-	                String  p = purchase.getProduct();
-	                Integer q = purchase.getQuantity();
+	                String p = purchase.getProduct();
+	                int    q = purchase.getQuantity();
 
 	                productIDs[i] = p;
 	                quantities[i] = q;
@@ -369,7 +370,7 @@ public void AndroidThunkJava_UpsightBillboardForScopeRegisterForCallbacks(String
 	        public void onRewards(List<UpsightReward> list)
 	        {
 	            String[]  productIDs     = new String[list.size()];
-	            Integer[] quantities     = new Integer[list.size()];
+	            int[]     quantities     = new int[list.size()];
 	            String[]  signatureDatas = new String[list.size()];
 
 	            for (int i = 0; i < list.size(); i++)
@@ -377,7 +378,7 @@ public void AndroidThunkJava_UpsightBillboardForScopeRegisterForCallbacks(String
 	                UpsightReward reward = list.get(i);
 
 	                String     p = reward.getProduct();
-	                Integer    q = reward.getQuantity();
+	                int        q = reward.getQuantity();
 	                JSONObject j = reward.getSignatureData();
 
 	                productIDs[i]     = p;
