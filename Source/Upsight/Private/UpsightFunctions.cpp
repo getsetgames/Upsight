@@ -584,6 +584,8 @@ extern "C" void Java_com_epicgames_ue4_GameActivity_nativeUpsightBillboardOnRewa
         Rewards.Add(r);
     }
     
+    jenv->ReleaseIntArrayElements(quantities, jQuantities, 0);
+    
     UUpsightComponent::DidReceieveRewardDelegate.Broadcast(Rewards);
 }
 
