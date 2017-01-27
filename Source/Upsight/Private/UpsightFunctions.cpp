@@ -387,9 +387,11 @@ void UUpsightFunctions::UpsightBillboardForScopeRegisterForCallbacks(FString sco
     UE_LOG(LogUpsight, Log, TEXT("UUpsightFunctions::UpsightBillboardForScopeRegisterForCallbacks - scope '%s'"), *scope);
     
 #if PLATFORM_IOS
-    id<USBillboard> billboard = [Upsight billboardForScope:scope.GetNSString()];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        id<USBillboard> billboard = [Upsight billboardForScope:scope.GetNSString()];
 
-    billboard.delegate = ufd;
+        billboard.delegate = ufd;
+    });
     
 #elif PLATFORM_ANDROID
     if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
@@ -416,9 +418,11 @@ void UUpsightFunctions::UpsightBillboardForScopeUnregisterForCallbacks(FString s
     UE_LOG(LogUpsight, Log, TEXT("UUpsightFunctions::UpsightBillboardForScopeUnregisterForCallbacks - scope '%s'"), *scope);
     
 #if PLATFORM_IOS
-    id<USBillboard> billboard = [Upsight billboardForScope:scope.GetNSString()];
-    
-    billboard.delegate = nil;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        id<USBillboard> billboard = [Upsight billboardForScope:scope.GetNSString()];
+        
+        billboard.delegate = nil;
+    });
     
 #elif PLATFORM_ANDROID
     if (JNIEnv* Env = FAndroidApplication::GetJavaEnv())
