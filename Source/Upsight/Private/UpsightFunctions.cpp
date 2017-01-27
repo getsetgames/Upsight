@@ -18,7 +18,7 @@
 -(UIViewController *)presentingViewControllerForBillboard:(id<USBillboard>)aBillboard;
 @end
 
-static UUpsightFunctionsDelegate* ufd;
+static UUpsightFunctionsDelegate* ufd = nil;
 
 @implementation UUpsightFunctionsDelegate
 
