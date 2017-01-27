@@ -419,6 +419,8 @@ public void AndroidThunkJava_UpsightBillboardForScopeUnregisterForCallbacks(Stri
 {
 	if (mUpsightBillboards.containsKey(scope)) 
 	{
+		mUpsightBillboards.get(scope).destroy();
+		mUpsightBillboards.remove(scope);
 	}
 	else
 	{
