@@ -516,6 +516,8 @@ extern "C" void Java_com_epicgames_ue4_GameActivity_nativeUpsightBillboardOnPurc
                                                                                       jobjectArray productIDs,
                                                                                       jintArray quantities)
 {
+    UE_LOG(LogUpsight, Log, TEXT("Java_com_epicgames_ue4_GameActivity_nativeUpsightBillboardOnPurchases"));
+    
     TArray<UUpsightVirtualGoodPromotionPurchase *> Purchases;
     
     jsize jNumPurchases = jenv->GetArrayLength(productIDs);
@@ -548,6 +550,8 @@ extern "C" void Java_com_epicgames_ue4_GameActivity_nativeUpsightBillboardOnRewa
                                                                                     jintArray    quantities,
                                                                                     jobjectArray signatureDatas)
 {
+    UE_LOG(LogUpsight, Log, TEXT("Java_com_epicgames_ue4_GameActivity_nativeUpsightBillboardOnRewards"));
+    
     TArray<UUpsightReward *> Rewards;
     
     jsize jNumRewards = jenv->GetArrayLength(productIDs);
