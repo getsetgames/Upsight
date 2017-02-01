@@ -474,7 +474,9 @@ public void AndroidThunkJava_UpsightBillboardUnregisterCallbacks()
 
 public boolean AndroidThunkJava_UpsightBillboardForScopeIsContentReady(String scope)
 {
-    return UpsightMarketingContentStore.isContentReady(mUpsight, scope);
+	Log.debug("AndroidThunkJava_UpsightBillboardForScopeIsContentReady - scope:" + scope);
+
+	return UpsightMarketingContentStore.isContentReady(mUpsight, scope);
 }
 		]]></insert>
 	</gameActivityClassAdditions>
