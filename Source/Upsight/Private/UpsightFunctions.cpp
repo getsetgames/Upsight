@@ -213,18 +213,17 @@ void UUpsightFunctions::UpsightRecordMilestoneEventForScope(FString scope,
     if ( ValidateValues(eventKeys, eventValues) )
     {
 #if PLATFORM_IOS
+        NSDictionary *p = CreateNSDictionary(eventKeys, eventValues);
+
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSDictionary *p       = CreateNSDictionary(eventKeys, eventValues);
-            NSString     *nsScope = scope.GetNSString()
-            
             if (withCallbackSetup)
             {
-                id<USBillboard> b = [Upsight billboardForScope:nsScope];
+                id<USBillboard> b = [Upsight billboardForScope:scope.GetNSString()];
                 
                 b.delegate = b.contentReady ? ufd : nil;
             }
             
-            [Upsight recordMilestoneEventForScope:nsScope properties:p];
+            [Upsight recordMilestoneEventForScope:scope.GetNSString() properties:p];
         });
     
 #elif PLATFORM_ANDROID
