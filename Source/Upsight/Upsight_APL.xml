@@ -280,18 +280,116 @@ public void AndroidThunkJava_UpsightRecordAnalyticsEventWithName(String eventNam
     b.record(mUpsight);
 }
 
-public void AndroidThunkJava_UpsightRecordMilestoneEventForScope(String scope, String[] keys, String[] values)
+public void AndroidThunkJava_UpsightRecordMilestoneEventForScope(String scope, String[] keys, String[] values, Boolean withCallbackSetup)
 {
-	Log.debug("AndroidThunkJava_UpsightRecordMilestoneEventForScope - scope:" + scope + ", keys:" + keys + ", values:" + values);
+	final String   fScope  = scope;
+    final String[] fKeys   = keys;
+    final String[] fValues = values;
 
-	UpsightMilestoneEvent.Builder b = UpsightMilestoneEvent.createBuilder(scope);
+    _activity.runOnUiThread(new Runnable()
+    {
+        @Override
+        public void run()
+        {
+			try
+			{
 
-	for (int i = 0; i < keys.length; i++)
-	{
-		b.put(keys[i], values[i]);
-    }
+	            Boolean bIsContentReady = UpsightMarketingContentStore.isContentReady(mUpsight, fScope);
+	            UpsightBillboard billboard = null;
 
-	b.record(mUpsight);
+	            if (bIsContentReady)
+	            {
+	                billboard = UpsightBillboard.create(mUpsight, fScope, new UpsightBillboardHandlers.DefaultHandler(_activity)
+	                {
+	                    @Override
+	                    public void onPurchases(List<UpsightPurchase> list)
+	                    {
+	                        String[] productIDs = new String[list.size()];
+	                        int[]    quantities = new int[list.size()];
+
+	                        for (int i = 0; i < list.size(); i++)
+	                        {
+	                            UpsightPurchase purchase = list.get(i);
+
+	                            String p = purchase.getProduct();
+	                            int    q = purchase.getQuantity();
+
+	                            productIDs[i] = p;
+	                            quantities[i] = q;
+	                        }
+
+	                        nativeUpsightBillboardOnPurchases(productIDs, quantities);
+	                    }
+
+	                    @Override
+	                    public void onRewards(List<UpsightReward> list)
+	                    {
+	                        String[] productIDs     = new String[list.size()];
+	                        int[]    quantities     = new int[list.size()];
+	                        String[] signatureDatas = new String[list.size()];
+
+	                        for (int i = 0; i < list.size(); i++)
+	                        {
+	                            UpsightReward reward = list.get(i);
+
+	                            String     p = reward.getProduct();
+	                            int        q = reward.getQuantity();
+	                            JSONObject j = reward.getSignatureData();
+
+	                            productIDs[i]     = p;
+	                            quantities[i]     = q;
+	                            signatureDatas[i] = j.toString();
+	                        }
+
+	                        nativeUpsightBillboardOnRewards(productIDs, quantities, signatureDatas);
+	                    }
+
+	                    @Override
+	                    public void onNextView()
+	                    {
+							nativeUpsightBillboardOnNextView();
+	                    }
+
+	                    @Override
+	                    public void onDetach()
+	                    {
+							nativeUpsightBillboardOnDetach();
+	                    }
+	                });
+	            }
+	            else
+	            {
+	                billboard = UpsightBillboard.create(mUpsight, fScope, null);
+	            }
+
+	            if (billboard != null)
+	            {
+	                if (UpsightBillboards.containsKey(fScope))
+	                {
+	                    UpsightBillboards.get(fScope).destroy();
+	                    UpsightBillboards.remove(fScope);
+	                }
+	            }
+
+	            UpsightBillboards.put(fScope, billboard);
+
+	            // Record the milestone event
+	            //
+	            UpsightMilestoneEvent.Builder b = UpsightMilestoneEvent.createBuilder(fScope);
+
+	            for (int i = 0; i < fKeys.length; i++)
+	            {
+	                b.put(fKeys[i], fValues[i]);
+	            }
+
+	            b.record(mUpsight);
+	        }
+	        catch(Exception e)
+	        {
+	        	Log.debug("AndroidThunkJava_UpsightRecordMilestoneEventForScope - exception: " + e.getMessage());
+	        }
+	    }
+    });
 }
 
 public void AndroidThunkJava_UpsightRecordMonetizationEvent(int resolution, String productID, int quantity, String currency, float price, String[] keys, String[] values)

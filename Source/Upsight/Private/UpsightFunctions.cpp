@@ -205,14 +205,27 @@ void UUpsightFunctions::UpsightRecordAnalyticsEventWithName(FString eventName, T
     }
 }
 
-void UUpsightFunctions::UpsightRecordMilestoneEventForScope(FString scope, TArray<FString> eventKeys, TArray<FString> eventValues)
+void UUpsightFunctions::UpsightRecordMilestoneEventForScope(FString scope,
+                                                            TArray<FString> eventKeys,
+                                                            TArray<FString> eventValues,
+                                                            bool withCallbackSetup)
 {
     if ( ValidateValues(eventKeys, eventValues) )
     {
 #if PLATFORM_IOS
-        NSDictionary *p = CreateNSDictionary(eventKeys, eventValues);
-    
-        [Upsight recordMilestoneEventForScope:scope.GetNSString() properties:p];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSDictionary *p       = CreateNSDictionary(eventKeys, eventValues);
+            NSString     *nsScope = scope.GetNSString()
+            
+            if (withCallbackSetup)
+            {
+                id<USBillboard> b = [Upsight billboardForScope:nsScope];
+                
+                b.delegate = b.contentReady ? ufd : nil;
+            }
+            
+            [Upsight recordMilestoneEventForScope:nsScope properties:p];
+        });
     
 #elif PLATFORM_ANDROID
         UE_LOG(LogUpsight, Log, TEXT("UUpsightFunctions::UpsightRecordMilestoneEventForScope - scope: %s"), *scope);
@@ -222,7 +235,7 @@ void UUpsightFunctions::UpsightRecordMilestoneEventForScope(FString scope, TArra
             static jmethodID Method = FJavaWrapper::FindMethod(Env,
                                                                FJavaWrapper::GameActivityClassID,
                                                                "AndroidThunkJava_UpsightRecordMilestoneEventForScope",
-                                                               "(Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;)V",
+                                                               "(Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;Ljava/lang/Boolean;)V"
                                                                false);
 
             jobjectArray jKeys   = (jobjectArray)Env->NewObjectArray(eventKeys.Num(),   FJavaWrapper::JavaStringClass, NULL);
@@ -231,8 +244,9 @@ void UUpsightFunctions::UpsightRecordMilestoneEventForScope(FString scope, TArra
             CreateJavaKeyValueArrays(Env, jKeys, jValues, eventKeys, eventValues);
             
             jstring jEventName = Env->NewStringUTF(TCHAR_TO_UTF8(*scope));
+            jboolean jWithCallbackSetup = withCallbackSetup;
             
-            FJavaWrapper::CallVoidMethod(Env, FJavaWrapper::GameActivityThis, Method, jEventName, jKeys, jValues);
+            FJavaWrapper::CallVoidMethod(Env, FJavaWrapper::GameActivityThis, Method, jEventName, jKeys, jValues, jWithCallbackSetup);
             
             Env->DeleteLocalRef(jKeys);
             Env->DeleteLocalRef(jValues);
