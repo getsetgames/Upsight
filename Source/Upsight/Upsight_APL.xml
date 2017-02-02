@@ -361,6 +361,11 @@ public void AndroidThunkJava_UpsightRecordMilestoneEventForScope(String scope, S
 	            {
 	            	billboard = UpsightBillboard.create(mUpsight, fScope, new UpsightBillboardHandlers.DefaultHandler(_activity)
 	                {
+	                    @Override
+	                    public UpsightBillboard.AttachParameters onAttach(String scope)
+	                    {
+	                    	return null;
+	                    }
 	                });
 	            }
 
