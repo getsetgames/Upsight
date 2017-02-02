@@ -359,16 +359,9 @@ public void AndroidThunkJava_UpsightRecordMilestoneEventForScope(String scope, S
 	            }
 	            else
 	            {
-	                billboard = UpsightBillboard.create(mUpsight, fScope, null);
-	            }
-
-	            if (billboard != null)
-	            {
-	                if (UpsightBillboards.containsKey(fScope))
+	            	billboard = UpsightBillboard.create(mUpsight, fScope, new UpsightBillboardHandlers.DefaultHandler(_activity)
 	                {
-	                    UpsightBillboards.get(fScope).destroy();
-	                    UpsightBillboards.remove(fScope);
-	                }
+	                });
 	            }
 
 	            mUpsightBillboards.put(fScope, billboard);
