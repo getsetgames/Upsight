@@ -297,6 +297,18 @@ public void AndroidThunkJava_UpsightRecordMilestoneEventForScope(String scope, S
 	            Boolean bIsContentReady = UpsightMarketingContentStore.isContentReady(mUpsight, fScope);
 	            UpsightBillboard billboard = null;
 
+	            // Get rid of the curent billboard we are tracking a new one will be created
+	            //
+				if (mUpsightBillboards.containsKey(fScope))
+                {
+                    mUpsightBillboards.get(fScope).destroy();
+                    mUpsightBillboards.remove(fScope);
+                }
+
+				String sIsContentReady = bIsContentReady ? "ready" : "not ready";
+
+				Log.debug("AndroidThunkJava_UpsightRecordMilestoneEventForScope - scope: " + fScope + " content is '" + sIsContentReady + "'");
+
 	            if (bIsContentReady)
 	            {
 	                billboard = UpsightBillboard.create(mUpsight, fScope, new UpsightBillboardHandlers.DefaultHandler(_activity)
