@@ -371,7 +371,7 @@ public void AndroidThunkJava_UpsightRecordMilestoneEventForScope(String scope, S
 	                }
 	            }
 
-	            UpsightBillboards.put(fScope, billboard);
+	            mUpsightBillboards.put(fScope, billboard);
 
 	            // Record the milestone event
 	            //
