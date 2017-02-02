@@ -247,6 +247,7 @@ import org.json.JSONObject;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 		</insert>
 	</gameActivityImportAdditions>
 	
@@ -264,7 +265,7 @@ private UpsightContext   mUpsight;
 private UpsightBillboard mUpsightPushBillboard;
 private Intent           mUpsightPurchaseResultIntent;
 
-private HashMap<String, UpsightBillboard> mUpsightBillboards = new HashMap<>();
+private ConcurrentHashMap<String, UpsightBillboard> mUpsightBillboards = new ConcurrentHashMap<>();
 
 public void AndroidThunkJava_UpsightRecordAnalyticsEventWithName(String eventName, String[] keys, String[] values)
 {
