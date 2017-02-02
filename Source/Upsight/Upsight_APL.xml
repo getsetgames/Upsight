@@ -294,7 +294,6 @@ public void AndroidThunkJava_UpsightRecordMilestoneEventForScope(String scope, S
         {
 			try
 			{
-
 	            Boolean bIsContentReady = UpsightMarketingContentStore.isContentReady(mUpsight, fScope);
 	            UpsightBillboard billboard = null;
 
