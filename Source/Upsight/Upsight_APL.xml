@@ -292,7 +292,7 @@ public void AndroidThunkJava_UpsightRecordAnalyticsEventWithName(String eventNam
 	});
 }
 
-public void AndroidThunkJava_UpsightRecordMilestoneEventForScope(String scope, String[] keys, String[] values, Boolean withCallbackSetup)
+public void AndroidThunkJava_UpsightRecordMilestoneEventForScope(String scope, String[] keys, String[] values, boolean withCallbackSetup)
 {
 	final String   fScope  = scope;
     final String[] fKeys   = keys;

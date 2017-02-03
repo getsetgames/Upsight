@@ -234,7 +234,7 @@ void UUpsightFunctions::UpsightRecordMilestoneEventForScope(FString scope,
             static jmethodID Method = FJavaWrapper::FindMethod(Env,
                                                                FJavaWrapper::GameActivityClassID,
                                                                "AndroidThunkJava_UpsightRecordMilestoneEventForScope",
-                                                               "(Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;Ljava/lang/Boolean;)V",
+                                                               "(Ljava/lang/String;[Ljava/lang/String;[Ljava/lang/String;Z)V",
                                                                false);
 
             jobjectArray jKeys   = (jobjectArray)Env->NewObjectArray(eventKeys.Num(),   FJavaWrapper::JavaStringClass, NULL);
