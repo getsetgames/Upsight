@@ -21,13 +21,13 @@
 		<insertNewline/>
 
 		<insert>
-com.upsight.android,core,4.1.1
+com.upsight.android,core,4.3.2
 		</insert>
 
 		<if condition="bUpsightIncludeAnalytics">
 			<true>
 				<insert>
-com.upsight.android,analytics,4.1.1
+com.upsight.android,analytics,4.3.2
 				</insert>
 			</true>
 		</if>
@@ -35,7 +35,7 @@ com.upsight.android,analytics,4.1.1
 		<if condition="bUpsightIncludeMarketing">
 			<true>
 				<insert>
-com.upsight.android,marketing,4.1.1
+com.upsight.android,marketing,4.3.2
 				</insert>
 			</true>
 		</if>
