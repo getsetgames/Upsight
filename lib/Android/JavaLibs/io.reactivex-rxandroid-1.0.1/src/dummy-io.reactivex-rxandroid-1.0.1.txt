@@ -1,1 +1,0 @@
-This is a dummy file which needs to be here so “src” folder will exist for this package during UE4 build/package time.  Omitting the “src” folder will cause a build error.

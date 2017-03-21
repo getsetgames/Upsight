@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <!-- From: file:/Users/kontagent/Applications/TeamCityAgent.app/work/5e9ef075937a5f1f/extensions/marketing/src/main/res/values/upsight_styles.xml -->
-    <eat-comment/>
-    <style name="Theme.DeviceDefault.Light.Dialog.NoActionBar.UpsightDialog" parent="@android:style/Theme.DeviceDefault.Light.Dialog.NoActionBar">
-        <item name="android:windowMinWidthMajor">95%</item>
-        <item name="android:windowMinWidthMinor">95%</item>
-    </style>
-</resources>
