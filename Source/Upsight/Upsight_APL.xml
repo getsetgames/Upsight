@@ -36,6 +36,8 @@ com.upsight.android,analytics,4.3.2
 			<true>
 				<insert>
 com.upsight.android,marketing,4.3.2
+com.upsight.android,managed-variables,4.3.2
+com.upsight.android,google-advertising-id,4.3.2
 				</insert>
 			</true>
 		</if>
@@ -44,6 +46,7 @@ com.upsight.android,marketing,4.3.2
  			<true>
  				<insert>
 com.google.android.gms,play-services-gcm,9.2.0
+com.upsight.android,google-push-services,4.3.2
 				</insert>
 			</true>
 		</if>	
@@ -199,26 +202,6 @@ com.google.android.gms,play-services-gcm,9.2.0
 	<!-- optional files or directories to copy to Intermediate/Android/APK -->
 
  	<prebuildCopies>
- 		<copyDir src="$S(EngineDir)/Plugins/GSG/Upsight/lib/Android/libs" dst="$S(BuildDir)/libs" /> 
-		<copyDir src="$S(EngineDir)/Plugins/GSG/Upsight/lib/Android/JavaLibs/io.reactivex-rxandroid-1.0.1" dst="$S(BuildDir)/JavaLibs/io.reactivex-rxandroid-1.0.1" />
-
-		<if condition="bUpsightIncludeMangedVariables">
-			<true>
-				<copyDir src="$S(EngineDir)/Plugins/GSG/Upsight/lib/Android/JavaLibs/com.upsight.android-managed-variables-4.1.1" dst="$S(BuildDir)/JavaLibs/com.upsight.android-managed-variables-4.1.1" />
-			</true>
-		</if>
-
-		<if condition="bUpsightIncludeAdvertisingID">
-			<true>
-				<copyDir src="$S(EngineDir)/Plugins/GSG/Upsight/lib/Android/JavaLibs/com.upsight.android-google-advertising-id-4.1.1" dst="$S(BuildDir)/JavaLibs/com.upsight.android-google-advertising-id-4.1.1" />
-			</true>
-		</if>
-
-		<if condition="bUpsightIncludePushNotifications">
- 			<true>
-				<copyDir src="$S(EngineDir)/Plugins/GSG/Upsight/lib/Android/JavaLibs/com.upsight.android.googlepushservices-4.1.1" dst="$S(BuildDir)/JavaLibs/com.upsight.android.googlepushservices-4.1.1" />
- 			</true>
- 		</if>
 
 	</prebuildCopies>
 
