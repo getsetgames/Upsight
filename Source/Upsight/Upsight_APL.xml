@@ -140,38 +140,36 @@ com.upsight.android,google-push-services,4.3.2
 	<proguardAdditions>
 		<insert>
 <![CDATA[
-		-keep class com.squareup.otto.Bus
-		-keep class rx.** { *; }
-		-keep class dagger.** { *; }
-		-keep class android.support.v4.** { *; }
-		-keep class com.google.android.gms.** { *; }
-		-keep class rx.android.schedulers.HandlerScheduler
 
 		# Upsight
 		-keep class com.upsight.android.** { *; }
 		-keep interface com.upsight.android.** { *; }
 
-		# Upsight Mediation
-		-dontwarn com.nuance.nmdp.speechkit.**
-		-dontwarn com.google.ads.**
-		-dontwarn android.webkit.**
-		-dontwarn android.support.v4.**
-		-dontwarn com.unity3d.**
-		-keep class com.upsight.mediation.** { *; }
-		-keep class com.vungle.** { *; }
 		-keep class javax.** { *; }
-		-keepattributes JavascriptInterface
+		
+		-dontwarn com.unity3d.**
+		-dontwarn javax.annotation.Nullable
+		-dontwarn com.google.common.collect.Maps
+		-dontwarn android.webkit.**
+
+		# HttpHeaders
+		-dontwarn com.google.common.net.HttpHeaders
+
+		# Dagger
+		-dontwarn dagger.**
+
+		# Upsight Mediation
+		-dontwarn com.upsight.mediation.**
+		-keep class com.upsight.mediation.** { *; }
+		-keep interface com.upsight.mediation.** { *; }
+		-keep class com.google.android.gms.ads.identifier.** { *; }
+		-keep interface com.google.android.gms.ads.identifier.** { *; }
+
+		# Gson
+		-keepattributes Signature
 		-keepattributes *Annotation*
 		-keep class sun.misc.Unsafe { *; }
-		-keepattributes Signature
-
-		# Jackson
-		-dontwarn com.fasterxml.jackson.databind.**
-		-keepattributes *Annotation*,EnclosingMethod,Signature
-		-keepnames class com.fasterxml.jackson.** { *; }
-		-keepclassmembers public final enum com.fasterxml.jackson.annotation.JsonAutoDetect$Visibility {
-		    public static final com.fasterxml.jackson.annotation.JsonAutoDetect$Visibility *;
-		}
+		-keep class com.google.gson.stream.** { *; }
 
 		# Rx
 		-dontwarn sun.misc.**
