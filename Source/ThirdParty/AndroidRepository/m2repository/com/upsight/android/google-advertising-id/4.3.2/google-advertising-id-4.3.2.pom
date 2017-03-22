@@ -100,7 +100,7 @@
     <dependency>
       <groupId>com.google.android.gms</groupId>
       <artifactId>play-services-basement</artifactId>
-      <version>8.4.0</version>
+      <version>9.2.0</version>
       <type>aar</type>
       <scope>compile</scope>
       <exclusions>
