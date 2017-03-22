@@ -74,8 +74,7 @@ namespace UnrealBuildTool.Rules
 						"Foundation",
 						"CoreTelephony",
 						"AdSupport",
-						"MediaPlayer",
-						"UserNotifications"
+						"MediaPlayer"
 					}
 				);
 			}
