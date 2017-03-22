@@ -66,13 +66,16 @@ namespace UnrealBuildTool.Rules
 					)
 				); 
 
+				PublicAdditionalLibraries.Add("libxml2");
+
 				PublicFrameworks.AddRange( 
 					new string[] 
 					{ 
-						"CoreData",
-						"SystemConfiguration",
+						"Foundation",
 						"CoreTelephony",
-						"AdSupport"
+						"AdSupport",
+						"MediaPlayer",
+						"UserNotifications"
 					}
 				);
 			}
