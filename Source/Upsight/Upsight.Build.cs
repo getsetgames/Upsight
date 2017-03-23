@@ -66,7 +66,7 @@ namespace UnrealBuildTool.Rules
 					)
 				); 
 
-				PublicAdditionalLibraries.Add("libxml2");
+				PublicAdditionalLibraries.Add("xml2");
 
 				PublicFrameworks.AddRange( 
 					new string[] 
