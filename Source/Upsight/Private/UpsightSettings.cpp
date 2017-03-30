@@ -3,8 +3,8 @@
 //  Copyright (c) 2016 Get Set Games Inc. All rights reserved.
 //
 
-#include "UpsightPrivatePCH.h"
 #include "UpsightSettings.h"
+#include "UpsightPrivatePCH.h"
 
 UUpsightSettings::UUpsightSettings(const FObjectInitializer& ObjectInitializer)
 : Super(ObjectInitializer),

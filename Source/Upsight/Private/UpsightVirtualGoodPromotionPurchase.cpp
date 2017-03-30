@@ -3,6 +3,7 @@
 //  Copyright (c) 2017 Get Set Games Inc. All rights reserved.
 //
 
+#include "UpsightVirtualGoodPromotionPurchase.h"
 #include "UpsightPrivatePCH.h"
 
 UUpsightVirtualGoodPromotionPurchase::UUpsightVirtualGoodPromotionPurchase(const FObjectInitializer& ObjectInitializer)
