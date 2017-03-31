@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include "Components/ActorComponent.h"
 #include "UpsightFunctions.h"
 #include "UpsightComponent.generated.h"
 
