@@ -165,6 +165,19 @@ com.upsight.android,google-push-services,4.3.2
 		-keep class com.google.android.gms.ads.identifier.** { *; }
 		-keep interface com.google.android.gms.ads.identifier.** { *; }
 
+		# Mediation:Mopub
+		-keepclassmembers class com.mopub.** { public *; }
+		-keep public class com.mopub.**
+		-keep public class android.webkit.JavascriptInterface {}
+		-keep class * extends com.mopub.mobileads.CustomEventInterstitial {}
+		-keep class * extends com.mopub.mobileads.CustomEventRewardedVideo {}
+		-keep class com.google.android.gms.common.GooglePlayServicesUtil { *; }
+		-keep class com.google.android.gms.ads.identifier.AdvertisingIdClient { *; }
+		-keep class com.google.android.gms.ads.identifier.AdvertisingIdClient$Info { *; }
+		-dontwarn com.google.android.gms.**
+		-dontwarn org.apache.http.**
+		-dontwarn com.mopub.volley.toolbox.**
+
 		# Gson
 		-keepattributes Signature
 		-keepattributes *Annotation*
