@@ -178,6 +178,9 @@ com.upsight.android,google-push-services,4.3.2
 		-dontwarn org.apache.http.**
 		-dontwarn com.mopub.volley.toolbox.**
 
+		-dontwarn android.net.http.AndroidHttpClient
+		-dontwarn com.android.volley.toolbox.** 
+
 		# Gson
 		-keepattributes Signature
 		-keepattributes *Annotation*
