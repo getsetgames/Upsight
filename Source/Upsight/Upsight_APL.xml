@@ -667,7 +667,15 @@ mUpsightPushBillboard = UpsightPushBillboard.create(mUpsight, UpsightPushBillboa
 //			
 if (requestCode == 1001)
 {
-	mUpsightPurchaseResultIntent = new Intent(data);
+	try
+	{
+		mUpsightPurchaseResultIntent = new Intent(data);
+		Log.debug("Upsight onnActivityResult finished");
+	}
+	catch (Exception e)
+	{
+		e.printStackTrace();
+	}
 }
 		]]></insert>
 	</gameActivityOnActivityResultAdditions>
