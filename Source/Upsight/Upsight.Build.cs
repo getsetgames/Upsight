@@ -9,7 +9,7 @@ namespace UnrealBuildTool.Rules
 {
 	public class Upsight : ModuleRules
 	{
-		public Upsight(TargetInfo Target)
+		public Upsight(ReadOnlyTargetRules Target) : base(Target)
 		{
 			PublicIncludePaths.AddRange(
 				new string[] {
